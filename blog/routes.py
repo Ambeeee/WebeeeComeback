@@ -1,8 +1,16 @@
-from flask import render_template
+from flask import render_template, request, flash
 from blog import app
+
 
 @app.route("/")
 def home():
-    posts = [{"title": "primo post", "body": "primo body"},
-            {"title": "secondo post", "body": "secondo body"}]
-    return render_template("home.html", posts=posts)
+    return render_template("home.html")
+
+@app.route("/password", methods = ["POST", "GET"])
+def password():
+    attempt = str(request.form["pw_input"])
+    if attempt == "6414":
+        flash("Welcome, sir.")
+    else:
+        flash("Hai sbagliato mammoccio")
+    return render_template("home.html")
