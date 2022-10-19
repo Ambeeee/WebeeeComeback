@@ -24,4 +24,4 @@ with app.app_context():
 
 
 
-from blog import routes
+from blog import models, routes

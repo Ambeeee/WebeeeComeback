@@ -1,0 +1,1 @@
+Run Flask on local host: "flask run --host=http://192.168.56.1:5000" (ipconfig nel cmd per leggere ip)
