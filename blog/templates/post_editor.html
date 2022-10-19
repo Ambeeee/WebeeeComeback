@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Post Editor{% endblock %}
+{% block content %}
+
+<h2>
+{% if request.path == "/create-article" %} -Nuovo Post-
+{%else%} -Aggiorna Post- {%endif%}
+</h2>
+
+<form method="POST" novalidate>
+    {{fom.hidden_tag()}}
+
+{{form.title.label}}
+{{form.title(class="")}}
+    {% if form.title.errors %}{% for e in form.title.errors %}
+    <p> {{e}} </p>
+    {% endfor %}{% endif %}
+
+{{form.description.label}}
+{{form.description(class="")}}
+    {% if form.description.errors %}{% for e in form.description.errors %}
+    <p> {{e}} </p>
+    {% endfor %}{% endif %}
+
+{{form.body.label}}
+{{form.body(class="", rows=15)}}
+    {% if form.body.errors %}{% for e in form.body.errors %}
+    <p> {{e}} </p>
+    {% endfor %}{% endif %}
+
+
+{{form.submit(class="")}}
+</form>
+
+{% endblock %}

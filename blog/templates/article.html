@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Pres{% endblock %}
+{% block content %}
+
+<h2>-{{post.title}}-</h2>
+
+    {% if current_user.si_authenticated and current_user == post.author %}
+
+        <a href=" {{ url_for('post_update'), post_id=post.id) }} ">Modifica</a>
+        <form method="POST" action=" {{url_for('delete_article', post_id=post.id)}} ">
+            <input type="submit" value="Cancella">
+        </form>
+
+    {%endif%}
+
+
+    <p>Data: {{post.created_at.strftime('%d.%m.%Y')}}</p><br>
+    
+    {% if post.description %}<p>Descrizione: {{post.description}}</p>{% endif %}
+    
+    <br><br>
+    <p>Content: {{post.body}}</p>
+    
+    
+{% endblock %}
