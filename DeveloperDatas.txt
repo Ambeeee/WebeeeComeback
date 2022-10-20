@@ -1,20 +1,21 @@
-#Nuova Sezione Db 
 
-#dopo averlo aggiunto nella classe in models.py: (sembra scontanto, ma no flask shell!)
-flask db migrate -m cosa ho aggiunto?
-flask db upgrade
+NUOVA SEZIONE DB
+	#dopo averlo aggiunto nella classe in models.py: (sembra scontanto, ma no flask shell!)
+	flask db migrate -m cosa ho aggiunto?
+	flask db upgrade
 
-#Modifica Campo Db
 
-u = User.query.get(id)
+MODIFICA CAMPO DB
+	flask shell
+	u = User.query.get(id)
 
-#Nuovo User (o nuova quality)
 
-flask shell
-u = User(username = "", email = "", role = "")
-u.set_password_hash("")
-db.session.add(u)
-db.session.commit()
+NUOVO USER/POST
+	flask shell
+	u = User(username = "", email = "", role = "")
+	u.set_password_hash("")
+	db.session.add(u)
+	db.session.commit()
 
 
 #Roles

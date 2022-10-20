@@ -7,29 +7,45 @@
 {%else%} -Aggiorna Post- {%endif%}
 </h2>
 
-<form method="POST" novalidate>
-    {{fom.hidden_tag()}}
 
-{{form.title.label}}
-{{form.title(class="")}}
-    {% if form.title.errors %}{% for e in form.title.errors %}
-    <p> {{e}} </p>
-    {% endfor %}{% endif %}
+{% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %} 
+    
+    <p> {{message}} </p>
 
-{{form.description.label}}
-{{form.description(class="")}}
-    {% if form.description.errors %}{% for e in form.description.errors %}
-    <p> {{e}} </p>
-    {% endfor %}{% endif %}
-
-{{form.body.label}}
-{{form.body(class="", rows=15)}}
-    {% if form.body.errors %}{% for e in form.body.errors %}
-    <p> {{e}} </p>
-    {% endfor %}{% endif %}
+{% endfor %} {% endif %} {% endwith %}
 
 
-{{form.submit(class="")}}
+
+<form method="POST" enctype="multipart/form-data" novalidate>
+    {{form.hidden_tag()}}
+        <br><br>
+        {{form.title.label}}<br>
+        {{form.title(class="")}}<br>
+            {% if form.title.errors %}{% for e in form.title.errors %}
+            <p> {{e}} </p>
+            {% endfor %}{% endif %}
+        <br><br>
+        {{form.description.label}}<br>
+        {{form.description(class="")}}<br>
+            {% if form.description.errors %}{% for e in form.description.errors %}
+            <p> {{e}} </p>
+            {% endfor %}{% endif %}
+        <br><br>
+        {{form.body.label}}<br>
+        {{form.body(class="", rows=15)}}<br>
+            {% if form.body.errors %}{% for e in form.body.errors %}
+            <p> {{e}} </p>
+            {% endfor %}{% endif %}
+
+        <br><br>
+        {{form.cover.label}}<br>
+        {{form.cover(class="", rows=15)}}<br>
+            {% if form.cover.errors %}{% for e in form.cover.errors %}
+            <p> {{e}} </p>
+            {% endfor %}{% endif %}
+
+        <br><br>
+        {{form.submit(class="")}}
 </form>
 
 {% endblock %}

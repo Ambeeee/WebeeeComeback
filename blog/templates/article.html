@@ -2,11 +2,15 @@
 {% block title %}Pres{% endblock %}
 {% block content %}
 
+{% if post.cover %}
+<img src=" {{ url_for('static', filename='img/posts' + post.cover) }} " alt="Cover">
+{%endif%}
+
 <h2>-{{post.title}}-</h2>
 
-    {% if current_user.si_authenticated and current_user == post.author %}
+    {% if current_user.is_authenticated and current_user == post.author %}
 
-        <a href=" {{ url_for('post_update'), post_id=post.id) }} ">Modifica</a>
+        <a href=" {{ url_for('update_article', post_id=post.id) }} ">Modifica</a>
         <form method="POST" action=" {{url_for('delete_article', post_id=post.id)}} ">
             <input type="submit" value="Cancella">
         </form>
