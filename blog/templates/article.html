@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if post.cover %}
-<img src=" {{ url_for('static', filename='img/posts' + post.cover) }} " alt="Cover">
+<img src=" {{ url_for('static', filename='img/posts/' + post.cover) }} " alt="Cover">
 {%endif%}
 
 <h2>-{{post.title}}-</h2>

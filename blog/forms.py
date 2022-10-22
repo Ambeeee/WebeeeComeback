@@ -11,11 +11,16 @@ class LoginForm(FlaskForm):
 
 class PostForm(FlaskForm):
     title = StringField("Titolo",
-        validators=[DataRequired("Campo obbligatorio!"), Length(min=3, max=120, message="Assicurati che il titolo abbia tra i 3 e i 120 caratteri")])
-    
+        validators=[DataRequired("Campo obbligatorio!"), Length(min=3, max=120,
+        message="Assicurati che il titolo abbia tra i 3 e i 120 caratteri")])
+
     description = TextAreaField("Descrizione",
-        validators=[Length(max=240, message="Il massimo per la descrizione è 240 caratteri")])
+        validators=[Length(max=240, message="Il massimo per la descrizione è 240 caratteri")])  
+
+    body = StringField("Paragrafo #1",
+        validators=[DataRequired("Campo obbligatorio!")])
+
+    cover = FileField("Copertina",
+        validators=[FileAllowed(["jpg", "jpeg", "png"])])
         
-    body = StringField("Paragrafo #1", validators=[DataRequired("Campo obbligatorio!")])
-    cover = FileField("Copertina", validators=[FileAllowed(["jpg", "jpeg", "png"])])
     submit = SubmitField("Pubblica")

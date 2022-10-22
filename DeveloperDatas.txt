@@ -32,3 +32,7 @@ AmbeII          the.ambeee@gmail.com                    QuiComandoIo.py         
 DiegoAC                                                 Diego123                    Testimonial #Writer
 LTGobbini?      lorenzo.tolomei@hotmail.com             a.siepe.sci                 Testimonial
 Lornat04                                                Baianocity007               Testimonial
+
+
+
+Run Flask on local host: "flask run --host=http://192.168.56.1:5000" (ipconfig nel cmd per leggere ip)

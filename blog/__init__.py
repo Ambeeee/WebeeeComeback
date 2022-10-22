@@ -10,6 +10,8 @@ from config import Config
 app = Flask(__name__)
 app.config.from_object(Config)
 
+
+
 #DATABASE
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -28,4 +30,4 @@ with app.app_context():
 
 
 
-from blog import models, routes
+from blog import models, routes, errors

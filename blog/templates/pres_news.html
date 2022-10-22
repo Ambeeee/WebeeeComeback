@@ -4,7 +4,7 @@
 
 <h2>-Pres-</h2>
 
-    {% for post in posts %}
+    {% for post in posts.items %}
 
         <h4><a href="{{ url_for('article', post_slug=post.slug) }}">Titolo: {{post.title}}</a></h4>
         <p>Data: {{post.created_at.strftime('%d.%m.%Y')}}</p>
@@ -13,6 +13,12 @@
         
         
     {% endfor %}
+
+
+    <div>
+        {% if previous_page %}<a href=" {{previous_page}} ">Prima</a>{% endif %}
+        {% if next_page %}<a href=" {{next_page}} ">Dopo</a>{% endif %}
+    </div>
 
 
 {% endblock %}

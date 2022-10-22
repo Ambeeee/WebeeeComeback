@@ -1,3 +1,4 @@
+from turtle import pos
 from flask import abort, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -29,9 +30,20 @@ def home():
 
 @app.route("/pres-news")
 def pres_news():
-    posts = Post.query.order_by(Post.created_at.desc()).all()
+    page_number = request.args.get("page", 1, type=int)
+    posts = Post.query.order_by(Post.created_at.desc()).paginate(page=page_number, per_page=4, error_out=True)
 
-    return render_template("Pres_news.html", posts=posts)
+    if posts.has_next:
+        next_page = url_for("pres_news", page=posts.next_num)
+    else:
+        next_page = None
+    if posts.has_prev:
+        previous_page = url_for("pres_news", page=posts.prev_num)
+    else:
+        previous_page = None
+    
+    return render_template("Pres_news.html", posts=posts, current_page=page_number,
+                            next_page=next_page, previous_page=previous_page)
 
 @app.route("/posts/<string:post_slug>")
 def article(post_slug):
@@ -55,7 +67,7 @@ def create_article():
         if form.cover.data:
             try:
                 cover = save_picture(form.cover.data)
-                new_post.image = cover
+                new_post.cover = cover
             except Exception:
                 db.session.add(new_post)
                 db.session.commit()
