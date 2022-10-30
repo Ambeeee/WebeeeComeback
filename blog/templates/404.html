@@ -2,9 +2,14 @@
 {% block title %}404{% endblock %}
 {% block content %}
 
-<h2>Error 404</h2>
-
-    Page not found
 
 
+    <p>Error 404</p>
+    <p>Ops, pagina non trovata...</p>
+
+    <p>Questa pagina non esiste, se sei convinto che qui dovrebbe <br>
+        esserci qualcosa prova a scrivere di nuovo l'indirizzo, <br>
+        altrimenti</p>
+
+    <a href=" {{url_for('home')}} ">Torna alla Home</a>
 {% endblock %}

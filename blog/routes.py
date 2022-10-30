@@ -1,4 +1,3 @@
-from turtle import pos
 from flask import abort, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -6,6 +5,7 @@ from blog import db, app
 from blog.forms import LoginForm, PostForm
 from blog.models import Post, User
 from blog.utils import title_slugifier, save_picture
+
 
 
 @app.route("/")
