@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+    <title>{% block title %}{% endblock %} - Webeee</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %} - Webeee</title>
+    
 </head>
 <body>
-    <div id="menu">
-        <img src=" {{ url_for('static', filename='img/posts/build/user_not_loaded.png') }} " alt="icon">
-        <img src="../statics/img/posts/build/user_not_loaded.png " alt="icon">
+    <div class="menu container table-xr">
+        <div class="container table-y">
+            <img class = "icon-main"
+                src=" {{ url_for('static', filename='img/build/user_not_loaded.png') }} " alt="icon">
+        
+        </div>
+        <div id="Tabs" class="container table-x">
+            <div class="tab"><p href=" {{ url_for('home') }} ">Home</p></div>
+            <div class="tab"><p href="#">News</p></div>
+            <div class="tab"><p href=" {{ url_for('pres_news') }} ">Pres</p></div>
+        </div>
     </div>
     
-
 
     {% block content %}
     {% endblock %}

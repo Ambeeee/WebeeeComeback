@@ -11,7 +11,6 @@ from blog.utils import title_slugifier, save_picture
 @app.route("/")
 def start():
     return render_template("home.html")
-
 @app.route("/password", methods = ["POST", "GET"])
 def password():
     attempt = str(request.form["pw_input"])
@@ -24,7 +23,12 @@ def password():
 
 @app.route("/h")
 def home():
-    return render_template("home.html")
+    from random import randint
+    LAST_W = "Ci dispiace, non c'è ancora nessuna notizia qui!"
+    LAST = Post.query.order_by(Post.id).first()
+    rand_n = randint(1, 9)
+    RANDOM = Post.query.filter_by(id=rand_n).first()
+    return render_template("home.html", last=LAST, random=RANDOM, last_w=LAST_W)
 
 
 
