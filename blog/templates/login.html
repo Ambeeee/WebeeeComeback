@@ -2,34 +2,47 @@
 {% block title %}Login{% endblock %}
 {% block content %}
 
-<h2>-Login-</h2>
+    <!--BACKGROUND-->
+    <img class="background w80 m-5"
+        src=" {{ url_for('static', filename='img/build/login_back.png') }} " alt="BACKGROUND">
 
-    <form method="POST" novalidate>
-        {{ form.hidden_tag() }}
-        <p> {{form.username.label}} </p>
-        <p> {{form.username(class="")}} </p>
-            {% if form.username.errors %}{% for e in form.username.errors %}
-            <p> {{e}} </p>
-            {% endfor %}{% endif %}
-
-        <p> {{form.password.label}} </p>
-        <p> {{form.password(class="")}} </p>
-            {% if form.password.errors %}{% for e in form.password.errors %}
-            <p> {{e}} </p>
-            {% endfor %}{% endif %}
-
-            
-        <p> {{form.remember_me()}} {{form.remember_me.label}} </p>
-
-        {{form.submit(class="")}}
-    </form>
-
-    <br><br>
-
-    {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %} 
+    <!--TITLE-->
+    <div class="title-container"><div class="title-second">Login</div></div>
     
-    <p> {{message}} </p>
+    
 
+    <div class="login-section">
+        <form method="POST" novalidate>{{ form.hidden_tag() }}
+
+            <!--User-->
+            <p class="label-1">{{form.username.label}} </p>
+            <p> {{form.username(class="field")}} </p>
+                {% if form.username.errors %}{% for e in form.username.errors %}
+                <p class="error"> {{e}} </p>
+                {% endfor %}{% endif %}
+
+            <!--Password-->
+            <p class="label-1">{{form.password.label}} </p>
+            <p> {{form.password(class="field")}} </p>
+                {% if form.password.errors %}{% for e in form.password.errors %}
+                <p class="error"> {{e}} </p>
+                {% endfor %}{% endif %}
+                
+            <!--Remember-->
+            <div class="section table-x">
+                <p class="label-1"> {{form.remember_me.label}}</p>
+                <p class="label-1">{{form.remember_me()}}</p>   
+                <!--Submit-->
+                {{form.submit(class="btn-blue")}}
+            </div>
+        </form>
+            
+    </div>
+    
+
+    <!--Errors-->
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %} 
+    <p class="error m-25"> {{message}} </p>
     {% endfor %} {% endif %} {% endwith %}
     
 

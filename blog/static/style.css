@@ -1,10 +1,12 @@
 :root{
     --font_webeee: "SHELMAN";
+    --font_back: "Freehand575 BT";
     --font_title: "Forte";
     --font_menu: "Mistral";
     --font_error: "Chiller";
-    --font_desc1: "Freehand575 BT";
+    --font_desc1: "Freehand521 BT";
     --font_text: "Gabriola";
+    --font_bold: "JOAN";
     --text_primary_color: black;
     --text_secondary_color: white;
 
@@ -19,11 +21,19 @@
 }
 body{
     margin: 0;
-    text-decoration: none;
 }
 
 /* COMPUTER */
 @media screen and (min-width: 1024px) {
+
+    a{
+        text-decoration: none;
+        color: var(--text_primary_color);
+    }
+    a:visited{
+        color: var(--text_primary_color);
+    }
+    
     
     /* Menu */
     .menu{
@@ -31,6 +41,7 @@ body{
         font-family: var(--font_menu);
         font-size: 35px;
         color: var(--text_primary_color);
+        z-index: 4;
     }
     .icon-main{
         width: 50%;
@@ -41,15 +52,15 @@ body{
         margin: 10% 25%;
     }
     #Tabs{
-        width: 31%;
+        width: 41%;
         margin: 1% 2%;
     }
     .tab{
-        margin: 0% 7%;
-        padding: 2% 3%;
-    }
-    .tab p{
-        margin: 0;
+        width: 30%;
+        margin: 0% 2%;
+        padding: 2%;
+        text-align: center;
+        z-index: 4;
     }
 
 
@@ -70,7 +81,14 @@ body{
         font-family: var(--font_webeee);
         color: var(--blueee);
         font-size: 300px;
-        z-index: 4;
+        text-align: center;
+    }
+    .title-second{
+        font-family: var(--font_title);
+        color: var(--text_primary_color);
+        font-size: 120px;
+        text-align: center;
+        margin-top: -10%;
     }
     @keyframes ItsBack {
         0% {font-size: 90px;}
@@ -79,7 +97,7 @@ body{
     }
     .moving-subtitle{
         font-size: 90px;
-        font-family: var(--font_desc1);
+        font-family: var(--font_back);
         color: var(--red);
         text-shadow: 1px 1px 0px #8F1111;
         width: 30%;
@@ -123,12 +141,12 @@ body{
     .f3{margin: 5% 30% 5% 40%;}
 
     .frame-type{
-        margin-top: -12%;
+        margin-top: -15%;
         text-align: center;
-        font-size: 24px;
+        font-size: 34px;
         font-family: var(--font_title);
-        color: var(--text_secondary_color);
-        text-shadow: 1px 1px 0 var(--text_primary_color);
+        color: var(--text_primary_color);
+        text-shadow: 1px 1px 0 var(--text_secondary_color);
     }
     .frame-title{
         font-size: 30px;
@@ -139,14 +157,66 @@ body{
     .frame-title:visited{
         color: var(--text_primary_color);
     }
+    .login-section{
+        width: 40%;
+        margin: -27% 25%;
+        border-radius: 100px 100px 0 0;
+        background-color: var(--ambeee);
+        padding: 1% 5%;
+    }
+    .label-1{
+        text-align: center;
+        font-size: 30px;
+        font-family: "Freehand521 BT";
+        margin: 5% 2% 0 2%;
+    }
+    .field{
+        width: 70%;
+        margin: 0 10% 5% 10%;
+        padding: 2% 5%;
+        border-radius: 25px;
+        text-align: center;
+        box-shadow: 5px 5px 0px var(--back_secondary);
+    }
+    .error{
+        font-size: 30px;
+        color: var(--red);
+        text-align: center;
+        text-shadow: 1px 1px 0px var(--red2);
+        font-family: var(--font_error);
+        z-index: 3;
+    }
+    .btn-blue{
+        background-color: var(--blueee);
+        color: var(--text_secondary_color);
+        font-family: var(--font_bold);
+        border-radius: 25px;
+        font-size: 25px;
+        padding: 1% 15%;
+        width: 40%;
+        margin: 0 20%;
+    }
 
 
+    
 
 
-
-
-
-
+    .w80{
+        width: 80%;
+        margin-right: 10%;
+        margin-left: 10%;
+    }
+    .w40{
+        width: 40%;
+        margin-right: 30%;
+        margin-left: 30%;
+    }
+    .m-5{
+        margin-top: -5%;
+    }
+    .m-35{
+        margin-top: -35%;
+    }
     
     .t-center{
         text-align: center;

@@ -12,15 +12,15 @@
 </head>
 <body>
     <div class="menu container table-xr">
-        <div class="container table-y">
+        <a class="container table-y" href=" {{ url_for('login') }} ">
             <img class = "icon-main"
                 src=" {{ url_for('static', filename='img/build/user_not_loaded.png') }} " alt="icon">
         
-        </div>
+        </a>
         <div id="Tabs" class="container table-x">
-            <div class="tab"><p href=" {{ url_for('home') }} ">Home</p></div>
-            <div class="tab"><p href="#">News</p></div>
-            <div class="tab"><p href=" {{ url_for('pres_news') }} ">Pres</p></div>
+            <a class="tab" href=" {{ url_for('home') }} ">Home</a>
+            <a class="tab" href=" {{ url_for('pres_news') }} ">Pres</a>
+            <a class="tab" href="#">Altre News</a>
         </div>
     </div>
     

@@ -25,8 +25,8 @@ def password():
 def home():
     from random import randint
     LAST_W = "Ci dispiace, non c'è ancora nessuna notizia qui!"
-    LAST = Post.query.order_by(Post.id).first()
-    rand_n = randint(1, 9)
+    LAST = Post.query.all()[-1]
+    rand_n = randint(1, (LAST.id-1))
     RANDOM = Post.query.filter_by(id=rand_n).first()
     return render_template("home.html", last=LAST, random=RANDOM, last_w=LAST_W)
 
