@@ -15,8 +15,9 @@ Mako==1.2.3
 MarkupSafe==2.1.1
 Pillow==9.2.0
 pycparser==2.21
+pyperclip==1.8.2
 python-dotenv==0.21.0
-pywin32==302
+pywin32==304
 SQLAlchemy==1.4.42
 Werkzeug==2.2.2
 WTForms==3.0.1
