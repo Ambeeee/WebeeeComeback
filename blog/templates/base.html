@@ -12,12 +12,16 @@
 </head>
 <body>
     <div class="menu container table-xr">
+
         <a class="container table-y" href="
         {% if current_user.is_authenticated %} {{ url_for('logout') }}
         {% else %} {{ url_for('login') }} {% endif %}">
+
             <img class = "icon-main" alt="icon"
                 src="{{ url_for('static', filename='img/build/user_not_loaded.png') }}">
+        
         </a>
+
         <div id="Tabs" class="container table-x">
             <a class="tab" href=" {{ url_for('home') }} ">Home</a>
             <a class="tab" href=" {{ url_for('pres_news') }} ">Pres</a>

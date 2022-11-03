@@ -3,13 +3,25 @@
 {% block content %}
 
 
+<!--BACKGROUND-->
+<img class="background w80 m-5"
+src=" {{ url_for('static', filename='img/build/404_back.png') }} " alt="BACKGROUND">
 
-    <p>Error 404</p>
-    <p>Ops, pagina non trovata...</p>
+<!--TITLE-->
+<div class="title-container">
+    <div class="error c-webeee">Error 404</div>
+    <div class="title-error">Ops, pagina non trovata</div>
+</div>
+<!--PAGE-->
+<div class="error-page">
+    <p class="text">
+        Questa pagina non esiste, se sei convinto che qui dovrebbe
+        esserci qualcosa prova a scrivere di nuovo l'indirizzo,
+        <br> altrimenti
+    </p>
 
-    <p>Questa pagina non esiste, se sei convinto che qui dovrebbe <br>
-        esserci qualcosa prova a scrivere di nuovo l'indirizzo, <br>
-        altrimenti</p>
+    <a href=" {{ url_for('home') }} "><p class="error c-webeee">Torna alla Home</p></a>
+</div>
 
-    <a href=" {{url_for('home')}} ">Torna alla Home</a>
+
 {% endblock %}

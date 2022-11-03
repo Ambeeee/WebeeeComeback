@@ -16,7 +16,9 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(12), unique=True, nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(150), nullable=False)
-    posts = db.relationship('Post', backref='author', lazy='dynamic')
+    role = db.Column(db.String(50), default="pres_editor")
+    pres_post = db.relationship('PresPost', backref='author', lazy='dynamic')
+    other_post = db.relationship('Wpost', backref='author', lazy='dynamic')
 
     def __repr__(self):
         return f"User('{self.id}', '{self.username}', '{self.email}')"
@@ -28,15 +30,39 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password, password)
 
 
-class Post(db.Model):
+class PresPost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer(), db.ForeignKey('user.id'), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
     title = db.Column(db.String(120), nullable=False)
     slug = db.Column(db.String(250))
     description = db.Column(db.String(120))
-    body = db.Column(db.Text, nullable=False)
+    body1 = db.Column(db.Text, nullable=False)
+    body2 = db.Column(db.Text)
+    body3 = db.Column(db.Text)
+    body4 = db.Column(db.Text)
+    testimonial = db.Column(db.Text)
+    testimonial2 = db.Column(db.Text)
     cover = db.Column(db.String(120))
+    image1 = db.Column(db.String(120))
+    image2 = db.Column(db.String(120))
+    image3 = db.Column(db.String(120))
+    
+    def __repr__(self):
+        return f"User('{self.id}', '{self.title}')"
+
+class Wpost(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer(), db.ForeignKey('user.id'), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.now)
+    title = db.Column(db.String(120), nullable=False)
+    slug = db.Column(db.String(250))
+    description = db.Column(db.String(120))
+    body1 = db.Column(db.Text, nullable=False)
+    testimonial = db.Column(db.Text)
+    body2 = db.Column(db.Text)
+    cover = db.Column(db.String(120))
+    image1 = db.Column(db.String(120))
     
     def __repr__(self):
         return f"User('{self.id}', '{self.title}')"

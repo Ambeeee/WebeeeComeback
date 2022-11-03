@@ -1,11 +1,30 @@
 {% extends "base.html" %}
-{% block title %}401{% endblock %}
+{% block title %}404{% endblock %}
 {% block content %}
 
-<h2>Error 401</h2>
 
-    Access denied
-    You don't have the authorization to visit this page
+<!--BACKGROUND-->
+<img class="background w80 m-5"
+src=" {{ url_for('static', filename='img/build/401_back.png') }} " alt="BACKGROUND">
+
+<!--TITLE-->
+<div class="title-container">
+    <div class="error c-webeee">Error 401</div>
+    <div class="title-error">Cosa ci fai tu qui?!</div>
+</div>
+<!--PAGE-->
+<div class="error-page">
+    <p class="text">
+        Mi dispiace, ma non puoi accedere a questa pagina se non
+        hai effettuato il login, alla prossima! 
+    </p>
+
+    <div class="table-x">
+    <a href=" {{ url_for('home') }} "><p class="error c-webeee">Torna alla Home</p></a>
+    <p class="text w40 ">  oppure  </p>
+    <a href=" {{ url_for('login') }} "><p class="error c-webeee">Effettua il login</p></a>
+    </div>
+</div>
 
 
 {% endblock %}

@@ -94,6 +94,13 @@ body{
         text-align: center;
         margin-top: -10%;
     }
+    .title-error{
+        font-family: var(--font_bold);
+        color: var(--text_primary_color);
+        font-size: 70px;
+        text-align: center;
+        margin-top: 0%;
+    }
     .moving-subtitle{
         font-size: 90px;
         font-family: var(--font_back);
@@ -130,6 +137,10 @@ body{
         padding: 2%;
         border-radius: 25px;
         background-color: var(--back_primary);
+    }
+    .error-page{
+        width: 40%;
+        margin: -25% 30% 1%;
     }
     .frame{
         width: 30%;
@@ -168,10 +179,15 @@ body{
         background-color: var(--ambeee);
         padding: 1% 5%;
     }
+    .text{
+        font-family: var(--font_text);
+        font-size: 25px;
+        text-align: center;
+    }
     .label-1{
         text-align: center;
         font-size: 30px;
-        font-family: "Freehand521 BT";
+        font-family: var(--font_desc1);
         margin: 5% 2% 0 2%;
     }
     .field{
@@ -212,11 +228,12 @@ body{
     }
     .w40{
         width: 40%;
-        margin-right: 30%;
-        margin-left: 30%;
     }
     .m-5{
         margin-top: -5%;
+    }
+    .m-10{
+        margin-top: -10%;
     }
     .m-35{
         margin-top: -35%;
@@ -231,8 +248,13 @@ body{
     .align-l{
         margin-right: 80%;
     }
+    
+    
 
-
+    .c-webeee{
+        color: var(--ambeee);
+        text-shadow: 1px 1px var(--ambeee2);
+    }
 
     .table-x{
         display: flex;
