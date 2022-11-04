@@ -14,10 +14,8 @@
     <div class="menu container table-xr">
 
         <a class="container table-y" href="
-        {% if current_user.is_authenticated %} {{ url_for('logout') }}
-        {% else %} {{ url_for('login') }} {% endif %}">
-
-            <img class = "icon-main" alt="icon"
+        {% if not current_user.is_authenticated %} {{ url_for('login') }}{% endif %}">
+            <img class = "icon-main" alt="icon" title="Pagliaccio, perché non metti la foto?"
                 src="{{ url_for('static', filename='img/build/user_not_loaded.png') }}">
         
         </a>
@@ -27,6 +25,17 @@
             <a class="tab" href=" {{ url_for('pres_news') }} ">Pres</a>
             <a class="tab" href="#">Altre News</a>
         </div>
+    </div>
+    <div class="account-menu">
+        <a href="{{ url_for('user_info', username = current_user.username) }}">
+            <img class="icon-sec" alt="settings icon" title="Account settings"
+                src="{{ url_for('static', filename='img/build/user_options.png') }}">
+        </a>
+
+        <a href="{{ url_for('logout') }}">
+            <img class="icon-sec" alt="logout icon" title="Effettua il logout"
+            src="{{ url_for('static', filename='img/build/user_logout.png') }}">
+        </a>
     </div>
     
 

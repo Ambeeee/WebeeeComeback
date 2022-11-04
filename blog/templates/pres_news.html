@@ -6,7 +6,7 @@
 
     {% for post in posts.items %}
 
-        <h4><a href="{{ url_for('article', post_slug=post.slug) }}">Titolo: {{post.title}}</a></h4>
+        <h4><a href="{{ url_for('pres_article', post_slug=post.slug) }}">Titolo: {{post.title}}</a></h4>
         <p>Data: {{post.created_at.strftime('%d.%m.%Y')}}</p>
 
         {% if post.description %}<p>Descrizione: {{post.description}}</p>{% endif %}

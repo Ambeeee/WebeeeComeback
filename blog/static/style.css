@@ -2,6 +2,7 @@
     --font_webeee: "SHELMAN";
     --font_back: "Freehand575 BT";
     --font_title: "Forte";
+    --font-account: "CASMIRA";
     --font_menu: "Mistral";
     --font_error: "Chiller";
     --font_desc1: "Freehand521 BT";
@@ -62,7 +63,11 @@ body{
         text-align: center;
         z-index: 4;
     }
-
+    .account-menu{
+        position: absolute;
+        width: 8%;
+        margin: 0 0 0 91%;
+    }
 
 
 
@@ -94,6 +99,7 @@ body{
         text-align: center;
         margin-top: -10%;
     }
+    
     .title-error{
         font-family: var(--font_bold);
         color: var(--text_primary_color);
@@ -272,6 +278,63 @@ body{
         display: flex;
         flex-direction: column-reverse;
     }
+
+
+
+
+    .account-back{
+        width: 90%;
+        margin: 0 5%;
+    }
+    .account-icon{
+        margin: -28% 0 0 900px;
+        width: 5%;
+        position: absolute;
+    }
+    .account-title{
+        margin: -28% auto 25%;
+        font-size: 65px;
+        color: var(--blueee);
+        font-family: var(--font-account);
+    }
+    .account-infos{
+        margin: -250px 50px;
+        display: grid;
+        grid-template-columns: auto auto;
+        column-gap: 100px;
+        row-gap: 100px;
+    }
+    .account-detail{
+        padding: 10px 20px;
+        width: 500px;
+        font-size: 25px;
+        text-align: left;
+        font-family: var(--font_desc1);
+    }
+    .account-specials{
+        margin: 300px 50px;
+        display: flex;
+        flex-direction: column;
+    }
+    .account-desc{
+        text-align: center;
+        font-family: var(--font_text);
+        font-size: 25px;
+        font-weight: bold;
+        font-style: oblique;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

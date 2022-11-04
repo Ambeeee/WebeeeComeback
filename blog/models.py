@@ -16,7 +16,8 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(12), unique=True, nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(150), nullable=False)
-    role = db.Column(db.String(50), default="pres_editor")
+    role = db.Column(db.String(50), default="testimonial")
+    icon = db.Column(db.String(120))
     pres_post = db.relationship('PresPost', backref='author', lazy='dynamic')
     other_post = db.relationship('Wpost', backref='author', lazy='dynamic')
 

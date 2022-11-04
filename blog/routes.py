@@ -71,7 +71,7 @@ def create_pres_article():
     form = PostForm()
     if form.validate_on_submit():
         slug = title_slugifier(form.title.data)
-        new_post = PresPost(title=form.title.data, body=form.body.data, slug=slug,
+        new_post = PresPost(title=form.title.data, body1=form.body.data, slug=slug,
                        description = form.description.data, author=current_user)
 
         if form.cover.data:
@@ -86,7 +86,7 @@ def create_pres_article():
 
         db.session.add(new_post)
         db.session.commit()
-        return redirect(url_for("article", post_slug=slug))
+        return redirect(url_for("pres_article", post_slug=slug))
     return render_template("post_editor.html", form=form)
 
 @app.route("/posts/<int:post_id>/update", methods=["GET", "POST"])
@@ -99,7 +99,7 @@ def update_pres_article(post_id):
     if form.validate_on_submit():
         post_instance.title = form.title.data
         post_instance.description = form.description.data
-        post_instance.body = form.body.data
+        post_instance.body1 = form.body.data
 
         if form.cover.data:
             try:
@@ -112,11 +112,11 @@ def update_pres_article(post_id):
 
 
         db.session.commit()
-        return redirect(url_for("article", post_slug=post_instance.slug))
+        return redirect(url_for("pres_article", post_slug=post_instance.slug))
     elif request.method == "GET":
         form.title.data = post_instance.title
         form.description.data = post_instance.description
-        form.body.data = post_instance.body
+        form.body.data = post_instance.body1
     return render_template("post_editor.html", form=form)
 
 @app.route("/posts/<int:post_id>/delete", methods=["POST"])
@@ -128,9 +128,6 @@ def delete_pres_article(post_id):
     db.session.delete(post_instance)
     db.session.commit()
     return redirect(url_for("pres_news"))
-
-
-
 
 
 
@@ -153,3 +150,9 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for("home"))
+
+@app.route("/users/<string:username>")
+@login_required
+def user_info(username):
+    user_instance = User.query.filter_by(username=username).first_or_404()
+    return render_template("user.html", user=user_instance)
