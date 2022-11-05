@@ -4,6 +4,12 @@
 
 <h2>-Pres-</h2>
 
+{% if current_user.is_authenticated %}
+    {% if current_user.role in ["BOSS","pres_editor"] %}
+    <a href="{{ url_for('create_pres_article') }}"><b>NUOVO ARTICOLO</b></a>
+    {% endif %}
+{% endif %}
+
     {% for post in posts.items %}
 
         <h4><a href="{{ url_for('pres_article', post_slug=post.slug) }}">Titolo: {{post.title}}</a></h4>

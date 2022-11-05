@@ -3,7 +3,8 @@
 {% block content %}
 
 {% if post.cover %}
-<img src=" {{ url_for('static', filename='img/posts/' + post.cover) }} " alt="Cover">
+<img alt="Cover"
+    src=" {{ url_for('static', filename='img/posts/' + post.cover) }} ">
 {%endif%}
 
 <h2>-{{post.title}}-</h2>
@@ -23,7 +24,19 @@
     {% if post.description %}<p>Descrizione: {{post.description}}</p>{% endif %}
     
     <br><br>
-    <p>Content: {{post.body}}</p>
+    {{post.body1}}<br><br>
+    {% if post.image1%}         {{post.image1}}         {%endif%}<br><br>
+
+    {% if post.body2%}          {{post.body2}}          {%endif%}<br><br>
+    {% if post.image2%}         {{post.image2}}         {%endif%}<br><br>
+    {% if post.testimonial1%}   {{post.testimonial1}}   {%endif%}<br><br>
+
+    {% if post.body3%}          {{post.body3}}          {%endif%}<br><br>
+    {% if post.image3%}         {{post.image3}}         {%endif%}<br><br>
+    {% if post.testimonial2%}   {{post.testimonial2}}   {%endif%}<br><br>
+
+    {% if post.body4%}          {{post.body4}}          {%endif%}<br><br>
+
     
     
 {% endblock %}

@@ -6,6 +6,7 @@
     --font_menu: "Mistral";
     --font_error: "Chiller";
     --font_desc1: "Freehand521 BT";
+    --font_desc2: "Brush Script MT";
     --font_text: "Gabriola";
     --font_bold: "JOAN";
     --text_primary_color: black;
@@ -75,7 +76,7 @@ body{
 
     /* Page & Back */
     .background{
-        width: 97%;
+        width: 96%;
         margin-top: 2%;
     }
 
@@ -282,6 +283,8 @@ body{
 
 
 
+
+
     .account-back{
         width: 90%;
         margin: 0 5%;
@@ -322,6 +325,65 @@ body{
         font-size: 25px;
         font-weight: bold;
         font-style: oblique;
+    }
+
+    .editor-title{
+        font-family: var(--font_title);
+        color: var(--ambeee);
+        text-shadow: 1px 1px var(--ambeee2);
+        font-size: 120px;
+        text-align: center;
+    }
+    .editor-back{
+        width: 96%;
+        height: 670px;
+        margin: -20% 2%;
+        position: fixed;
+        z-index: -1;
+    }
+    .editor-page{
+        display: flex;
+        flex-direction: column;
+    }
+    .editor-desc{
+        font-size: 40px;
+        font-family: var(--font_desc2);
+        text-align: center;
+        padding: 2%;
+    }
+    .editor-field{
+        width: 50%;
+        margin: 0 20% 5%;
+        padding: 2% 4%;
+        border-radius: 50px;
+        text-align: center;
+        box-shadow: 2px 2px 0px var(--back_secondary),
+                -2px -2px 0px var(--back_secondary);
+    }
+    .editor-image{
+        margin: -2% 30% 0;
+        width: 20%;
+        padding: 0 10%;
+        font-family: var(--font_text);
+    }
+    .editor-err{
+        font-size: 35px;
+        color: var(--red);
+        text-align: center;
+        text-shadow: 1px 1px 0px var(--red2);
+        font-family: var(--font_error);
+        margin: -1% 0 0;
+    }
+    .editor-submit{
+        width: 50%;
+        margin: 5% 25%;
+        padding: 1% 10%;
+
+        background-color: var(--blueee);
+        color: var(--text_secondary_color);
+        font-family: var(--font_bold);
+        border-radius: 25px;
+        font-size: 25px;
     }
 
 

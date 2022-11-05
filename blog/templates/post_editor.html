@@ -2,51 +2,133 @@
 {% block title %}Post Editor{% endblock %}
 {% block content %}
 
-<h2>
-{% if request.path == "/create-article" %} -Nuovo Post-
-{%else%} -Aggiorna Post- {%endif%}
-</h2>
 
 
-{% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %} 
-    
-    <p> {{message}} </p>
+<!--TITLE-->
+<div class="editor-title">
+    {% if request.path == "/pres/create-article" %} Nuovo Post
+    {%else%} Aggiorna Post {%endif%}
+</div>
 
-{% endfor %} {% endif %} {% endwith %}
+<!--BACKGROUND-->
+<img class="editor-back"
+src=" {{ url_for('static', filename='img/build/crea_back.png') }} " alt="BACKGROUND">
 
 
-
-<form method="POST" enctype="multipart/form-data" novalidate>
-    {{form.hidden_tag()}}
-        <br><br>
-        {{form.title.label}}<br>
-        {{form.title(class="")}}<br>
+<form class="editor-page" method="POST" enctype="multipart/form-data" novalidate>{{form.hidden_tag()}}
+    <!--title-->
+    <div class="editor-section">
+        <div class="editor-desc">{{form.title.label}}</div>
+        {{form.title(class="editor-field")}}
+        <div class="editor-err">
             {% if form.title.errors %}{% for e in form.title.errors %}
-            <p> {{e}} </p>
-            {% endfor %}{% endif %}
-        <br><br>
-        {{form.description.label}}<br>
-        {{form.description(class="")}}<br>
+            {{e}}{% endfor %}{% endif %}
+        </div>
+    </div>
+    <!--description-->
+    <div class="editor-section">
+        <div class="editor-desc">{{form.description.label}}</div>
+        {{form.description(class="editor-field")}}
+        <div class="editor-err">
             {% if form.description.errors %}{% for e in form.description.errors %}
-            <p> {{e}} </p>
-            {% endfor %}{% endif %}
-        <br><br>
-        {{form.body.label}}<br>
-        {{form.body(class="", rows=15)}}<br>
-            {% if form.body.errors %}{% for e in form.body.errors %}
-            <p> {{e}} </p>
-            {% endfor %}{% endif %}
-
-        <br><br>
-        {{form.cover.label}}<br>
-        {{form.cover(class="", rows=15)}}<br>
+            {{e}}{% endfor %}{% endif %}
+        </div>
+    </div>
+    <!--cover-->
+    <div class="editor-section">
+        <div class="editor-desc">{{form.cover.label}}</div>
+        {{form.cover(class="editor-image", rows=15)}}
+        <div class="editor-err">
             {% if form.cover.errors %}{% for e in form.cover.errors %}
-            <p> {{e}} </p>
-            {% endfor %}{% endif %}
-        L'upload di immagini ha ancora qualche problema
+            {{e}}{% endfor %}{% endif %}
+        </div>
+    </div>
+    <!--body1-->
+    <div class="editor-section">
+        <div class="editor-desc">{{form.body1.label}}</div>
+        {{form.body1(class="editor-field", rows=15)}}
+        <div class="editor-err">
+            {% if form.body1.errors %}{% for e in form.body1.errors %}
+            {{e}}{% endfor %}{% endif %}
+        </div>
+    </div>
+    <!--img1-->
+    <div class="editor-section">
+        <div class="editor-desc">{{form.img1.label}}</div>
+        {{form.img1(class="editor-image", rows=15)}}
+        <div class="editor-err">
+            {% if form.img1.errors %}{% for e in form.img1.errors %}
+            {{e}}{% endfor %}{% endif %}
+        </div>
+    </div>
+    <!--body2-->
+    <div class="editor-section">
+        <div class="editor-desc">{{form.body2.label}}</div>
+        {{form.body2(class="editor-field", rows=15)}}
+        <div class="editor-err">
+            {% if form.body2.errors %}{% for e in form.body2.errors %}
+            {{e}}{% endfor %}{% endif %}
+        </div>
+    </div>
+    <!--testimonial1-->
+    <div class="editor-section">
+        <div class="editor-desc">{{form.testimonial1.label}}</div>
+        {{form.testimonial1(class="editor-field", rows=15)}}
+        <div class="editor-err">
+            {% if form.testimonial1.errors %}{% for e in form.testimonial1.errors %}
+            {{e}}{% endfor %}{% endif %}
+        </div>
+    </div>
+    <!--img2-->
+    <div class="editor-section">
+        <div class="editor-desc">{{form.img2.label}}</div>
+        {{form.img2(class="editor-image", rows=15)}}
+        <div class="editor-err">
+            {% if form.img2.errors %}{% for e in form.img2.errors %}
+            {{e}}{% endfor %}{% endif %}
+        </div>
+    </div>
+    <!--body3-->
+    <div class="editor-section">
+        <div class="editor-desc">{{form.body3.label}}</div>
+        {{form.body3(class="editor-field", rows=15)}}
+        <div class="editor-err">
+            {% if form.body3.errors %}{% for e in form.body3.errors %}
+            {{e}}{% endfor %}{% endif %}
+        </div>
+    </div>
+    <!--testimonial2-->
+    <div class="editor-section">
+        <div class="editor-desc">{{form.testimonial2.label}}</div>
+        {{form.testimonial2(class="editor-field", rows=15)}}
+        <div class="editor-err">
+            {% if form.testimonial2.errors %}{% for e in form.testimonial2.errors %}
+            {{e}}{% endfor %}{% endif %}
+        </div>
+    </div>
+    <!--img3-->
+    <div class="editor-section">
+        <div class="editor-desc">{{form.img3.label}}</div>
+        {{form.img3(class="editor-image", rows=15)}}
+        <div class="editor-err">
+            {% if form.img3.errors %}{% for e in form.img3.errors %}
+            {{e}}{% endfor %}{% endif %}
+        </div>
+    </div>
+    <!--body4-->
+    <div class="editor-section">
+        <div class="editor-desc">{{form.body4.label}}</div>
+        {{form.body4(class="editor-field", rows=15)}}
+        <div class="editor-err">
+            {% if form.body4.errors %}{% for e in form.body4.errors %}
+            {{e}}{% endfor %}{% endif %}
+        </div>
+    </div>
 
-        <br><br>
-        {{form.submit(class="")}}
+    {{form.submit(class="editor-submit")}}
+    
 </form>
+
+    
 
 {% endblock %}

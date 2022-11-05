@@ -42,7 +42,7 @@ class PresPost(db.Model):
     body2 = db.Column(db.Text)
     body3 = db.Column(db.Text)
     body4 = db.Column(db.Text)
-    testimonial = db.Column(db.Text)
+    testimonial1 = db.Column(db.Text)
     testimonial2 = db.Column(db.Text)
     cover = db.Column(db.String(120))
     image1 = db.Column(db.String(120))

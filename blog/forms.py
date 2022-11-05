@@ -17,10 +17,17 @@ class PostForm(FlaskForm):
     description = TextAreaField("Descrizione",
         validators=[Length(max=240, message="Il massimo per la descrizione è 240 caratteri")])  
 
-    body = StringField("Paragrafo #1",
-        validators=[DataRequired("Campo obbligatorio!")])
+    body1 = StringField("Primo paragrafo")
+    body2 = StringField("Secondo paragrafo (facoltativo)")
+    body3 = StringField("Terzo paragrafo (facoltativo)")
+    body4 = StringField("Ultimo paragrafo (facoltativo)")
 
-    cover = FileField("Copertina",
-        validators=[FileAllowed(["jpg", "jpeg", "png"])])
+    testimonial1 = StringField("Prima testimonianza")
+    testimonial2 = StringField("Seconda testimonianza")
+
+    cover = FileField("Copertina", validators=[FileAllowed(["jpg", "jpeg", "png"])])
+    img1 = FileField("Prima immagine", validators=[FileAllowed(["jpg", "jpeg", "png"])])
+    img2 = FileField("Seconda immagine", validators=[FileAllowed(["jpg", "jpeg", "png"])])
+    img3 = FileField("Terza immagine", validators=[FileAllowed(["jpg", "jpeg", "png"])])
         
     submit = SubmitField("Pubblica")
