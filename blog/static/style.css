@@ -545,7 +545,8 @@ body{
     /* MENU */
     .menu{
         width: 96%;
-        margin: -77% 2% -2%;
+        margin: 0% 2% 5px;
+        bottom: 0;
         z-index: 4;
         display: flex;
         flex-direction: row-reverse;
@@ -620,7 +621,7 @@ body{
     }
     .home-page{
         margin: -23px 5px 0;
-        padding: 40px 5px 200px;
+        padding: 40px 5px 150px;
         border-radius: 50px 50px 0 0;
         background-color: var(--ambeee);
         z-index: 1;
