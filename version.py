@@ -18,6 +18,9 @@ def new_version(j=""):
     return version
 
 recorded_version("w", new_version("-"))
-cp(new_version())
+try:
+    cp(new_version())
+except:
+    pass
 print("Copiato negli appunti!")
 print(recorded_version()) 
