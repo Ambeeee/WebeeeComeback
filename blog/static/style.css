@@ -2,7 +2,6 @@
     --font_webeee: "SHELMAN";
     --font_back: "Freehand575 BT";
     --font_title: "Forte";
-    --font-account: "CASMIRA";
     --font_menu: "Mistral";
     --font_error: "Chiller";
     --font_desc1: "Freehand521 BT";
@@ -27,6 +26,11 @@ body{
 
 /* COMPUTER */
 @media screen and (min-width: 1024px) {
+    .PC{display: block;}
+    .TABLET{display: none;}
+    .MOBILE{display: none;}
+
+
 
     a{
         text-decoration: none;
@@ -38,25 +42,26 @@ body{
     
     
     /* Menu */
+    /*
     .menu{
         margin: 2% 0 0 0;
         font-family: var(--font_menu);
         font-size: 35px;
         color: var(--text_primary_color);
         z-index: 4;
-    }
+    }*//*
     .icon-main{
         width: 50%;
         margin: 10% 20%;
-    }
+    }*//*
     .icon-sec{
         width: 40%;
         margin: 10% 25%;
-    }
+    }*//*
     #Tabs{
         width: 41%;
         margin: 1% 2%;
-    }
+    }*/
     .tab{
         width: 30%;
         margin: 0% 2%;
@@ -82,17 +87,20 @@ body{
 
 
     /* Title */
+
+    /*
     .title-container{
         position: absolute;
         width: 60%;
         margin: -40% 20%;
-    }
+    }*//*
     .title-main{
         font-family: var(--font_webeee);
         color: var(--blueee);
         font-size: 300px;
         text-align: center;
-    }
+    }*/
+
     .title-second{
         font-family: var(--font_title);
         color: var(--text_primary_color);
@@ -100,7 +108,6 @@ body{
         text-align: center;
         margin-top: -10%;
     }
-    
     .title-error{
         font-family: var(--font_bold);
         color: var(--text_primary_color);
@@ -108,6 +115,7 @@ body{
         text-align: center;
         margin-top: 0%;
     }
+    /*
     .moving-subtitle{
         font-size: 90px;
         font-family: var(--font_back);
@@ -120,31 +128,28 @@ body{
         animation-duration: 1.5s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
-    }
+    }*//*
     @keyframes ItsBack {
         0% {font-size: 90px;}
         50% {font-size: 100px;}
         100% {font-size: 90px;}
-    }
+    }*/
 
 
 
-
+    /*
     .page-section{
         margin: -4% 1%;
         border-radius: 100px 100px 0 0;
         background-color: var(--ambeee);
         padding: 10% 5%;
-    }
-    .section{
-        margin: 2% 0;
-    }
+    }*//*
     .desc-frame{
         margin: 1%;
         padding: 2%;
         border-radius: 25px;
         background-color: var(--back_primary);
-    }
+    }*/
     .error-page{
         width: 40%;
         margin: -25% 30% 1%;
@@ -285,6 +290,128 @@ body{
 
 
 
+/* MENU */
+    .menu{
+        margin: 20px 20px 0;
+        z-index: 4;
+        display: flex;
+        flex-direction: row-reverse;
+        color: var(--text_primary_color);
+        font-family: var(--font_menu);
+    }
+    .menu-icon-1{
+        width: 60px;
+        margin: 20px;
+    }
+    .menu-icon-2{
+        width: 40px;
+        margin: 5px 15px;
+    }
+    .menu-container{
+        width: 500px;
+        margin: 25px 50px 0;
+        display: flex;
+        flex-direction: row;
+    }
+    .menu-tab{
+        width: 200px;
+        margin: 0 20px;
+        font-size: 35px;
+        text-align: center;
+    }
+    .menu-account{
+        width: 90px;
+        margin: 0 0 0 1180px;
+        position: absolute;
+    }
+
+
+
+
+
+/* HOME */
+    .home-back{
+        width: 96%;
+        margin: 2% 0 0;
+    }
+    .home-title-sec{
+        position: absolute;
+        width: 60%;
+        margin: -500px 20% 0;
+    }
+    .home-title{
+        font-size: 300px;
+        color: var(--blueee);
+        font-family: var(--font_webeee);
+        text-align: center;
+    }
+    .home-subtitle{
+        width: 300px;
+        margin: -130px 0 0 520px;
+
+        font-size: 90px;
+        font-family: var(--font_back);
+        color: var(--red);
+        text-shadow: 1px 1px 0px #8F1111;
+        transform: rotate(345deg);
+
+        animation-name: ItsBack;
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+    @keyframes ItsBack {
+        0% {font-size: 90px;}
+        50% {font-size: 100px;}
+        100% {font-size: 90px;}
+    }
+    .home-page{
+        margin: -50px 10px 0;
+        padding: 100px 50px;
+        border-radius: 100px 100px 0 0;
+        background-color: var(--ambeee);
+    }
+    .home-intro{
+        width: 50%;
+        margin: 5px 20%;
+        padding: 20px 5%;
+        border-radius: 25px;
+        background-color: var(--back_primary);
+    }
+    .home-adv{
+        display: flex;
+        flex-direction: column;
+        margin: 50px 0 0 0;
+    }
+    .home-frame{
+        width: 300px;
+        margin: 50px 0;
+        padding: 20px;
+        text-decoration: none;
+        border-radius: 25px;
+        background-color: var(--back_primary);
+        box-shadow: 2px 2px 0 var(--back_secondary);
+    }
+    .home-frame-title{
+        margin: -45px 0 0 0;
+        font-size: 34px;
+        text-align: center;
+        font-family: var(--font_title);
+        color: var(--text_primary_color);
+        text-shadow: 1px 1px 0 var(--text_secondary_color);
+    }
+    .home-article{
+        margin: 10px;
+        font-size: 20px;
+        font-style: italic;
+        text-align: center;
+        
+    }
+    .f1{margin: 50px 10% 50px 60%;}
+    .f2{margin: 50px 60% 50px 10%;}
+    .f3{margin: 50px 30% 50px 40%;}
+
+/* ACCOUNT */
     .account-back{
         width: 90%;
         margin: 0 5%;
@@ -326,7 +453,7 @@ body{
         font-weight: bold;
         font-style: oblique;
     }
-
+/* EDITOR */
     .editor-title{
         font-family: var(--font_title);
         color: var(--ambeee);
@@ -388,16 +515,6 @@ body{
 
 
 
-
-
-
-
-
-
-
-
-
-
 }
 
 
@@ -421,8 +538,133 @@ body{
 /* MOBILE */
 @media screen and (max-width: 767px) {
     
-    .icon{
-        transform: rotate(90deg)
+    .PC{display: none;}
+    .TABLET{display: none;}
+    .MOBILE{display: block;}
+
+    /* MENU */
+    .menu{
+        width: 96%;
+        margin: -77% 2% -2%;
+        z-index: 4;
+        display: flex;
+        flex-direction: row-reverse;
+        position: fixed;
+        border-radius: 25px;
+        background-color: var(--blueee);
     }
+    .menu-icon-1{
+        width: 50px;
+        margin: 25px;
+    }
+    .menu-icon-2{
+        width: 40px;
+        margin: 5px 15px;
+    }
+    .menu-container{
+        width: 280px;
+        margin: 35px 2px 0;
+        display: flex;
+        flex-direction: row;
+    }
+    .menu-tab{
+        width: 90px;
+        margin: 0;
+        font-size: 23px;
+        text-align: center;
+        color: var(--text_secondary_color);
+        font-family: 'Caveat', cursive;
+        text-decoration: none;
+    }
+    .menu-account{
+        width: 90px;
+        margin: 0 0 0 1180px;
+        position: absolute;
+    }
+
+    /* HOME */
+    .home-back{
+        width: 100%;
+        margin: 0 0 0;
+        z-index: 0;
+    }
+    .home-title-sec{
+        position: absolute;
+        width: 60%;
+        margin: -190px 16% 0;
+    }
+    .home-title{
+        font-size: 70px;
+        color: var(--blueee);
+        font-family: 'Oleo Script Swash Caps';
+        text-align: center;
+    }
+    .home-subtitle{
+        width: 100px;
+        margin: -50px 0 0 170px;
+
+        font-family: 'Covered By Your Grace';
+        color: var(--red);
+        text-shadow: 1px 1px 0px #8F1111;
+        transform: rotate(345deg);
+
+        animation-name: ItsBack;
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+    @keyframes ItsBack {
+        0% {font-size: 25px;}
+        50% {font-size: 30px;}
+        100% {font-size: 25px;}
+    }
+    .home-page{
+        margin: -23px 5px 0;
+        padding: 40px 5px 100px;
+        border-radius: 50px 50px 0 0;
+        background-color: var(--ambeee);
+        z-index: 1;
+    }
+    .home-intro{
+        width: 70%;
+        margin: 5px auto;
+        padding: 20px 10%;
+        text-align: center;
+        font-family: 'Indie Flower';
+        border-radius: 20px;
+        background-color: var(--back_primary);
+    }
+    .home-adv{
+        display: flex;
+        flex-direction: column;
+        margin: 50px 0 0 0;
+    }
+    .home-frame{
+        width: 200px;
+        margin: 20px auto;
+        padding: 20px;
+        color: var(--text_primary_color);
+        text-decoration: none;
+        border-radius: 20px;
+        background-color: var(--back_primary);
+        box-shadow: 2px 2px 0 var(--back_secondary);
+    }
+    .home-frame-title{
+        margin: -40px 0 0 0;
+        font-size: 25px;
+        text-align: center;
+        font-family: "Caveat";
+        font-weight: bold;
+        color: var(--text_primary_color);
+        text-shadow: 1px 1px 0 var(--text_secondary_color);
+    }
+    .home-article{
+        margin: 20px 0 0 0;
+        font-size: 20px;
+        font-style: italic;
+        text-align: center;
+        
+    }
+
 
 }

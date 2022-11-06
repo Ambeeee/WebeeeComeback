@@ -22,64 +22,115 @@
 
 
 
+
+
+
+
+
+
 <!--REAL HOME-->
 {% else %}
     {% extends "base.html" %}
     {% block title %}Home{% endblock %}
-    {% block content %}
-<div class="PAGE">
+    
+<div class="PC">{% block pc_content %}
 
     <!--BACKGROUND-->
-    <img class="background"
+    <img class="home-back"
         src=" {{ url_for('static', filename='img/build/home_back.png') }} " alt="BACKGROUND">
 
-
-
     <!--TITLE-->
-    <div class="title-container">
-        <div class="title-main">Webeee</div>
-        <div class="moving-subtitle">It's back!</div>
+    <div class="home-title-sec">
+        <div class="home-title">Webeee</div>
+        <div class="home-subtitle">It's back!</div>
     </div>
 
-    <div class="page-section">
+
+
+    <div class="home-page">
         
-        <div class="desc-frame s-white">
+        <div class="home-intro">
             <p>RIDOLFI E' UN MAMMOCCIO</p> 
         </div>
         
 
 
-        <div class="section table-y">
+        <div class="home-adv">
 
-            <a class="frame f1"
+            <a class="home-frame f1"
             href="{{ url_for('pres_article', post_slug=last.slug) }}">
 
-                <p class="frame-type">La sai l'ultima?</p>
-                <div class="section table-x">
-                    <div class="frame-title">{{last.title}}</div>
-                </div>
+                <p class="home-frame-title">La sai l'ultima?</p>
+                <div class="home-article">{{last.title}}</div>
             </a>
 
-            <a class="frame f2"
+            <a class="home-frame f2"
             href="{{ url_for('pres_article', post_slug=random.slug) }}">
             
-                <p class="frame-type">Che Soggetto!</p>
-                <div class="section table-x">
-                    <div class="frame-title">{{random.title}}</div>
-                </div>
+                <p class="home-frame-title">Che Soggetto!</p>
+                <div class="home-article">{{random.title}}</div>
             </a>
 
-            <a class="frame f3"
+            <a class="home-frame f3"
             href="{{ url_for('webeee_article', post_slug=last_w.slug) }}">
-                <p class="frame-type">Casa Webeee</p>
-                <div class="frame-title" href="#">{{last_w.title}} </div> 
+                <p class="home-frame-title">Casa Webeee</p>
+                <div class="home-article"">{{last_w.title}} </div> 
                 
             </a>
 
         </div> 
 
     </div>
-</div>
-    {% endblock %}
+{% endblock %}</div>
+
+<div class="MOBILE">{% block mobile_content %}
+
+    <!--BACKGROUND-->
+    <img class="home-back"
+        src=" {{ url_for('static', filename='img/build/home_back_mobile.png') }} " alt="BACKGROUND">
+
+    <!--TITLE-->
+    <div class="home-title-sec">
+        <div class="home-title">Webeee</div>
+        <div class="home-subtitle">It's back!</div>
+    </div>
+
+    <div class="home-page">
+        
+        <div class="home-intro">
+            <p>RIDOLFI E' UN MAMMOCCIO</p> 
+        </div>
+        
+
+
+        <div class="home-adv">
+
+            <a class="home-frame f1"
+            href="{{ url_for('pres_article', post_slug=last.slug) }}">
+
+                <p class="home-frame-title">La sai l'ultima?</p>
+                <div class="home-article">{{last.title}}</div>
+            </a>
+
+            <a class="home-frame f2"
+            href="{{ url_for('pres_article', post_slug=random.slug) }}">
+            
+                <p class="home-frame-title">Che Soggetto!</p>
+                <div class="home-article">{{random.title}}</div>
+            </a>
+
+            <a class="home-frame f3"
+            href="{{ url_for('webeee_article', post_slug=last_w.slug) }}">
+                <p class="home-frame-title">Casa Webeee</p>
+                <div class="home-article"">{{last_w.title}} </div> 
+                
+            </a>
+
+        </div> 
+
+    </div>
+{% endblock %}</div>
+
+
 {% endif %}
 
