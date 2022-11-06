@@ -30,8 +30,10 @@ def home():
     first = PresPost.query.first()
     rand_n = randint(first.id, (LAST.id-1))
     RANDOM = PresPost.query.filter_by(id=rand_n).first()
+    from version import recorded_version
+    version = recorded_version()
     
-    return render_template("home.html", last=LAST, random=RANDOM, last_w=LAST_W)
+    return render_template("home.html", last=LAST, random=RANDOM, last_w=LAST_W, version=version)
 
 
 #PAGES & ARTICLES

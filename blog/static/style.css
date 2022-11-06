@@ -17,6 +17,8 @@
     --blueee2: #1E1EB7;
     --red: #FF3737;
     --red2: #8F1111;
+    --grey: #D5D3D3;
+    --grey2: #313131;
     --back_primary: white;
     --back_secondary: black;
 }
@@ -410,6 +412,17 @@ body{
     .f1{margin: 50px 10% 50px 60%;}
     .f2{margin: 50px 60% 50px 10%;}
     .f3{margin: 50px 30% 50px 40%;}
+    .version{
+        position: fixed;
+        margin: 0 2%;
+        right: 0;
+        bottom: 0;
+        color: var(--grey);
+        font-size: 22px;
+        opacity: 40%;
+        font-family: var(--font_title);
+        text-shadow: 1px 1px var(--grey2);
+    }
 
 /* ACCOUNT */
     .account-back{
@@ -666,6 +679,16 @@ body{
         text-align: center;
         
     }
-
+    .version{
+        position: fixed;
+        margin: 0 5px;
+        right: 0;
+        top: 0;
+        color: var(--grey);
+        font-size: 12px;
+        opacity: 40%;
+        font-family: 'Covered By Your Grace';
+        text-shadow: 1px 1px var(--grey2);
+    }
 
 }

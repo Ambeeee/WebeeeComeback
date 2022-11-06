@@ -1,13 +1,23 @@
 from datetime import datetime
 from pyperclip import copy as cp
 
-def get_version():
-    date = datetime.now().strftime("%y%m%d")
+VERSION = "version.txt"
+
+def recorded_version(mode="r", v=""):
+    with open(VERSION, mode) as f:
+        if mode == "r":
+            last = f.read()
+            return last
+        elif mode == "w":
+            f.write(v)
+
+def new_version(j=""):
+    date = datetime.now().strftime(j.join(["%y","%m","%d"]))
     time = datetime.now().strftime("%H:%M")
     version = f"V {date} {time}"
     return version
 
-
-cp(get_version())
+recorded_version("w", new_version("-"))
+cp(new_version())
 print("Copiato negli appunti!")
-print(get_version())
+print(recorded_version()) 

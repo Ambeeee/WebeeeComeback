@@ -34,6 +34,7 @@
     {% block title %}Home{% endblock %}
     
 <div class="PC">{% block pc_content %}
+    <div class="version">{{version}}</div>
 
     <!--BACKGROUND-->
     <img class="home-back"
@@ -44,7 +45,6 @@
         <div class="home-title">Webeee</div>
         <div class="home-subtitle">It's back!</div>
     </div>
-
 
 
     <div class="home-page">
@@ -80,10 +80,12 @@
 
         </div> 
 
+    
     </div>
 {% endblock %}</div>
 
 <div class="MOBILE">{% block mobile_content %}
+    <div class="version">{{version}}</div>
 
     <!--BACKGROUND-->
     <img class="home-back"
