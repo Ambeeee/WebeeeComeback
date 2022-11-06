@@ -26,6 +26,18 @@ body{
     margin: 0;
 }
 
+/*SCROLLBAR*/
+::-webkit-scrollbar{
+    background-color: var(--back_primary);
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--ambeee);
+    border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover{
+    background: var(--ambeee2);
+}
+
 /* COMPUTER */
 @media screen and (min-width: 1024px) {
     .PC{display: block;}
@@ -529,10 +541,6 @@ body{
 
 
 }
-
-
-
-
 
 
 
