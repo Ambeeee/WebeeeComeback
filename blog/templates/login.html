@@ -1,50 +1,96 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
-{% block content %}
+<div class="PC">{% block pc_content %}
+
 
     <!--BACKGROUND-->
-    <img class="background w80 m-5"
+    <img class="login-back"
         src=" {{ url_for('static', filename='img/build/login_back.png') }} " alt="BACKGROUND">
 
     <!--TITLE-->
-    <div class="title-container"><div class="title-second">Login</div></div>
+    <div class="login-title">Login</div>
     
-    
-
-    <div class="login-section">
+    <div class="login-page">
         <form method="POST" novalidate>{{ form.hidden_tag() }}
 
             <!--User-->
-            <p class="label-1">{{form.username.label}} </p>
-            <p> {{form.username(class="field")}} </p>
+            <p class="login-label">{{form.username.label}} </p>
+            <p> {{form.username(class="login-field")}} </p>
                 {% if form.username.errors %}{% for e in form.username.errors %}
-                <p class="error"> {{e}} </p>
+                <p class="login-error"> {{e}} </p>
                 {% endfor %}{% endif %}
 
             <!--Password-->
-            <p class="label-1">{{form.password.label}} </p>
-            <p> {{form.password(class="field")}} </p>
+            <p class="login-label">{{form.password.label}} </p>
+            <p> {{form.password(class="login-field")}} </p>
                 {% if form.password.errors %}{% for e in form.password.errors %}
-                <p class="error"> {{e}} </p>
+                <p class="login-error"> {{e}} </p>
                 {% endfor %}{% endif %}
                 
             <!--Remember-->
-            <div class="section table-x">
-                <p class="label-1"> {{form.remember_me.label}}</p>
-                <p class="label-1">{{form.remember_me()}}</p>   
-                <!--Submit-->
-                {{form.submit(class="btn-blue")}}
-            </div>
+            <p class="login-label"> {{form.remember_me.label}}
+                {{form.remember_me(class="login-check")}}</p>
+
+            <!--User o Password non combaciano-->
+            {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %} 
+            <p class="login-error"> {{message}} </p>
+            {% endfor %} {% endif %} {% endwith %}
+
+            <!--Submit-->
+            {{form.submit(class="login-button")}}
         </form>
             
     </div>
     
 
-    <!--User o Password non combaciano-->
-    {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %} 
-    <p class="error m-35"> {{message}} </p>
-    {% endfor %} {% endif %} {% endwith %}
+    
     
 
 
-{% endblock %}
+{% endblock %}</div>
+
+
+<div class="MOBILE">{% block mobile_content %}
+
+    <!--BACKGROUND-->
+    <img class="login-back"
+        src=" {{ url_for('static', filename='img/build/login_back.png') }} " alt="BACKGROUND">
+
+    <!--TITLE-->
+    <div class="login-title">Login</div>
+    
+    <div class="login-page">
+        <form method="POST" novalidate>{{ form.hidden_tag() }}
+
+            <!--User-->
+            <p class="login-label">{{form.username.label}} </p>
+            <p> {{form.username(class="login-field")}} </p>
+                {% if form.username.errors %}{% for e in form.username.errors %}
+                <p class="login-error"> {{e}} </p>
+                {% endfor %}{% endif %}
+
+            <!--Password-->
+            <p class="login-label">{{form.password.label}} </p>
+            <p> {{form.password(class="login-field")}} </p>
+                {% if form.password.errors %}{% for e in form.password.errors %}
+                <p class="login-error"> {{e}} </p>
+                {% endfor %}{% endif %}
+                
+            <!--Remember-->
+            <p class="login-label"> {{form.remember_me.label}}
+                {{form.remember_me(class="login-check")}}</p>
+
+            <!--User o Password non combaciano-->
+            {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %} 
+            <p class="login-error"> {{message}} </p>
+            {% endfor %} {% endif %} {% endwith %}
+
+            <!--Submit-->
+            {{form.submit(class="login-button")}}
+        </form>
+            
+    </div>
+  
+
+
+{% endblock %}</div>

@@ -13,7 +13,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Covered+By+Your+Grace&family=Indie+Flower&family=Oleo+Script+Swash+Caps:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat&family=Covered+By+Your+Grace&family=Indie+Flower&family=Oleo+Script+Swash+Caps:wght@700&display=swap" rel="stylesheet">
+
+
 
 </head>
 <body>
@@ -39,7 +41,6 @@
     </div>
 
 </div>
-
 {% if current_user.is_authenticated %}
 <div class="menu-account">
     <a href="{{ url_for('user_info', username = current_user.username) }}">
