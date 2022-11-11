@@ -54,7 +54,7 @@ def pres_news():
     else:
         previous_page = None
     
-    return render_template("Pres_news.html", posts=posts, current_page=page_number,
+    return render_template("pres_news.html", posts=posts, current_page=page_number,
                             next_page=next_page, previous_page=previous_page)
 
 @app.route("/pres/<string:post_slug>")
