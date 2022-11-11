@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Pres{% endblock %}
+    
+<div class="PC">{% block pc_content %}
+
+    <!--BACKGROUND-->
+    <img class="pres-back"
+        src=" {{ url_for('static', filename='img/build/pres_back.png') }} " alt="BACKGROUND">
+
+    <!--TITLE-->
+    <div class="pres-title">Il Pres</div>
+
+
+    <div class="pres-page">
+        
+        <div class="pres-intro">
+            <p>ONORE AL GRANDE RIDOLFI</p> 
+        </div>
+
+        <div class="pres-sections">
+            <a class="pres-frame"
+            href="#">
+                <div class="pres-section-title">Citazioni</div>
+            </a>
+            <a class="pres-frame"
+            href=" {{ url_for('pres_news') }} ">
+                <div class="pres-section-title">News</div>
+            </a>
+            <a class="pres-frame"
+            href="#">
+                <div class="pres-section-title">Gallery</div>
+            </a>
+        </div>
+
+    </div>
+{% endblock %}</div>
+
+<div class="MOBILE">{% block mobile_content %}
+
+    <!--BACKGROUND-->
+    <img class="account-back"
+        src=" {{ url_for('static', filename='img/build/pres_back.png') }} " alt="BACKGROUND">
+
+    <!--TITLE-->
+    <div class="pres-title">Il Pres</div>
+
+    <div class="pres-page">
+        <div class="pres-intro">
+            <p>ONORE AL GRANDE RIDOLFI</p> 
+        </div>
+
+        <div class="pres-sections">
+            <a class="pres-frame"
+            href="#">
+                <div class="pres-section-title">Citazioni</div>
+            </a>
+            <a class="pres-frame"
+            href=" {{ url_for('pres_news') }} ">
+                <div class="pres-section-title">News</div>
+            </a>
+            <a class="pres-frame"
+            href="#">
+                <div class="pres-section-title">Gallery</div>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}</div>

@@ -37,10 +37,13 @@ def home():
 
 
 #PAGES & ARTICLES
+@app.route("/pres")
+def pres():
+    return render_template("pres.html")
 @app.route("/pres/news")
 def pres_news():
     page_number = request.args.get("page", 1, type=int)
-    posts = PresPost.query.order_by(PresPost.created_at.desc()).paginate(page=page_number, per_page=4, error_out=True)
+    posts = PresPost.query.order_by(PresPost.created_at.desc()).paginate(page=page_number, per_page=3, error_out=True)
 
     if posts.has_next:
         next_page = url_for("pres_news", page=posts.next_num)

@@ -5,6 +5,7 @@
     
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/build/logo.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='action.js') }}"></script>
 
 
     <meta charset="UTF-8">
@@ -24,35 +25,38 @@
 
 <div class="menu">
 
-    <a href="{% if not current_user.is_authenticated %} {{ url_for('login') }}{% endif %}">
-    <img class = "menu-icon-1" alt="icon"
+    
+    <img class = "menu-icon-1" alt="icon" id="ICON" onclick="open_menu()"
         {% if current_user.is_authenticated %}
             {% if not current_user.image %}
             title="Pagliaccio, perché non metti la foto?"
             src="{{ url_for('static', filename='img/build/user_not_loaded.png') }}"
             {% else %} src="{{current_user.image}}"{% endif %}
         {% else %} src="{{ url_for('static', filename='img/build/logo.png') }}"{% endif %}>
-    </a>
 
     <div class="menu-container">
         <a class="menu-tab" href=" {{ url_for('home') }} ">Home</a>
-        <a class="menu-tab" href=" {{ url_for('pres_news') }} ">Pres</a>
+        <a class="menu-tab" href=" {{ url_for('pres') }} ">Pres</a>
         <a class="menu-tab" href="#">Altre News</a>
     </div>
 
 </div>
-{% if current_user.is_authenticated %}
-<div class="menu-account">
+
+<div class="menu-account dNone" id="AM">
+    {% if current_user.is_authenticated %}
     <a href="{{ url_for('user_info', username = current_user.username) }}">
         <img class="menu-icon-2" alt="settings icon" title="Account settings"
             src="{{ url_for('static', filename='img/build/user_options.png') }}">
     </a>
-
     <a href="{{ url_for('logout') }}">
-        <img class="menu-icon-2" alt="logout icon" title="Effettua il logout"
+        <img class="menu-icon-2" alt="logout icon" title="Esci dall'account"
         src="{{ url_for('static', filename='img/build/user_logout.png') }}">
-    </a>
-</div>{%endif%}
+    </a>{%else%}
+    <a href="{{ url_for('login') }}">
+        <img class="menu-icon-2" alt="login icon" title="Effettua il login"
+        src="{{ url_for('static', filename='img/build/user_login.png') }}">
+    </a>{%endif%}
+</div>
     
 <div class="PC">{% block pc_content %}{% endblock %}</div>
 </body>

@@ -1,30 +1,110 @@
 {% extends "base.html" %}
-{% block title %}Pres{% endblock %}
-{% block content %}
+{% block title %}Pres/News{% endblock %}
 
-<h2>-Pres-</h2>
+<div class="PC">{% block pc_content %}
 
-{% if current_user.is_authenticated %}
-    {% if current_user.role in ["BOSS","pres_editor"] %}
-    <a href="{{ url_for('create_pres_article') }}"><b>NUOVO ARTICOLO</b></a>
-    {% endif %}
-{% endif %}
+    <!--BACKGROUND-->
+    <img class="presnews-back"
+    src=" {{ url_for('static', filename='img/build/presnews_back1.png') }} " alt="BACKGROUND">
 
-    {% for post in posts.items %}
+    <!--TITLE-->
+    <div class="presnews-title">News</div>
 
-        <h4><a href="{{ url_for('pres_article', post_slug=post.slug) }}">Titolo: {{post.title}}</a></h4>
-        <p>Data: {{post.created_at.strftime('%d.%m.%Y')}}</p>
-
-        {% if post.description %}<p>Descrizione: {{post.description}}</p>{% endif %}
+    <!--PAGINA-->
+    <div class="presnews-page">
         
         
-    {% endfor %}
+        <img alt="NATTALI" id="pn-img1" class="pn-imgs"
+        src=" {{ url_for('static', filename='img/build/presnews_back2.jpg') }} ">
+
+        <img alt="DIEGO BULLIZZA IL POVERO VISC" id="pn-img2" class="pn-imgs"
+            src=" {{ url_for('static', filename='img/build/presnews_back4.jpg') }} ">
+            
+        <img alt="PAGLIACCIO IN BICI" id="pn-img3" class="pn-imgs"
+        src=" {{ url_for('static', filename='img/build/presnews_back3.jpg') }} ">
 
 
-    <div>
-        {% if previous_page %}<a href=" {{previous_page}} ">Prima</a>{% endif %}
-        {% if next_page %}<a href=" {{next_page}} ">Dopo</a>{% endif %}
+        <div class="presnews-sections">
+
+            <div class="presnews-options">
+
+            {% if previous_page %}<a class="presnews-button1" href=" {{previous_page}} "> Articoli Precedenti </a>{% endif %}
+    
+                {% if current_user.is_authenticated %}
+                    {% if current_user.role in ["BOSS","pres_editor"] %}
+                    <a class="presnews-button2"
+                        href="{{ url_for('create_pres_article') }}"><b>NUOVO ARTICOLO</b></a>
+                    {% endif %}
+                {% endif %}
+    
+            {% if next_page %}<a class="presnews-button1" href=" {{next_page}} "> Articoli Successivi </a>{% endif %}
+    
+            </div>
+
+            {% for post in posts.items %}
+            <a class="presnews-frame"
+                href="{{ url_for('pres_article', post_slug=post.slug) }}">
+                <p class="presnews-frame-title"> {{post.title}} </p>
+
+                <p class="presnews-frame-date">{{post.created_at.strftime('%d/%m/%Y')}}</p>
+
+                {% if post.description %}
+                <p class="presnews-frame-desc"> {{post.description}}</p>
+                {% endif %}
+            </a>
+            {% endfor %}
+
+            
+        </div>
+
+
     </div>
 
+{% endblock %}</div>
 
-{% endblock %}
+<div class="MOBILE">{% block mobile_content %}
+
+    <!--BACKGROUND-->
+    <img class="presnews-back"
+    src=" {{ url_for('static', filename='img/build/presnews_back.png') }} " alt="BACKGROUND">
+
+    <!--TITLE-->
+    <div class="presnews-title">News</div>
+
+    <!--PAGINA-->
+    <div class="presnews-page">
+        <div class="presnews-sections">
+
+            <div class="presnews-options">
+
+            {% if previous_page %}<a class="presnews-button1" href=" {{previous_page}} "> Articoli Precedenti </a>{% endif %}
+    
+                {% if current_user.is_authenticated %}
+                    {% if current_user.role in ["BOSS","pres_editor"] %}
+                    <a class="presnews-button2"
+                        href="{{ url_for('create_pres_article') }}"><b>NUOVO ARTICOLO</b></a>
+                    {% endif %}
+                {% endif %}
+    
+            {% if next_page %}<a class="presnews-button1" href=" {{next_page}} "> Articoli Successivi </a>{% endif %}
+    
+            </div>
+
+            {% for post in posts.items %}
+            <a class="presnews-frame"
+                href="{{ url_for('pres_article', post_slug=post.slug) }}">
+                <p class="presnews-frame-title"> {{post.title}} </p>
+
+                <p class="presnews-frame-date">{{post.created_at.strftime('%d/%m/%Y')}}</p>
+
+                {% if post.description %}
+                <p class="presnews-frame-desc"> {{post.description}}</p>
+                {% endif %}
+            </a>
+            {% endfor %}
+
+            
+        </div>
+    </div>
+
+{% endblock %}</div>

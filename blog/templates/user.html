@@ -1,48 +1,88 @@
 {% extends "base.html" %}
 {% block title %} {{user.username}} {% endblock %}
-{% block content %}
 
 
+<div class="PC">{% block pc_content %}
 
-<!--BACKGROUND-->
-<img class="account-back"
-src=" {{ url_for('static', filename='img/build/account_back.png') }} " alt="BACKGROUND">
+    <!--BACKGROUND-->
+    <img class="account-back"
+    src=" {{ url_for('static', filename='img/build/account_back.png') }} " alt="BACKGROUND">
 
 
-<!--TITLE-->
-<div class="table-x">
-    <img alt="" class="account-icon"
-    src="{{ url_for('static', filename='img/build/account-icon1.png') }}">
-    <p class="account-title">Account di {{user.username}}</p>
-</div>
-
-<div class="account-infos">
-    <div class="account-detail">Username: {{user.username}}</div>
-    <div class="account-detail">Password: (Mica la do ad un blocchettaro!)</div>
-    <div class="account-detail">Email: {{user.email}}</div>
-    <div class="account-detail">Ruolo: {{user.role}}</div>
-</div>
-<div class="account-specials">
-    <div class="account-detail">
-        Immagine del profilo: {% if user.icon %} {{user.icon}} {% else %} Nessuna🤡 {% endif %}
+    <!--TITLE-->
+    <div class="account-title-sec">
+        <p class="account-title">Account di {{user.username}}</p>
+        <img alt="" class="account-icon"
+        src="{{ url_for('static', filename='img/build/account-icon1.png') }}">
     </div>
-    <div class="account-detail">Tema scuro:</div>
-</div>
+
+    <div class="account-infos">
+        <div class="account-detail">Username: {{user.username}}</div>
+        <div class="account-detail">Password: (Mica la do ad un blocchettaro!)</div>
+        <div class="account-detail">Email: {{user.email}}</div>
+        <div class="account-detail">Ruolo: {{user.role}}</div>
+    </div>
+    <div class="account-others">
+        <div class="account-detail">
+            Immagine del profilo: {% if user.icon %} {{user.icon}} {% else %} Nessuna🤡 {% endif %}
+        </div>
+        <div class="account-detail">Tema scuro:</div>
+    </div>
 
 
 
-{% if user.role == "BOSS" %}
-<p class="account-desc">
-    Salve, signore! Ecco il vero PADRONE, il proprietario di tutta la baracca. Potere illimitato!
-</p>
-{% elif user.role == "pres_editor" %}
-<p class="account-desc">
-    bbbb
-</p>
-{% elif user.role == "testimonial" %}
-<p class="account-desc">
-    cccc
-</p>
-{% endif %}
-    
-{% endblock %}
+    {% if user.role == "BOSS" %}
+    <p class="account-desc">
+        Salve, signore! Ecco il vero PADRONE, il proprietario di tutta la baracca. Potere illimitato!
+    </p>
+    {% elif user.role == "pres_editor" %}
+    <p class="account-desc">
+        bbbb
+    </p>
+    {% elif user.role == "testimonial" %}
+    <p class="account-desc">
+        cccc
+    </p>
+    {% endif %}
+
+{% endblock %}</div>
+
+
+
+<div class="MOBILE">{% block mobile_content %}
+    <!--BACKGROUND-->
+    <img class="account-back"
+    src=" {{ url_for('static', filename='img/build/account_back_mobile.png') }} " alt="BACKGROUND">
+
+    <!--TITLE-->
+    <div class="account-title-sec">
+        <p class="account-title">Account di {{user.username}}</p>
+        <img alt="" class="account-icon"
+        src="{{ url_for('static', filename='img/build/account-icon1.png') }}">
+    </div>
+
+    <!--NAME, EMAIL, PASSWORD, ROLE-->
+    <div class="account-infos">
+        <div class="account-detail">Username: <b>{{user.username}}</b></div>
+        <div class="account-detail">Password: (Mica la do ad un blocchettaro!)</div>
+        <div class="account-detail">Email: <b>{{user.email}}</b></div>
+        <div class="account-detail">Ruolo: <b>{{user.role}}</b></div>
+    </div>
+
+    <!--DESCRIPTION-->
+    <div>{% if user.role == "BOSS" %}
+    <p class="account-desc">
+        Salve, signore! Ecco il vero PADRONE, il proprietario di tutta la baracca. Potere illimitato!
+    </p>
+    {% elif user.role == "pres_editor" %}
+    <p class="account-desc">
+        bbbb
+    </p>
+    {% elif user.role == "testimonial" %}
+    <p class="account-desc">
+        cccc
+    </p>
+    {% endif %}</div>
+    <br><br><br>
+
+{% endblock %}</div>
