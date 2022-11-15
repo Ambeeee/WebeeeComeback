@@ -1,27 +1,52 @@
 {% extends "base.html" %}
 {% block title %}404{% endblock %}
-{% block content %}
 
+
+
+{% block pc_content %}<div>
 
 <!--BACKGROUND-->
-<img class="background w80 m-5"
+<img class="error-back"
 src=" {{ url_for('static', filename='img/build/404_back.png') }} " alt="BACKGROUND">
 
 <!--TITLE-->
-<div class="title-container">
-    <div class="error c-webeee">Error 404</div>
-    <div class="title-error">Ops, pagina non trovata</div>
+<div class="error-title-sec">
+    <div class="error-sub">Error 404</div>
+    <div class="error-title">Ops, pagina non trovata</div>
 </div>
 <!--PAGE-->
 <div class="error-page">
-    <p class="text">
+    <p class="error-text">
         Questa pagina non esiste, se sei convinto che qui dovrebbe
         esserci qualcosa prova a scrivere di nuovo l'indirizzo,
         <br> altrimenti
     </p>
 
-    <a href=" {{ url_for('home') }} "><p class="error c-webeee">Torna alla Home</p></a>
+    <a href=" {{ url_for('home') }} "><p class="error-sub">Torna alla Home</p></a>
 </div>
 
+</div>{% endblock %}
 
-{% endblock %}
+{% block mobile_content %}<div>
+
+<!--BACKGROUND-->
+<img class="error-back"
+src=" {{ url_for('static', filename='img/build/404_back.png') }} " alt="BACKGROUND">
+
+<!--TITLE-->
+<div class="error-title-sec">
+    <div class="error-sub">Error 404</div>
+    <div class="error-title">Ops, pagina non trovata</div>
+</div>
+<!--PAGE-->
+<div class="error-page">
+    <p class="error-text">
+        Questa pagina non esiste, se sei convinto che qui dovrebbe
+        esserci qualcosa prova a scrivere di nuovo l'indirizzo,
+        <br> altrimenti
+    </p>
+
+    <a href=" {{ url_for('home') }} " class="error-sub">Torna alla Home</a>
+</div>
+
+</div>{% endblock %}

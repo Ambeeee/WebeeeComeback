@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-{% block title %} {{user.username}} {% endblock %}
+{% block title %}
+    {% if request.path == "/users/create" %} Nuovo Utente {% endif %} {{user.username}}
+{% endblock %}
 
 
 <div class="PC">{% block pc_content %}
@@ -11,14 +13,68 @@
 
     <!--TITLE-->
     <div class="account-title-sec">
-        <p class="account-title">Account di {{user.username}}</p>
-        <img alt="" class="account-icon"
-        src="{{ url_for('static', filename='img/build/account-icon1.png') }}">
+        <p class="account-title">{% if request.path == "/users/create" %}
+            Nuovo Utente {% else %} Account di {{user.username}} {% endif %}
+        </p>
+        {% if request.path != "/users/create" %}<a class="account-icon"
+        href=" {{ url_for('update_user', username=user.username) }} ">
+            <img alt="Modifica user" 
+            src="{{ url_for('static', filename='img/build/account-icon1.png') }}">
+        </a>{% endif %}
+
+        {% if user.icon %}<img class="account-img" alt="User icon"
+        src=" {{ url_for('static', filename='img/posts/' + user.icon) }}">{% endif %}
     </div>
 
+    <!--EDITOR-->
+    {% if modify %}
+    <form method="POST" enctype="multipart/form-data" novalidate>{{form.hidden_tag()}}
+        <div class="account-infos">
+            <div class="account-detail">Username: {{form.username(class="account-field")}}
+                <div class="account-err">
+                    {% if form.username.errors %}{% for e in form.username.errors %}
+                    {{e}}{% endfor %}{% endif %}
+                </div>
+            </div>
+            <div class="account-detail">Password: {{form.password(class="account-field")}}
+                <div class="account-err">
+                    {% if form.password.errors %}{% for e in form.password.errors %}
+                    {{e}}{% endfor %}{% endif %}
+                </div>
+            </div>
+            <div class="account-detail">Email: {{form.email(class="account-field")}}</div>
+            <div class="account-detail">Ruolo: {{form.role(class="account-field")}}</div>
+        </div>
+        <div class="account-others">
+            {% if request.path != "/users/create" %}<div class="account-detail">
+                Immagine del profilo: {{form.icon(class="account-field")}}
+                
+                <div class="editor-err">
+                    {% if form.icon.errors %}{% for e in form.icon.errors %}
+                    {{e}}{% endfor %}{% endif %}
+                
+                </div>
+                
+            </div>{% endif %}
+            <div class="account-detail">Tema scuro:</div>
+        </div>
+        {{form.submit(class="account-submit")}}
+    </form>
+    
+    <!--ERRORI-->
+    <div class="account-detail">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}{% for message in messages %}{{message}}{% endfor %}{% endif %}
+        {% endwith %}
+    </div>{% else %}
+
+    <!--INFOS-->
     <div class="account-infos">
         <div class="account-detail">Username: {{user.username}}</div>
-        <div class="account-detail">Password: (Mica la do ad un blocchettaro!)</div>
+        <div class="account-detail">
+            <inline-block id="EYE" class="" onclick="reveal_pw()">👁</inline-block>
+            Password: <inline-block id="PW" class="dNone">{{user.password}}</inline-block>
+        </div>
         <div class="account-detail">Email: {{user.email}}</div>
         <div class="account-detail">Ruolo: {{user.role}}</div>
     </div>
@@ -26,24 +82,33 @@
         <div class="account-detail">
             Immagine del profilo: {% if user.icon %} {{user.icon}} {% else %} Nessuna🤡 {% endif %}
         </div>
-        <div class="account-detail">Tema scuro:</div>
-    </div>
-
-
-
-    {% if user.role == "BOSS" %}
-    <p class="account-desc">
-        Salve, signore! Ecco il vero PADRONE, il proprietario di tutta la baracca. Potere illimitato!
-    </p>
-    {% elif user.role == "pres_editor" %}
-    <p class="account-desc">
-        bbbb
-    </p>
-    {% elif user.role == "testimonial" %}
-    <p class="account-desc">
-        cccc
-    </p>
-    {% endif %}
+        <div class="account-detail">Tema scuro: Non ancora disponibile :(</div>
+    </div>{% endif %}
+    
+    <!--DESC-->
+    <div>{% if user.role == "BOSS" %}
+        <p class="account-desc">
+            Salve, signore! Ecco il vero PADRONE, il proprietario di tutta la baracca. Potere illimitato!
+        </p>
+        {% elif user.role == "pres_editor" %}
+        <p class="account-desc">
+            bbbb
+        </p>
+        {% elif user.role == "testimonial" %}
+        <p class="account-desc">
+            cccc
+        </p>
+    {% endif %}</div>
+    
+    <!--BUTTONS-->
+    {% if request.path != "/users/create" %}<div class="account-panel">
+        <a href="{{ url_for('create_pres_article') }} " class="account-button">Articolo Pres</a>
+        <a class="account-button">Cit Pres</a>
+        <a class="account-button">Gallery</a>
+        <a class="account-button">Articolo Webeee</a>
+        <a class="account-button">Gestisci Account</a>
+        <a href="{{ url_for('create_user') }}" class="account-button">Nuovo Account</a>
+    </div>{% endif %}
 
 {% endblock %}</div>
 
@@ -60,6 +125,11 @@
         <img alt="" class="account-icon"
         src="{{ url_for('static', filename='img/build/account-icon1.png') }}">
     </div>
+
+    <!--IMAGE-->
+    {% if user.icon %}
+    <img src=" {{ url_for('static', filename='img/posts/' + user.icon) }} " alt="">
+    {% endif %}
 
     <!--NAME, EMAIL, PASSWORD, ROLE-->
     <div class="account-infos">

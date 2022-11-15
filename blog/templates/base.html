@@ -26,12 +26,12 @@
 <div class="menu">
 
     
-    <img class = "menu-icon-1" alt="icon" id="ICON" onclick="open_menu()"
+    <img class="menu-icon-1" alt="icon" id="ICON" onclick="open_menu()"
         {% if current_user.is_authenticated %}
-            {% if not current_user.image %}
+            {% if not current_user.icon %}
             title="Pagliaccio, perché non metti la foto?"
             src="{{ url_for('static', filename='img/build/user_not_loaded.png') }}"
-            {% else %} src="{{current_user.image}}"{% endif %}
+            {% else %} src=" {{ url_for('static', filename='img/posts/' + current_user.icon) }}"{% endif %}
         {% else %} src="{{ url_for('static', filename='img/build/logo.png') }}"{% endif %}>
 
     <div class="menu-container">

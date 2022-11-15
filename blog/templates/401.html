@@ -1,30 +1,56 @@
 {% extends "base.html" %}
-{% block title %}404{% endblock %}
-{% block content %}
+{% block title %}401{% endblock %}
 
+{% block pc_content %}<div>
 
 <!--BACKGROUND-->
-<img class="background w80 m-5"
+<img class="error-back"
 src=" {{ url_for('static', filename='img/build/401_back.png') }} " alt="BACKGROUND">
 
 <!--TITLE-->
 <div class="title-container">
-    <div class="error c-webeee">Error 401</div>
-    <div class="title-error">Cosa ci fai tu qui?!</div>
+    <div class="error-sub">Error 401</div>
+    <div class="error-title">Cosa ci fai tu qui?!</div>
 </div>
 <!--PAGE-->
 <div class="error-page">
-    <p class="text">
+    <p class="error-text">
         Mi dispiace, ma non puoi accedere a questa pagina se non
         hai effettuato il login, alla prossima! 
     </p>
 
-    <div class="table-x">
-    <a href=" {{ url_for('home') }} "><p class="error c-webeee">Torna alla Home</p></a>
+    <div class="error-options">
+    <a href=" {{ url_for('home') }} "><p class="error-sub">Torna alla Home</p></a>
     <p class="text w40 ">  oppure  </p>
-    <a href=" {{ url_for('login') }} "><p class="error c-webeee">Effettua il login</p></a>
+    <a href=" {{ url_for('login') }} "><p class="error-sub">Effettua il login</p></a>
     </div>
 </div>
 
+</div>{% endblock %}
 
-{% endblock %}
+{% block mobile_content %}<div>
+
+<!--BACKGROUND-->
+<img class="error-back"
+src=" {{ url_for('static', filename='img/build/401_back.png') }} " alt="BACKGROUND">
+
+<!--TITLE-->
+<div class="error-title-sec">
+    <div class="error-sub">Error 401</div>
+    <div class="error-title">Cosa ci fai tu qui?!</div>
+</div>
+<!--PAGE-->
+<div class="error-page">
+    <p class="error-text">
+        Mi dispiace, ma non puoi accedere a questa pagina se non
+        hai effettuato il login, alla prossima! 
+    </p>
+
+    <div class="error-options">
+    <a href=" {{ url_for('home') }} " class="error-sub">Torna alla Home</a>
+    oppure
+    <a href=" {{ url_for('login') }} " class="error-sub">Effettua il login</a>
+    </div>
+</div>
+    
+</div>{% endblock %}

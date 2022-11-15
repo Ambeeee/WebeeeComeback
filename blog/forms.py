@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import BooleanField, PasswordField, StringField, SubmitField, TextAreaField
+from wtforms import BooleanField, PasswordField, StringField, SubmitField, TextAreaField, SelectField
 from wtforms.validators import DataRequired, Length
 
 class LoginForm(FlaskForm):
@@ -31,3 +31,13 @@ class PostForm(FlaskForm):
     img3 = FileField("Terza immagine", validators=[FileAllowed(["jpg", "jpeg", "png"])])
         
     submit = SubmitField("Pubblica")
+
+ch=[("BOSS", "BOSS"),  ("pres_editor", "pres_editor"), ("testimonial", "testimonial")]
+class UserForm(FlaskForm):
+    username = StringField("Username", validators=[DataRequired("Campo obbligatorio!")])
+    password = PasswordField("Password", validators=[DataRequired("Campo obbligatorio")])
+    email = StringField("Email", validators=[DataRequired("Campo obbligatorio!")])
+    role = SelectField("Ruolo", choices=ch, validators=[DataRequired("Campo obbligatorio!")])
+    icon = FileField("Copertina", validators=[FileAllowed(["jpg", "jpeg", "png"])])
+
+    submit = SubmitField("Fatto")

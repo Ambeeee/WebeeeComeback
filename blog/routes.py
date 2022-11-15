@@ -1,8 +1,9 @@
 from flask import abort, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_user, logout_user, login_required
 
+from alerter import send_confirm
 from blog import db, app
-from blog.forms import LoginForm, PostForm
+from blog.forms import LoginForm, PostForm, UserForm
 from blog.models import User, PresPost, Wpost
 from blog.utils import title_slugifier, save_picture
 
@@ -25,10 +26,11 @@ def password():
 def home():
     from random import randint
     LAST_W = Wpost.query.all()[-1]
-
-    LAST = PresPost.query.all()[-1]
+    try: LAST = PresPost.query.all()[-1]
+    except: LAST = PresPost.query.filter_by(id=1).first()
     first = PresPost.query.first()
-    rand_n = randint(first.id, (LAST.id-1))
+    try: rand_n = randint(first.id, (LAST.id-1))
+    except: rand_n = 1
     RANDOM = PresPost.query.filter_by(id=rand_n).first()
     from version import recorded_version
     version = recorded_version()
@@ -60,7 +62,15 @@ def pres_news():
 @app.route("/pres/<string:post_slug>")
 def pres_article(post_slug):
     post_instance = PresPost.query.filter_by(slug=post_slug).first_or_404()
-    return render_template("article.html", post=post_instance)
+    from random import choice
+    try:
+        rand_n = choice([
+            a for a in range(PresPost.query.first().id, (PresPost.query.all()[-1].id))
+            if a!=post_instance.id] 
+            )
+    except: rand_n = 1
+    RANDOM = PresPost.query.filter_by(id=rand_n).first()
+    return render_template("article.html", post=post_instance, adv=RANDOM)
 
 @app.route("/news/<string:post_slug>")
 def webeee_article(post_slug):
@@ -70,7 +80,7 @@ def webeee_article(post_slug):
 
 
 #PRES
-@app.route("/pres/create-article", methods=["GET", "POST"])
+@app.route("/pres/news/create", methods=["GET", "POST"])
 @login_required
 def create_pres_article():
     form = PostForm()
@@ -132,7 +142,7 @@ def create_pres_article():
 def update_pres_article(post_id):
     post_instance = PresPost.query.get_or_404(post_id)
     if post_instance.author != current_user:
-        abort(403)
+        abort(401)
     form = PostForm()
     if form.validate_on_submit():
         post_instance.title = form.title.data
@@ -140,6 +150,7 @@ def update_pres_article(post_id):
         post_instance.body1 = form.body1.data
         post_instance.body2 = form.body2.data
         post_instance.body3 = form.body3.data
+        post_instance.body4 = form.body4.data
         post_instance.testimonial1 = form.testimonial1.data
         post_instance.testimonial2 = form.testimonial2.data
 
@@ -188,9 +199,10 @@ def update_pres_article(post_id):
         form.body1.data = post_instance.body1
         form.body2.data = post_instance.body2
         form.body3.data = post_instance.body3
+        form.body4.data = post_instance.body4
         form.testimonial1.data = post_instance.testimonial1
         form.testimonial2.data = post_instance.testimonial2
-    return render_template("post_editor.html", form=form)
+    return render_template("post_editor.html", form=form, post=post_instance)
 
 @app.route("/pres/<int:post_id>/delete", methods=["POST"])
 @login_required
@@ -214,9 +226,10 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash("Username e  password non combaciano")
+            flash("Username e password non combaciano")
             return redirect(url_for("login"))
         login_user(user, remember=form.remember_me.data)
+        send_confirm(user.username, user.email, mode="sign in")
         return redirect(url_for("home"))
     
     return render_template("login.html", form=form)
@@ -231,3 +244,61 @@ def logout():
 def user_info(username):
     user_instance = User.query.filter_by(username=username).first_or_404()
     return render_template("user.html", user=user_instance)
+
+@app.route("/users/create", methods=["GET", "POST"])
+@login_required
+def create_user():
+    if current_user.role != "BOSS":
+        abort(401)
+    form = UserForm()
+    new_user = User()
+    if form.validate_on_submit():
+        new_user = User(username=form.username.data,
+        email=form.email.data, role=form.role.data)
+        new_user.set_password_hash(form.password.data)
+
+        db.session.add(new_user)
+        db.session.commit()
+        send_confirm(new_user.username, new_user.email)
+        return redirect(url_for("user_info", username=new_user.username))
+    return render_template("user.html", form=form, user=new_user, modify=True)
+             
+@app.route("/users/<string:username>/edit", methods=["GET", "POST"])
+@login_required
+def update_user(username):
+    user_instance = User.query.filter_by(username=username).first_or_404()
+    form = UserForm()
+    if form.validate_on_submit():
+        user_instance.username = form.username.data
+        user_instance.email = form.email.data
+        user_instance.role = form.role.data
+        user_instance.set_password_hash(form.password.data)
+
+        if form.icon.data:
+            try:
+                icon = save_picture(form.icon.data)
+                user_instance.icon = icon
+            except Exception:
+                db.session.commit()
+                flash("Problema con l'upload.")
+                return redirect(url_for("update_user", username=user_instance.username))
+
+        db.session.commit()
+        return redirect(url_for("user_info", username=user_instance.username))
+    elif request.method == "GET":
+        form.username.data = user_instance.username
+        form.password.data = user_instance.password
+        form.email.data = user_instance.email
+        form.role.data = user_instance.role
+        form.icon.data = user_instance.icon
+    return render_template("user.html", form=form, user=user_instance, modify=True)
+
+@app.route("/users/<string:username>/delete", methods=["POST"])
+@login_required
+def delete_user(username):
+    user_instance = User.query.filter_by(username=username).first_or_404()
+    if current_user.role != "BOSS":
+        abort(401)
+    db.session.delete(user_instance)
+    db.session.commit()
+    return redirect(url_for("home"))

@@ -102,10 +102,7 @@ body{
         border-radius: 25px;
         background-color: var(--back_primary);
     }
-    .error-page{
-        width: 40%;
-        margin: -25% 30% 1%;
-    }
+    
     .frame{
         width: 30%;
         margin: 1%;
@@ -262,8 +259,10 @@ body{
     }
     .menu-icon-1{
         width: 60px;
+        height: 60px;
         margin: 20px;
         cursor: pointer;
+        border-radius: 50px;
     }
     .menu-icon-2{
         width: 40px;
@@ -461,22 +460,32 @@ body{
         display: flex;
         flex-direction: row;
     }
-    .account-icon{
-        width: 50px;
-        margin: 10px 300px;
+    .account-icon img{
+        width: 60px;
+        margin: -30px 0px 0 300px;
+        left: 0;
         position: absolute;
     }
     .account-title{
         margin: 10px auto;
-        font-size: 65px;
+        font-size: 55px;
         color: var(--blueee);
         font-family: var(--font_title);
+    }
+    .account-img{
+        right: 0;
+        width: 120px;
+        height: 120px;
+        margin: 0 200px 0 0;
+        border-radius: 25px;
+        position: absolute;
     }
     .account-infos{
         margin: -220px 50px 50px;
         display: grid;
         grid-template-columns: auto auto;
         column-gap: 100px;
+        row-gap: 110px;
     }
     .account-detail{
         padding: 10px 20px;
@@ -492,12 +501,108 @@ body{
         column-gap: 100px;
         row-gap: 100px;
     }
+    .account-field{
+        width: 40%;
+        margin: -50px 10px 0;
+        padding: 2%;
+        overflow-wrap: break-word;
+        border-radius: 50px;
+        text-align: center;
+        box-shadow: 2px 2px 0px var(--back_secondary),
+                -2px -2px 0px var(--back_secondary);
+    }
+    .account-err{
+        font-size: 25px;
+        margin: -70px 0 0;
+        color: var(--red);
+        text-align: center;
+        text-shadow: 1px 1px 0px var(--red2);
+        font-family: var(--font_error);
+    }
+    .account-submit{
+        width: 50%;
+        margin: 5% 25%;
+        padding: 1% 10%;
+
+        background-color: var(--blueee);
+        color: var(--text_secondary_color);
+        font-family: var(--font_bold);
+        border-radius: 25px;
+        font-size: 25px;
+    }   
     .account-desc{
         text-align: center;
         font-family: var(--font_text);
         font-size: 25px;
         font-weight: bold;
         font-style: oblique;
+    }
+    .account-panel{
+        width: 50%;
+        margin: 50px 20%;
+        padding: 20px 5%;
+        text-align: center;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        column-gap: 10px;
+        row-gap: 10px;
+        border: 5px dashed var(--ambeee);
+        border-radius: 50px;
+    }
+    .account-button{
+        width: 80%;
+        margin: 5% 10%;
+        padding: 5px 5px;
+
+        font-size: 30px;
+        font-family: var(--font_bold);
+        align-content: center;
+        color: var(--text_secondary_color);
+        cursor: pointer;
+        background-color: var(--blueee);
+        border-radius: 25px;
+    }
+    .account-button:visited{
+        color: var(--text_secondary_color);
+    }
+
+/* ERROR PAGES */
+    .error-back{
+        width: 76%;
+        margin: -50px 12% 0;
+    }
+    .error-title-sec{
+        width: 60%;
+        top: 0;
+        margin: 200px 20% 0;
+        position: absolute;
+    }
+    .error-sub{
+        font-size: 30px;
+        text-align: center;
+        font-family: var(--font_error);
+        color: var(--ambeee);
+        text-shadow: 1px 1px var(--ambeee2);
+    }
+    .error-title{
+        margin-top: 0%;
+        font-size: 70px;
+        text-align: center;
+        font-family: var(--font_bold);
+        color: var(--text_primary_color);
+    }
+    .error-page{
+        width: 40%;
+        margin: -350px 30% 0;
+    }
+    .error-text{
+        font-size: 27px;
+        text-align: center;
+        font-family: var(--font_text);
+    }
+    .error-options{
+        display: flex;
+        flex-direction: row;
     }
 
 /* EDITOR */
@@ -520,15 +625,19 @@ body{
         flex-direction: column;
     }
     .editor-desc{
-        font-size: 40px;
-        font-family: var(--font_desc2);
         text-align: center;
         padding: 2%;
+        resize: vertical;
+        font-size: 40px;
+        font-family: var(--font_desc2);
     }
     .editor-field{
         width: 50%;
+        height: auto;
         margin: 0 20% 5%;
         padding: 2% 4%;
+        resize: vertical;
+        overflow-wrap: break-word;
         border-radius: 50px;
         text-align: center;
         box-shadow: 2px 2px 0px var(--back_secondary),
@@ -655,7 +764,7 @@ body{
     }
     #pn-img3{
         width: 17%;
-        margin: 75% 0 0;
+        margin: 74% 0 0;
         right: 0;
     }
     .presnews-sections{
@@ -725,6 +834,134 @@ body{
         border-radius: 100px;
         background-color: var(--link);
     }
+
+/* PRESNEWS */
+    .article-back{
+        width: 96%;
+        margin: -55px 2% 0;
+        z-index: 0;
+    }
+    .article-title{
+        top: 0;
+        width: 70%;
+        margin: 250px 15% 0;
+        z-index: 1;
+        position: absolute;
+        font-size: 50px;
+        text-align: center;
+        color: var(--text_primary_color);
+        font-family: var(--font_title);
+    }
+    .article-desc{
+        top: 0;
+        width: 50%;
+        margin: 500px 25% 0;
+        z-index: 1;
+        position: absolute;
+        font-size: 30px;
+        font-style: italic;
+        text-align: center;
+        color: var(--text_primary_color);
+        font-family: var(--font_article);
+    }
+    .article-bar1{
+        width: 50%;
+        margin: 0px 20% 10px;
+        padding: 15px 5%;
+        align-items: center;
+        font-size: 25px;
+        font-family: var(--font_menu);
+        display: flex;
+        flex-direction: row;
+    }
+    .article-opz{
+        right: 25%;
+        font-size: 30px;
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+    }
+    .article-button1{
+        margin: 0 10px;
+        padding: 2px;
+        color: var(--link);
+        border-radius: 10px;
+        border: 2px solid var(--link);
+    }
+    .article-button1:visited{
+        color: var(--link);
+    }
+    .article-button2{
+        margin: 0 10px;
+        padding: 2px;
+        font-size: 30px;
+        color: var(--red);
+        font-family: var(--font_menu);
+        border-radius: 10px;
+        border: 2px solid var(--red);
+        background-color: var(--back_primary);
+    }
+    .article-button2:visited{
+        color: var(--red);
+    }
+    .article-page{
+        width: 60%;
+        margin: 40px 15%;
+        padding: 2px 5%;
+    }
+    .article-body{
+        margin: 50px 0;
+        font-size: 35px;
+        font-family: var(--font_text);
+        text-align: justify;
+    }
+    .article-voice{
+        margin: 20px 0;
+        font-size: 30px;
+        font-family: var(--font_text);
+        text-align: center;
+        font-style: italic;
+    }
+    .article-img{
+        width: 60%;
+        margin: 50px 20%;
+        border-radius: 25px;
+    }
+
+    .article-adv{
+        width: 50%;
+        margin: 50px 25% 0;
+        padding: 50px 0%;
+        border-radius: 25px 25px 0 0;
+        border: 2px dashed var(--ambeee);
+    }
+    .article-adv-title{
+        margin: -30px 0 0;
+        text-align: center;
+        font-size: 30px;
+        font-family: var(--font_bold);
+        border-radius: 20px;
+        border: 1px solid var(--ambeee);
+        background-color: var(--back_primary);
+    }
+    .article-adv-desc{
+        width: 80%;
+        margin: 10px 10%;
+        font-size: 30px;
+        text-align: center;
+        font-family: var(--font_article);
+    }
+    .article-mark{
+        width: 20%;
+        margin: 0 40% 0px;
+        bottom: 0;
+        opacity: 60%;
+        position: fixed;
+        font-size: 40px;
+        text-align: center;
+        color: var(--grey);
+        font-family: var(--font_webeee);
+    }
 }
 
 
@@ -749,6 +986,23 @@ body{
     .TABLET{display: none;}
     .MOBILE{display: block;}
     .dNone{display: none;}
+
+    :root{
+        --font_webeee: "Oleo Script Swash Caps";
+        --font_itsback: "Covered By Your Grace";
+        --font_title: "Caveat";
+        --font_menu: "Caveat";
+        --font_account: "Freehand521 BT";
+        --font_article: "Brush Script MT";
+        --font_text: "Indie Flower";
+        --font_bold: "Caveat";
+        --font_error: "Indie Flower";
+        --text_primary_color: black;
+        --text_secondary_color: white;
+
+    }
+
+
 
     /* MENU */
     .menu{
@@ -782,7 +1036,7 @@ body{
         font-size: 23px;
         text-align: center;
         color: var(--text_secondary_color);
-        font-family: 'Caveat', cursive;
+        font-family: var(--font_menu);
         text-decoration: none;
     }
     .menu-account{
@@ -811,14 +1065,14 @@ body{
     .home-title{
         font-size: 70px;
         color: var(--blueee);
-        font-family: 'Oleo Script Swash Caps';
+        font-family: var(--font_webeee);
         text-align: center;
     }
     .home-subtitle{
         width: 100px;
         margin: -50px 0 0 170px;
 
-        font-family: 'Covered By Your Grace';
+        font-family: var(--font_itsback);
         color: var(--red);
         text-shadow: 1px 1px 0px #8F1111;
         transform: rotate(345deg);
@@ -845,7 +1099,7 @@ body{
         margin: 5px auto;
         padding: 20px 10%;
         text-align: center;
-        font-family: 'Indie Flower';
+        font-family: var(--font_text);
         border-radius: 20px;
         background-color: var(--back_primary);
     }
@@ -868,7 +1122,7 @@ body{
         margin: -40px 0 0 0;
         font-size: 25px;
         text-align: center;
-        font-family: "Caveat";
+        font-family: var(--font_title);
         font-weight: bold;
         color: var(--text_primary_color);
         text-shadow: 1px 1px 0 var(--text_secondary_color);
@@ -878,7 +1132,7 @@ body{
         font-size: 20px;
         font-style: italic;
         text-align: center;
-        
+        font-family: var(--font_text);
     }
     .version{
         position: fixed;
@@ -1008,6 +1262,55 @@ body{
         font-size: 15px;
         font-weight: bold;
         font-style: oblique;
+    }
+
+/* ERROR PAGES */
+    .error-back{
+        width: 76%;
+        height: 300px;
+        margin: 50px 12% 0;
+    }
+    .error-title-sec{
+        width: 96%;
+        top: 0;
+        margin: 120px 2% 0;
+        position: absolute;
+    }
+    .error-sub{
+        width: 60%;
+        margin: 0 20%;
+        font-size: 30px;
+        text-decoration: none;
+        text-align: center;
+        font-family: var(--font_error);
+        color: var(--ambeee);
+        text-shadow: 1px 1px var(--ambeee2);
+    }
+    .error-title{
+        font-size: 40px;
+        text-align: center;
+        font-weight: bold;
+        font-family: var(--font_bold);
+        color: var(--text_primary_color);
+    }
+    .error-page{
+        width: 90%;
+        margin: 0px 5% 0;
+    }
+    .error-text{
+        font-size: 18px;
+        text-align: center;
+        font-family: var(--font_text);
+    }
+    .error-options{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-family: var(--font_text);
+        font-size: 15px;
+    }
+    .error-sub:visited{
+        text-decoration: none;
     }
 
 /* PRES */
