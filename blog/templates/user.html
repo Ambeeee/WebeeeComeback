@@ -42,7 +42,12 @@
                     {{e}}{% endfor %}{% endif %}
                 </div>
             </div>
-            <div class="account-detail">Email: {{form.email(class="account-field")}}</div>
+            <div class="account-detail">Email: {{form.email(class="account-field")}}
+                <div class="account-err">
+                    {% if form.email.errors %}{% for e in form.email.errors %}
+                    {{e}}{% endfor %}{% endif %}
+                </div>
+            </div>
             <div class="account-detail">Ruolo: {{form.role(class="account-field")}}</div>
         </div>
         <div class="account-others">
@@ -56,7 +61,6 @@
                 </div>
                 
             </div>{% endif %}
-            <div class="account-detail">Tema scuro:</div>
         </div>
         {{form.submit(class="account-submit")}}
     </form>
@@ -73,7 +77,7 @@
         <div class="account-detail">Username: {{user.username}}</div>
         <div class="account-detail">
             <inline-block id="EYE" class="" onclick="reveal_pw()">👁</inline-block>
-            Password: <inline-block id="PW" class="dNone">{{user.password}}</inline-block>
+            Password: <inline-block id="PW" class="dNone">Non disponibile</inline-block>
         </div>
         <div class="account-detail">Email: {{user.email}}</div>
         <div class="account-detail">Ruolo: {{user.role}}</div>
@@ -115,32 +119,65 @@
 
 
 <div class="MOBILE">{% block mobile_content %}
+ 
+    {% if modify %}<div class="editor">
     <!--BACKGROUND-->
     <img class="account-back"
-    src=" {{ url_for('static', filename='img/build/account_back_mobile.png') }} " alt="BACKGROUND">
+    src=" {{ url_for('static', filename='img/build/401_back.png') }} " alt="BACKGROUND">
+
 
     <!--TITLE-->
     <div class="account-title-sec">
-        <p class="account-title">Account di {{user.username}}</p>
-        <img alt="" class="account-icon"
-        src="{{ url_for('static', filename='img/build/account-icon1.png') }}">
+        <p class="account-title">Ops... Meglio di no!</p>
     </div>
 
-    <!--IMAGE-->
-    {% if user.icon %}
-    <img src=" {{ url_for('static', filename='img/posts/' + user.icon) }} " alt="">
-    {% endif %}
+    <div class="account-desc">Se vuoi creare un nuovo utente
+        o modificarne uno già esistente, passa su pc!</div>
 
-    <!--NAME, EMAIL, PASSWORD, ROLE-->
-    <div class="account-infos">
-        <div class="account-detail">Username: <b>{{user.username}}</b></div>
-        <div class="account-detail">Password: (Mica la do ad un blocchettaro!)</div>
-        <div class="account-detail">Email: <b>{{user.email}}</b></div>
-        <div class="account-detail">Ruolo: <b>{{user.role}}</b></div>
+    </div>{% else %}
+
+
+
+<!--BACKGROUND-->
+<img class="account-back"
+src=" {{ url_for('static', filename='img/build/account_back_mobile.png') }} " alt="BACKGROUND">
+
+
+
+
+<!--TITLE-->
+<div class="account-title-sec">
+    <p class="account-title">Account di {{user.username}}</p>
+</div>
+
+
+
+<!--INFOS-->
+<div class="account-infos">
+    <div class="account-detail">Username: {{user.username}}</div>
+    <div class="account-detail">
+        <inline-block id="EYE" class="" onclick="reveal_pw()">👁</inline-block>
+        Password: <inline-block id="PW" class="dNone">{{user.password}}</inline-block>
     </div>
+    <div class="account-detail">Email: {{user.email}}</div>
+    <div class="account-detail">Ruolo: {{user.role}}</div>
+</div>
+<div class="account-others">
+    <div class="account-detail">
+        <b>Immagine del profilo:</b>  {% if user.icon %} {{user.icon}} {% else %} Nessuna🤡 {% endif %}
+    </div>
+    <div class="account-detail"><b>Tema scuro:</b> Non ancora disponibile :(</div>
+</div>
 
-    <!--DESCRIPTION-->
-    <div>{% if user.role == "BOSS" %}
+
+
+{% if user.icon %}<img class="account-img" alt="User icon"
+src=" {{ url_for('static', filename='img/posts/' + user.icon) }}">{% endif %}
+
+
+
+<!--DESC-->
+<div>{% if user.role == "BOSS" %}
     <p class="account-desc">
         Salve, signore! Ecco il vero PADRONE, il proprietario di tutta la baracca. Potere illimitato!
     </p>
@@ -152,7 +189,22 @@
     <p class="account-desc">
         cccc
     </p>
-    {% endif %}</div>
-    <br><br><br>
+{% endif %}</div>
 
+
+
+<!--BUTTONS-->
+{% if user.role == "BOSS" or user.role == "pres_editor" %}<div class="account-panel">
+    <a href="{{ url_for('create_pres_article') }} " class="account-button">Articolo Pres</a>
+    <a class="account-button">Cit Pres</a>
+    <a class="account-button">Gallery</a>
+    {% if user.role == "BOSS" %} 
+    <a class="account-button">Articolo Webeee</a>
+    <a class="account-button">Gestisci Account</a>
+    <a href="{{ url_for('create_user') }}" class="account-button">Nuovo Account</a>
+</div>{% endif %}{% endif %}
+
+
+
+{% endif %}
 {% endblock %}</div>

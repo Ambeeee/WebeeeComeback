@@ -5,11 +5,12 @@ import ssl
 em = EmailMessage()
 ssl_context = ssl.create_default_context()
 
-padrone = "alessandro.minestrini.01@gmail.com"
-Python_google_2fa = "ncrxhaohumrtrvln"
+padrone = "webeee.official@gmail.com"
+Python_google_2fa = "qdoeepmvhoqjxirw"
 
 subject = {"sign up": "Benvenuto su Webeee!", "sign in": "Accesso a Webeee effettuato"}
 
+em["From"] = padrone
 
 
 
@@ -31,8 +32,8 @@ def send_confirm(user, email, mode="sign up"):
         """
     }
     
-    em["From"] = padrone
-    em["To"] = email
+    try: em["To"] = email
+    except: return
     em["subject"] = subject[mode]
     em.set_content(body[mode])
 
@@ -40,4 +41,5 @@ def send_confirm(user, email, mode="sign up"):
         s.login(padrone, Python_google_2fa)
         s.sendmail(padrone, email, em.as_string())
 
+    
 

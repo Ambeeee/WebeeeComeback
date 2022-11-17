@@ -18,6 +18,8 @@ migrate = Migrate(app, db)
 login_manager = LoginManager(app)
 
 #MARKDOWN
+from flaskext.markdown import Markdown
+Markdown(app)
 #Misaka(app)
 
 with app.app_context():

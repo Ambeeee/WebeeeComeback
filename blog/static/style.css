@@ -28,6 +28,7 @@
 body{
     margin: 0;
 }
+.dNone{display: none;}
 
 /*SCROLLBAR*/
 ::-webkit-scrollbar{
@@ -41,210 +42,20 @@ body{
     background: var(--ambeee2);
 }
 
+a{
+    text-decoration: none;
+    color:var(--text_primary_color);
+}
+a:visited{
+    color:var(--text_primary_color);
+}
+
+
 /* COMPUTER */
 @media screen and (min-width: 1024px) {
     .PC{display: block;}
     .TABLET{display: none;}
     .MOBILE{display: none;}
-    .dNone{display: none;}
-
-
-
-    a{
-        text-decoration: none;
-        color: var(--text_primary_color);
-    }
-    a:visited{
-        color: var(--text_primary_color);
-    }
-    
-  
-    /* Page & Back */
-    .background{
-        width: 96%;
-        margin-top: 2%;
-    }
-
-
-    /* Title */
-    .title-container{
-        position: absolute;
-        width: 60%;
-        margin: -40% 20%;
-    }
-    .title-second{
-        font-family: var(--font_title);
-        color: var(--text_primary_color);
-        font-size: 120px;
-        text-align: center;
-        margin-top: -10%;
-    }
-    .title-error{
-        font-family: var(--font_bold);
-        color: var(--text_primary_color);
-        font-size: 70px;
-        text-align: center;
-        margin-top: 0%;
-    }
-
-
-
-    
-    .page-section{
-        margin: -4% 1%;
-        border-radius: 100px 100px 0 0;
-        background-color: var(--ambeee);
-        padding: 10% 5%;
-    }
-    .desc-frame{
-        margin: 1%;
-        padding: 2%;
-        border-radius: 25px;
-        background-color: var(--back_primary);
-    }
-    
-    .frame{
-        width: 30%;
-        margin: 1%;
-        padding: 2%;
-        border-radius: 25px;
-        background-color: var(--back_primary);
-        box-shadow: 2px 2px 0 var(--back_secondary);
-        text-decoration: none;
-    }
-    .f1{margin: 8% 10% 5% 60%;}
-    .f2{margin: 5% 60% 5% 10%;}
-    .f3{margin: 5% 30% 5% 40%;}
-
-    .frame-type{
-        margin-top: -15%;
-        text-align: center;
-        font-size: 34px;
-        font-family: var(--font_title);
-        color: var(--text_primary_color);
-        text-shadow: 1px 1px 0 var(--text_secondary_color);
-    }
-    .frame-title{
-        font-size: 30px;
-        font-family: var(--font_text);
-        text-decoration: none;
-        color: var(--text_primary_color);
-    }
-    .frame-title:visited{
-        color: var(--text_primary_color);
-    }
-    .login-section{
-        width: 40%;
-        margin: -27% 25%;
-        border-radius: 100px 100px 0 0;
-        background-color: var(--ambeee);
-        padding: 1% 5%;
-    }
-    .text{
-        font-family: var(--font_text);
-        font-size: 25px;
-        text-align: center;
-    }
-    .label-1{
-        text-align: center;
-        font-size: 30px;
-        font-family: var(--font_desc1);
-        margin: 5% 2% 0 2%;
-    }
-    .field{
-        width: 70%;
-        margin: 0 10% 5% 10%;
-        padding: 2% 5%;
-        border-radius: 25px;
-        text-align: center;
-        box-shadow: 5px 5px 0px var(--back_secondary);
-    }
-    .error{
-        font-size: 30px;
-        color: var(--red);
-        text-align: center;
-        text-shadow: 1px 1px 0px var(--red2);
-        font-family: var(--font_error);
-        z-index: 3;
-    }
-    .btn-blue{
-        background-color: var(--blueee);
-        color: var(--text_secondary_color);
-        font-family: var(--font_bold);
-        border-radius: 25px;
-        font-size: 25px;
-        padding: 1% 15%;
-        width: 40%;
-        margin: 0 20%;
-    }
-
-
-    
-
-
-    .w80{
-        width: 80%;
-        margin-right: 10%;
-        margin-left: 10%;
-    }
-    .w40{
-        width: 40%;
-    }
-    .m-5{
-        margin-top: -5%;
-    }
-    .m-10{
-        margin-top: -10%;
-    }
-    .m-35{
-        margin-top: -35%;
-    }
-    
-    .t-center{
-        text-align: center;
-    }
-    .align-r{
-        margin-left: 7%;
-    }
-    .align-l{
-        margin-right: 80%;
-    }
-    
-    
-
-    .c-webeee{
-        color: var(--ambeee);
-        text-shadow: 1px 1px var(--ambeee2);
-    }
-
-    .table-x{
-        display: flex;
-        flex-direction: row;
-    }
-    .table-y{
-        display: flex;
-        flex-direction: column;
-    }
-    .table-xr{
-        display: flex;
-        flex-direction: row-reverse;
-    }
-    .table-yr{
-        display: flex;
-        flex-direction: column-reverse;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -625,11 +436,12 @@ body{
         flex-direction: column;
     }
     .editor-desc{
-        text-align: center;
+        margin-top: 50px;
         padding: 2%;
         resize: vertical;
-        font-size: 40px;
-        font-family: var(--font_desc2);
+        font-size: 50px;
+        text-align: center;
+        font-family: var(--font_article);
     }
     .editor-field{
         width: 50%;
@@ -657,6 +469,17 @@ body{
         font-family: var(--font_error);
         margin: -1% 0 0;
     }
+    .editor-opz{
+        display: flex;
+        flex-direction: row;
+        width: 20%;
+        margin: -150px 20% 0;
+    }
+    .editor-icon{
+        width: 60px;
+        margin: 10px;
+
+    }
     .editor-submit{
         width: 50%;
         margin: 5% 25%;
@@ -667,6 +490,21 @@ body{
         font-family: var(--font_bold);
         border-radius: 25px;
         font-size: 25px;
+    }
+    .bar{
+        width: 80%;
+        max-width: 624px;
+        min-width: 624px;
+        margin: 2% auto;
+        padding: 2%;
+        font-size: 20px;
+        color: var(--first);
+        font-family: 'Itim';
+        background-color: var(--second);
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        
     }
 
 /* PRES */
@@ -963,14 +801,6 @@ body{
         font-family: var(--font_webeee);
     }
 }
-
-
-
-
-
-
-
-
 /* TABLET */
 @media screen and (min-width: 768px) and  (max-width: 1023px){
     
@@ -985,7 +815,6 @@ body{
     .PC{display: none;}
     .TABLET{display: none;}
     .MOBILE{display: block;}
-    .dNone{display: none;}
 
     :root{
         --font_webeee: "Oleo Script Swash Caps";
@@ -1019,6 +848,7 @@ body{
     .menu-icon-1{
         width: 50px;
         margin: 25px;
+        border-radius: 25px;
     }
     .menu-icon-2{
         width: 40px;
@@ -1035,9 +865,12 @@ body{
         margin: 0;
         font-size: 23px;
         text-align: center;
-        color: var(--text_secondary_color);
+        color: white;
         font-family: var(--font_menu);
         text-decoration: none;
+    }
+    .menu-tab:visited{
+        color: white;
     }
     .menu-account{
         width: 60px;
@@ -1221,16 +1054,16 @@ body{
         display: flex;
         flex-direction: row;
     }
-    .account-icon{
-        width: 25px;
-        margin: 10px 70px;
-        position: absolute;
-    }
     .account-title{
         margin: 10px auto;
         font-size: 25px;
         color: var(--blueee);
         font-family: "Covered By Your Grace";
+    }
+    .account-img{
+        width: 40%;
+        margin: 0px 30%;
+        border-radius: 25px;
     }
     .account-infos{
         margin: 170px 20% 50px;
@@ -1238,21 +1071,49 @@ body{
         position: absolute;
         display: grid;
         grid-template-columns: auto;
-        row-gap: 42px;
+        row-gap: 60px;
     }
     .account-detail{
-        width: 90%;
+        width: 100%;
         padding: 10px 0;
         font-size: 20px;
         text-align: center;
         font-family: "Caveat";
     }
     .account-others{
-        margin: 50px;
+        margin: 50px 20px;
         display: grid;
         grid-template-columns: auto auto;
-        column-gap: 100px;
-        row-gap: 100px;
+        column-gap: 0px;
+    }
+    .account-field{
+        width: 40%;
+        margin: -50px 10px 0;
+        padding: 2%;
+        overflow-wrap: break-word;
+        border-radius: 50px;
+        text-align: center;
+        box-shadow: 2px 2px 0px var(--back_secondary),
+                -2px -2px 0px var(--back_secondary);
+    }
+    .account-err{
+        font-size: 25px;
+        margin: -70px 0 0;
+        color: var(--red);
+        text-align: center;
+        text-shadow: 1px 1px 0px var(--red2);
+        font-family: var(--font_error);
+    }
+    .account-submit{
+        width: 50%;
+        margin: 5% 25%;
+        padding: 1% 10%;
+
+        background-color: var(--blueee);
+        color: var(--text_secondary_color);
+        font-family: var(--font_bold);
+        border-radius: 25px;
+        font-size: 25px;
     }
     .account-desc{
         width: 60%;
@@ -1262,6 +1123,45 @@ body{
         font-size: 15px;
         font-weight: bold;
         font-style: oblique;
+    }
+    .account-panel{
+        width: 80%;
+        margin: 20px 10% 150px;
+        padding: 10px 0;
+        text-align: center;
+        display: grid;
+        grid-template-columns: auto auto;
+        border: 5px dashed var(--ambeee);
+        border-radius: 50px;
+    }
+    .account-button{
+        width: 60%;
+        margin: 5% 15%;
+        padding: 5px 5%;
+
+        font-size: 20px;
+        font-family: var(--font_bold);
+        text-decoration: none;
+        align-content: center;
+        color: var(--text_secondary_color);
+        cursor: pointer;
+        background-color: var(--blueee);
+        border-radius: 25px;
+    }
+    .account-button:visited{
+        color: var(--text_secondary_color);
+    }
+    .editor .account-title{
+        font-size: 50px;
+        font-weight: bold;
+    }
+    .editor .account-desc{
+        width: 90%;
+        margin: 100px 4% 0;
+        padding: 1%;
+        font-size: 25px;
+        border: 3px dashed var(--ambeee);
+        border-radius: 25px;
     }
 
 /* ERROR PAGES */

@@ -86,10 +86,15 @@ def create_pres_article():
     form = PostForm()
     if form.validate_on_submit():
         slug = title_slugifier(form.title.data)
-        new_post = PresPost(title=form.title.data,
+        new_post = PresPost(title=form.title.data, description = form.description.data,
+
             body1=form.body1.data, body2=form.body2.data, body3=form.body3.data,
-            body4=form.body4.data, testimonial1=form.testimonial1.data, testimonial2=form.testimonial2.data,
-            slug=slug, description = form.description.data, author=current_user)
+            body4=form.body4.data, body5=form.body5.data,
+
+            testimonial1=form.testimonial1.data, testimonial2=form.testimonial2.data,
+            testimonial3=form.testimonial3.data,
+
+            slug=slug, author=current_user)
 
         if form.cover.data:
             try:
@@ -151,8 +156,10 @@ def update_pres_article(post_id):
         post_instance.body2 = form.body2.data
         post_instance.body3 = form.body3.data
         post_instance.body4 = form.body4.data
+        post_instance.body5 = form.body5.data
         post_instance.testimonial1 = form.testimonial1.data
         post_instance.testimonial2 = form.testimonial2.data
+        post_instance.testimonial3 = form.testimonial3.data
 
         if form.cover.data:
             try:
@@ -200,8 +207,10 @@ def update_pres_article(post_id):
         form.body2.data = post_instance.body2
         form.body3.data = post_instance.body3
         form.body4.data = post_instance.body4
+        form.body5.data = post_instance.body5
         form.testimonial1.data = post_instance.testimonial1
         form.testimonial2.data = post_instance.testimonial2
+        form.testimonial3.data = post_instance.testimonial3
     return render_template("post_editor.html", form=form, post=post_instance)
 
 @app.route("/pres/<int:post_id>/delete", methods=["POST"])
@@ -229,7 +238,6 @@ def login():
             flash("Username e password non combaciano")
             return redirect(url_for("login"))
         login_user(user, remember=form.remember_me.data)
-        send_confirm(user.username, user.email, mode="sign in")
         return redirect(url_for("home"))
     
     return render_template("login.html", form=form)

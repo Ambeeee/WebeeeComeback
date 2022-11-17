@@ -6,14 +6,13 @@
 
 <!--TITLE-->
 <div class="editor-title">
-    {% if request.path == "/pres/create-article" %} Nuovo Post
+    {% if request.path == "/pres/news/create" %} Nuovo Post
     {%else%} Aggiorna Post {%endif%}
 </div>
 
 <!--BACKGROUND-->
 <img class="editor-back"
 src=" {{ url_for('static', filename='img/build/crea_back.png') }} " alt="BACKGROUND">
-
 
 
 <form class="editor-page" method="POST" enctype="multipart/form-data" novalidate>{{form.hidden_tag()}}
@@ -44,17 +43,30 @@ src=" {{ url_for('static', filename='img/build/crea_back.png') }} " alt="BACKGRO
             {{e}}{% endfor %}{% endif %}
         </div>
     </div>{%endif%}
+
+    <br><br><br>   
+    <br><br><br>
+
     <!--body1-->{% if current_user.role == "BOSS" or current_user.role == "pres_editor" %}
     <div class="editor-section">
         <div class="editor-desc">{{form.body1.label}}</div>
-        {{form.body1(class="editor-field", rows=15)}}
+        {{form.body1(class="editor-field", rows=10)}}
         <div class="editor-err">
             {% if form.body1.errors %}{% for e in form.body1.errors %}
             {{e}}{% endfor %}{% endif %}
         </div>
     </div>{%endif%}
+    <!--testimonial1-->
+    <div class="editor-section dNone" id="cit1">
+        <div class="editor-desc">{{form.testimonial1.label}}</div>
+        {{form.testimonial1(class="editor-field", rows=3)}}
+        <div class="editor-err">
+            {% if form.testimonial1.errors %}{% for e in form.testimonial1.errors %}
+            {{e}}{% endfor %}{% endif %}
+        </div>
+    </div>
     <!--img1-->{% if current_user.role == "BOSS" or current_user.role == "pres_editor" %}
-    <div class="editor-section">
+    <div class="editor-section dNone" id="img1">
         <div class="editor-desc">{{form.img1.label}}</div>
         {{form.img1(class="editor-image", rows=15)}}
         <div class="editor-err">
@@ -62,53 +74,61 @@ src=" {{ url_for('static', filename='img/build/crea_back.png') }} " alt="BACKGRO
             {{e}}{% endfor %}{% endif %}
         </div>
     </div>{%endif%}
+
+    <br><br><br> 
+    <br><br><br>   
+
     <!--body2-->{% if current_user.role == "BOSS" or current_user.role == "pres_editor" %}
-    <div class="editor-section">
+    <div class="editor-section dNone" id="body2">
         <div class="editor-desc">{{form.body2.label}}</div>
-        {{form.body2(class="editor-field", rows=15)}}
+        {{form.body2(class="editor-field", rows=3)}}
         <div class="editor-err">
             {% if form.body2.errors %}{% for e in form.body2.errors %}
             {{e}}{% endfor %}{% endif %}
         </div>
     </div>{%endif%}
-    <!--testimonial1-->
-    <div class="editor-section">
-        <div class="editor-desc">{{form.testimonial1.label}}</div>
-        {{form.testimonial1(class="editor-field", rows=15)}}
-        <div class="editor-err">
-            {% if form.testimonial1.errors %}{% for e in form.testimonial1.errors %}
-            {{e}}{% endfor %}{% endif %}
-        </div>
-    </div>
-    <!--img2-->{% if current_user.role == "BOSS" or current_user.role == "pres_editor" %}
-    <div class="editor-section">
-        <div class="editor-desc">{{form.img2.label}}</div>
-        {{form.img2(class="editor-image", rows=15)}}
-        <div class="editor-err">
-            {% if form.img2.errors %}{% for e in form.img2.errors %}
-            {{e}}{% endfor %}{% endif %}
-        </div>
-    </div>{%endif%}
-    <!--body3-->{% if current_user.role == "BOSS" or current_user.role == "pres_editor" %}
-    <div class="editor-section">
-        <div class="editor-desc">{{form.body3.label}}</div>
-        {{form.body3(class="editor-field", rows=15)}}
-        <div class="editor-err">
-            {% if form.body3.errors %}{% for e in form.body3.errors %}
-            {{e}}{% endfor %}{% endif %}
-        </div>
-    </div>{%endif%}
     <!--testimonial2-->
-    <div class="editor-section">
+    <div class="editor-section dNone" id="cit2">
         <div class="editor-desc">{{form.testimonial2.label}}</div>
-        {{form.testimonial2(class="editor-field", rows=15)}}
+        {{form.testimonial2(class="editor-field", rows=3)}}
         <div class="editor-err">
             {% if form.testimonial2.errors %}{% for e in form.testimonial2.errors %}
             {{e}}{% endfor %}{% endif %}
         </div>
     </div>
+    <!--img2-->{% if current_user.role == "BOSS" or current_user.role == "pres_editor" %}
+    <div class="editor-section dNone" id="img2">
+        <div class="editor-desc">{{form.img2.label}}</div>
+        {{form.img2(class="editor-image", rows=3)}}
+        <div class="editor-err">
+            {% if form.img2.errors %}{% for e in form.img2.errors %}
+            {{e}}{% endfor %}{% endif %}
+        </div>
+    </div>{%endif%}
+
+    <br><br><br>    
+    <br><br><br>
+
+    <!--body3-->{% if current_user.role == "BOSS" or current_user.role == "pres_editor" %}
+    <div class="editor-section dNone" id="body3">
+        <div class="editor-desc">{{form.body3.label}}</div>
+        {{form.body3(class="editor-field", rows=3)}}
+        <div class="editor-err">
+            {% if form.body3.errors %}{% for e in form.body3.errors %}
+            {{e}}{% endfor %}{% endif %}
+        </div>
+    </div>{%endif%}
+    <!--testimonial3-->
+    <div class="editor-section dNone" id="cit3">
+        <div class="editor-desc">{{form.testimonial3.label}}</div>
+        {{form.testimonial3(class="editor-field", rows=3)}}
+        <div class="editor-err">
+            {% if form.testimonial3.errors %}{% for e in form.testimonial3.errors %}
+            {{e}}{% endfor %}{% endif %}
+        </div>
+    </div>
     <!--img3-->{% if current_user.role == "BOSS" or current_user.role == "pres_editor" %}
-    <div class="editor-section">
+    <div class="editor-section dNone" id="img3">
         <div class="editor-desc">{{form.img3.label}}</div>
         {{form.img3(class="editor-image", rows=15)}}
         <div class="editor-err">
@@ -116,19 +136,48 @@ src=" {{ url_for('static', filename='img/build/crea_back.png') }} " alt="BACKGRO
             {{e}}{% endfor %}{% endif %}
         </div>
     </div>{%endif%}
+
+    <br><br><br>  
+    <br><br><br>  
+
     <!--body4-->{% if current_user.role == "BOSS" or current_user.role == "pres_editor" %}
-    <div class="editor-section">
+    <div class="editor-section dNone" id="body4">
         <div class="editor-desc">{{form.body4.label}}</div>
-        {{form.body4(class="editor-field", rows=15)}}
+        {{form.body4(class="editor-field", rows=3)}}
         <div class="editor-err">
             {% if form.body4.errors %}{% for e in form.body4.errors %}
             {{e}}{% endfor %}{% endif %}
         </div>
     </div>{%endif%}
+    <!--body5-->{% if current_user.role == "BOSS" or current_user.role == "pres_editor" %}
+    <div class="editor-section dNone" id="body5">
+        <div class="editor-desc">{{form.body5.label}}</div>
+        {{form.body5(class="editor-field", rows=3)}}
+        <div class="editor-err">
+            {% if form.body5.errors %}{% for e in form.body5.errors %}
+            {{e}}{% endfor %}{% endif %}
+        </div>
+    </div>{%endif%}
+
+    <div class="editor-opz">
+
+        <img alt="Aggiungi Body" class="editor-icon" id="+body" onclick="add_to_editor()"
+            src=" {{ url_for('static', filename='img/build/editor_icon1.png') }} ">
+
+        <img alt="Aggiungi Immagine" class="editor-icon" id="+img" onclick="add_to_editor('img')"
+            src=" {{ url_for('static', filename='img/build/editor_icon2.png') }} ">
+
+        <img  alt="Aggiungi Cit" class="editor-icon" id="+cit" onclick="add_to_editor('cit')"
+            src=" {{ url_for('static', filename='img/build/editor_icon3.png') }} ">
+    
+    </div>
+    
+
 
     {{form.submit(class="editor-submit")}}
     
 </form>
+
 
     
 
