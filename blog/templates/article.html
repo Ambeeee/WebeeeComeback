@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Pres{% endblock %}
+{% block title %} {% if request.path == "/pres/news/<string:post_slug>" %}
+Pres {% else %} Articolo {{post.id}} {% endif %}
+{% endblock %}
 
 
 <div class="PC">{% block pc_content %}
@@ -26,6 +28,7 @@
                     {% if form.description.errors %}{% for e in form.description.errors %}
                     {{e}}{% endfor %}{% endif %}
                 </div>
+            </div>
 
             <!--Body1-->
             <div class="">
@@ -112,23 +115,39 @@
             </div>
 
             
+            {% if request.path == "/pres/news/<string:post_slug>" %}
             <div class="article-opz">
                 <a class="article-button"
-                    href=" {{ url_for('pres_news') }} ">Altre News</a>
+                    href=" {{ url_for('pres_news') }} ">Altre News
+                </a>
                 {% if current_user.is_authenticated%}
                 <a class="article-button1"
-                    href=" {{ url_for('update_pres_article', post_id=post.id) }} ">Modifica</a>
+                    href=" {{ url_for('update_pres_article', post_id=post.id) }} ">Modifica
+                </a>
                 <form method="POST" action=" {{url_for('delete_pres_article', post_id=post.id)}} ">
                     <input type="submit" value="Cancella" class="article-button2">
                 </form>
                 {%endif%}
-            </div>
+            </div>{% else %}
+
+            <div class="article-opz">
+                <a class="article-button"
+                    href=" {{ url_for('webeee_news') }} ">Altre News
+                </a>
+                {% if current_user.is_authenticated%}
+                <a class="article-button1"
+                    href=" {{ url_for('update_article', post_id=post.id) }} ">Modifica
+                </a>
+                <form method="POST" action=" {{url_for('delete_article', post_id=post.id)}} ">
+                    <input type="submit" value="Cancella" class="article-button2">
+                </form>
+                {%endif%}
+            </div>{% endif %}
 
         </div>
 
         <!--PAGE-->
         <div class="article-page">
-
 
             <!--Body1-->
             <div class="article-body">
@@ -228,7 +247,7 @@
                     {% if form.description.errors %}{% for e in form.description.errors %}
                     {{e}}{% endfor %}{% endif %}
                 </div>
-
+            </div>
             <!--Body1-->
             <div class="">
                 {{form.body1(class="toedit-body toedit")}}
@@ -245,6 +264,7 @@
 
             <!--Body2 + Img1-->
             <div class="toedit-container">
+                
                 <!--Body2-->
                 <div class="">
                     {{form.body2(class="toedit-body2 toedit")}}
@@ -276,10 +296,11 @@
                 
                 <!--img2-->
                 <div class="">
-                {{form.img2(class="toedit-img toedit")}}
+                    {{form.img2(class="toedit-img toedit")}}
                 </div>
 
             </div>
+
             <!--Body5-->
             <div class="">
                 {{form.body5(class="toedit-body toedit")}}
@@ -311,19 +332,34 @@
                 {% if post.author %} - 📝{{post.author.username}}{% endif %}
             </div>
             
-
-            
+            {% if request.path == "/pres/news/<string:post_slug>" %}
             <div class="article-opz">
                 <a class="article-button"
-                    href=" {{ url_for('pres_news') }} ">Altre News</a>
+                    href=" {{ url_for('pres_news') }} ">Altre News
+                </a>
                 {% if current_user.is_authenticated%}
                 <a class="article-button1"
-                    href=" {{ url_for('update_pres_article', post_id=post.id) }} ">Modifica</a>
+                    href=" {{ url_for('update_pres_article', post_id=post.id) }} ">Modifica
+                </a>
                 <form method="POST" action=" {{url_for('delete_pres_article', post_id=post.id)}} ">
                     <input type="submit" value="Cancella" class="article-button2">
                 </form>
                 {%endif%}
-            </div>
+            </div>{% else %}
+
+            <div class="article-opz">
+                <a class="article-button"
+                    href=" {{ url_for('webeee_news') }} ">Altre News
+                </a>
+                {% if current_user.is_authenticated%}
+                <a class="article-button1"
+                    href=" {{ url_for('update_article', post_id=post.id) }} ">Modifica
+                </a>
+                <form method="POST" action=" {{url_for('delete_article', post_id=post.id)}} ">
+                    <input type="submit" value="Cancella" class="article-button2">
+                </form>
+                {%endif%}
+            </div>{% endif %}
 
         </div>
 
@@ -390,7 +426,9 @@
 
         <!--CONSIGLIATI-->
         <div class="article-adv">
-            <div class="article-adv-title">Se ti è piaciuto questo articolo, leggi anche:</div>
+            <div class="article-adv-title">
+                Se ti è piaciuto questo articolo, leggi anche:
+            </div>
             <div class="article-adv-desc">
                 <a href="{{ url_for('pres_article', post_slug=adv.slug) }}">{{adv.title}}</a>
             </div>

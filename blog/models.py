@@ -62,14 +62,25 @@ class Wpost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer(), db.ForeignKey('user.id'), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
+
     title = db.Column(db.String(120), nullable=False)
     slug = db.Column(db.String(250))
     description = db.Column(db.String(120))
+
     body1 = db.Column(db.Text, nullable=False)
-    testimonial = db.Column(db.Text)
     body2 = db.Column(db.Text)
+    body3 = db.Column(db.Text)
+    body4 = db.Column(db.Text)
+    body5 = db.Column(db.Text)
+
+    testimonial1 = db.Column(db.Text)
+    testimonial2 = db.Column(db.Text)
+    testimonial3 = db.Column(db.Text)
+
     cover = db.Column(db.String(120))
     image1 = db.Column(db.String(120))
+    image2 = db.Column(db.String(120))
+    image3 = db.Column(db.String(120))
     
     def __repr__(self):
         return f"User('{self.id}', '{self.title}')"

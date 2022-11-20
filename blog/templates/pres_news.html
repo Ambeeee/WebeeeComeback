@@ -4,14 +4,14 @@
 <div class="PC">{% block pc_content %}
 
     <!--BACKGROUND-->
-    <img class="presnews-back"
+    <img class="news-back"
     src=" {{ url_for('static', filename='img/build/presnews_back1.png') }} " alt="BACKGROUND">
 
     <!--TITLE-->
-    <div class="presnews-title">News</div>
+    <div class="news-title">News</div>
 
     <!--PAGINA-->
-    <div class="presnews-page">
+    <div class="news-page">
         
         
         <img alt="NATTALI" id="pn-img1" class="pn-imgs"
@@ -24,33 +24,33 @@
         src=" {{ url_for('static', filename='img/build/presnews_back3.jpg') }} ">
 
 
-        <div class="presnews-section">
+        <div class="news-section">
 
             {% for post in posts.items %}
-            <a class="presnews-frame"
+            <a class="news-frame"
                 href="{{ url_for('pres_article', post_slug=post.slug) }}">
-                <p class="presnews-frame-title"> {{post.title}} </p>
+                <p class="news-frame-title"> {{post.title}} </p>
 
-                <p class="presnews-frame-date">{{post.created_at.strftime('%d/%m/%Y')}}</p>
+                <p class="news-frame-date">{{post.created_at.strftime('%d/%m/%Y')}}</p>
 
                 {% if post.description %}
-                <p class="presnews-frame-desc"> {{post.description}}</p>
+                <p class="news-frame-desc"> {{post.description}}</p>
                 {% endif %}
             </a>
             {% endfor %}
 
-            <div class="presnews-options">
+            <div class="news-options">
 
-                {% if previous_page %}<a class="presnews-button1" href=" {{previous_page}} "> Articoli Successivi </a>{% endif %}
+                {% if previous_page %}<a class="news-button1" href=" {{previous_page}} "> Articoli Successivi </a>{% endif %}
         
                 {% if current_user.is_authenticated %}
                     {% if current_user.role in ["BOSS","pres_editor"] %}
-                    <a class="presnews-button2"
+                    <a class="news-button2"
                         href="{{ url_for('create_pres_article') }}"><b>NUOVO ARTICOLO</b></a>
                     {% endif %}
                 {% endif %}
         
-                {% if next_page %}<a class="presnews-button1" href=" {{next_page}} "> Articoli Precedenti </a>{% endif %}
+                {% if next_page %}<a class="news-button1" href=" {{next_page}} "> Articoli Precedenti </a>{% endif %}
         
             </div>
 
@@ -64,42 +64,42 @@
 <div class="MOBILE">{% block mobile_content %}
 
     <!--BACKGROUND-->
-    <img class="presnews-back"
+    <img class="news-back"
     src=" {{ url_for('static', filename='img/build/presnews_back.png') }} " alt="BACKGROUND">
 
     <!--TITLE-->
-    <div class="presnews-title">News</div>
+    <div class="news-title">News</div>
 
     <!--PAGINA-->
-    <div class="presnews-page">
-        <div class="presnews-section">
+    <div class="news-page">
+        <div class="news-section">
 
             {% for post in posts.items %}
-            <a class="presnews-frame"
+            <a class="news-frame"
                 href="{{ url_for('pres_article', post_slug=post.slug) }}">
-                <p class="presnews-frame-title"> {{post.title}} </p>
+                <p class="news-frame-title"> {{post.title}} </p>
 
-                <p class="presnews-frame-date">{{post.created_at.strftime('%d/%m/%Y')}}</p>
+                <p class="news-frame-date">{{post.created_at.strftime('%d/%m/%Y')}}</p>
 
                 {% if post.description %}
-                <p class="presnews-frame-desc"> {{post.description}}</p>
+                <p class="news-frame-desc"> {{post.description}}</p>
                 {% endif %}
             </a>
             {% endfor %}
 
             
-            <div class="presnews-options">
+            <div class="news-options">
 
-                {% if previous_page %}<a class="presnews-button1" href=" {{previous_page}} "> Articoli Successivi </a>{% endif %}
+                {% if previous_page %}<a class="news-button1" href=" {{previous_page}} "> Articoli Successivi </a>{% endif %}
         
                     {% if current_user.is_authenticated %}
                         {% if current_user.role in ["BOSS","pres_editor"] %}
-                        <a class="presnews-button2"
+                        <a class="news-button2"
                             href="{{ url_for('create_pres_article') }}"><b>NUOVO ARTICOLO</b></a>
                         {% endif %}
                     {% endif %}
         
-                {% if next_page %}<a class="presnews-button1" href=" {{next_page}} "> Articoli Precedenti </a>{% endif %}
+                {% if next_page %}<a class="news-button1" href=" {{next_page}} "> Articoli Precedenti </a>{% endif %}
         
             </div>
 

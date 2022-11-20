@@ -568,7 +568,7 @@ a:visited{
     }
 
 /* PRESNEWS */
-    .presnews-back{
+    .news-back{
         width: 98%;
         margin: -60px 1% 0;
         border-radius: 50px;
@@ -576,7 +576,7 @@ a:visited{
         z-index: -1;
         background-color: var(--back_primary);
     }
-    .presnews-title{
+    .news-title{
         top: 0;
         right: 0;
         width: 50%;
@@ -588,7 +588,7 @@ a:visited{
         font-family: var(--font_title);
         text-shadow: 2px 2px  0 var(--green2);
     }
-    .presnews-page{
+    .news-page{
         bottom: 0;
         width: 96%;
         margin: 50px 2% 0;
@@ -617,7 +617,7 @@ a:visited{
         margin: 0 0 0;
         right: 0;
     }
-    .presnews-section{
+    .news-section{
         width: 60%;
         margin: 50px 19% 0;
         padding: 50px 0 0;
@@ -627,7 +627,7 @@ a:visited{
         border-radius: 100px 100px 0 0;
         background-color: var(--ambeee);
     }
-    .presnews-frame{
+    .news-frame{
         width: 80%;
         margin: 50px auto;
         padding: 5%;
@@ -636,33 +636,33 @@ a:visited{
         background-color: var(--back_primary);
         box-shadow: 2px 2px 0 var(--back_secondary);
     }
-    .presnews-frame-title{
+    .news-frame-title{
         margin: 10px;
         font-size: 30px;
         font-style: italic;
         text-align: center;
         font-family: var(--font_bold);
     }
-    .presnews-frame-date{
+    .news-frame-date{
         margin: 10px;
         font-size: 20px;
         font-style: italic;
         font-family: var(--font_article);
     }
-    .presnews-frame-desc{
+    .news-frame-desc{
         margin: 10px;
         font-size: 30px;
         font-style: italic;
         font-family: var(--font_text);
     }
-    .presnews-options{
+    .news-options{
         width: 80%;
         margin: 10px 10% 20px;
         display: grid;
         column-gap: 10px;
         grid-template-columns: auto auto auto;
     }
-    .presnews-button1{
+    .news-button1{
         width: 90%;
         margin: 5% 0;
         padding: 5%;
@@ -673,10 +673,10 @@ a:visited{
         border-radius: 25px;
         background-color: var(--blueee);
     }
-    .presnews-button1:visited{
+    .news-button1:visited{
         color: var(--text_secondary_color);
     }
-    .presnews-button2{
+    .news-button2{
         width: 90%;
         margin: 5% auto;
         padding: 5%;
@@ -1396,13 +1396,13 @@ a:visited{
     }
 
 /* PRESNEWS */
-    .presnews-back{
+    .news-back{
         width: 98%;
         z-index: -1;
         margin: 50px 1% 0;
         border-radius: 50px;
     }
-    .presnews-title{
+    .news-title{
         top: 0;
         width: 50%;
         margin: 120px 25% 0;
@@ -1413,13 +1413,13 @@ a:visited{
         font-family: "Covered By Your Grace";
         text-shadow: 2px 2px  0 var(--green2);
     }
-    .presnews-page{
+    .news-page{
         margin: 0px 0 0;
         padding: 50px 0 0;
         display: flex;
         flex-direction: column;
     }
-    .presnews-section{
+    .news-section{
         width: 96%;
         margin: 50px 2% 0;
         padding: 0 0 100px;
@@ -1429,7 +1429,7 @@ a:visited{
         border-radius: 50px 50px 0 0;
         background-color: var(--ambeee);
     }
-    .presnews-frame{
+    .news-frame{
         width: 80%;
         margin: 50px auto;
         padding: 5%;
@@ -1439,32 +1439,32 @@ a:visited{
         background-color: var(--back_primary);
         box-shadow: 2px 2px 0 var(--back_secondary);
     }
-    .presnews-frame-title{
+    .news-frame-title{
         margin: 10px;
         font-size: 32px;
         text-align: center;
         font-weight: bold;
         font-family: "Caveat";
     }
-    .presnews-frame-date{
+    .news-frame-date{
         margin: 10px;
         font-size: 12px;
         font-style: italic;
         font-family: var(--font_article);
     }
-    .presnews-frame-desc{
+    .news-frame-desc{
         margin: 10px;
         font-size: 18px;
         font-family: "Indie Flower";
     }
-    .presnews-options{
+    .news-options{
         width: 80%;
         margin: 10px 10% 20px;
         display: grid;
         column-gap: 10px;
         grid-template-columns: auto auto auto;
     }
-    .presnews-button1{
+    .news-button1{
         width: 90%;
         margin: 5% 0;
         padding: 5%;
@@ -1475,10 +1475,10 @@ a:visited{
         border-radius: 25px;
         background-color: var(--blueee);
     }
-    .presnews-button1:visited{
+    .news-button1:visited{
         color: var(--text_secondary_color);
     }
-    .presnews-button2{
+    .news-button2{
         width: 90%;
         margin: 5% auto;
         padding: 5%;
@@ -1488,7 +1488,7 @@ a:visited{
         border-radius: 25px;
         background-color: var(--link);
     }
-    .presnews-button2:visited{
+    .news-button2:visited{
         color: var(--text_primary_color);
     }
 
@@ -1511,11 +1511,11 @@ a:visited{
     }
     .article-desc{
         top: 0;
-        width: 80%;
-        margin: 240px 10% 0;
+        width: 90%;
+        margin: 240px 5% 0;
         z-index: 1;
         position: absolute;
-        font-size: 22px;
+        font-size: 20px;
         font-style: italic;
         text-align: center;
         color: var(--text_primary_color);
@@ -1523,7 +1523,7 @@ a:visited{
     }
     .article-bar{
         width: 90%;
-        margin: 100px 4% 50px;
+        margin: 150px 4% 50px;
         padding: 15px 1%;
         align-items: center;
         font-size: 20px;

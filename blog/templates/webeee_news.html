@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}News{% endblock %}
+
+<div class="PC">{% block pc_content %}
+
+    <!--BACKGROUND-->
+    <img class="news-back"
+    src=" {{ url_for('static', filename='img/build/news_back.png') }} " alt="BACKGROUND">
+
+    <!--TITLE-->
+    <div class="news-title">News</div>
+
+    <!--PAGINA-->
+    <div class="news-page">
+
+        <div class="news-section">
+
+            {% for post in posts.items %}
+            <a class="news-frame"
+                href="{{ url_for('webeee_article', post_slug=post.slug) }}">
+                <p class="news-frame-title"> {{post.title}} </p>
+
+                <p class="news-frame-date">{{post.created_at.strftime('%d/%m/%Y')}}</p>
+
+                {% if post.description %}
+                <p class="news-frame-desc"> {{post.description}}</p>
+                {% endif %}
+            </a>
+            {% endfor %}
+
+            <div class="news-options">
+
+                {% if previous_page %}<a class="news-button1" href=" {{previous_page}} "> Articoli Successivi </a>{% endif %}
+        
+                {% if current_user.is_authenticated %}
+                    {% if current_user.role in ["BOSS","pres_editor"] %}
+                    <a class="news-button2"
+                        href="{{ url_for('create_article') }}"><b>NUOVO ARTICOLO</b></a>
+                    {% endif %}
+                {% endif %}
+        
+                {% if next_page %}<a class="news-button1" href=" {{next_page}} "> Articoli Precedenti </a>{% endif %}
+        
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}</div>
+
+<div class="MOBILE">{% block mobile_content %}
+
+    <!--BACKGROUND-->
+    <img class="news-back"
+    src=" {{ url_for('static', filename='img/build/news_back2.png') }} " alt="BACKGROUND">
+
+    <!--TITLE-->
+    <div class="news-title">News</div>
+
+    <!--PAGINA-->
+    <div class="news-page">
+        <div class="news-section">
+
+            {% for post in posts.items %}
+            <a class="news-frame"
+                href="{{ url_for('webeee_article', post_slug=post.slug) }}">
+                <p class="news-frame-title"> {{post.title}} </p>
+
+                <p class="news-frame-date">{{post.created_at.strftime('%d/%m/%Y')}}</p>
+
+                {% if post.description %}
+                <p class="news-frame-desc"> {{post.description}}</p>
+                {% endif %}
+            </a>
+            {% endfor %}
+
+            
+            <div class="news-options">
+
+                {% if previous_page %}<a class="news-button1" href=" {{previous_page}} "> Articoli Successivi </a>{% endif %}
+        
+                    {% if current_user.is_authenticated %}
+                        {% if current_user.role in ["BOSS","pres_editor"] %}
+                        <a class="news-button2"
+                            href="{{ url_for('create_article') }}"><b>NUOVO ARTICOLO</b></a>
+                        {% endif %}
+                    {% endif %}
+        
+                {% if next_page %}<a class="news-button1" href=" {{next_page}} "> Articoli Precedenti </a>{% endif %}
+        
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}</div>

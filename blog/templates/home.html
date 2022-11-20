@@ -1,35 +1,3 @@
-
-<!--FAKE HOME-->
-{% if request.path == "/" %}
-    <h1>WEBEEEE</h1>
-    <br>
-    <h2>-Home-</h2>
-    <br>
-    <h4>EHY, QUESTO SITO E' IN MUTANDE!</h4>
-    <h5>Il nuovo progetto è ancora in fase di lavorazione, ma il team di webeee promette
-        di essere costante nello sviluppo e nel miglioramento di questo fantasico blog.</h5>
-    <h6>Nel frattempo, cerca di indovinare la password per diventare un vero <i>hackerino</i> :)</h6>
-
-    <form action="password" method="post">
-        <input type="password" name="pw_input">
-        <br>
-        <input type="submit" value="Check password" id="password">
-        <br>
-        {% for message in get_flashed_messages() %}
-            <p>{{message}}</p>
-        {% endfor %}
-    </form>
-
-
-
-
-
-
-
-
-
-<!--REAL HOME-->
-{% else %}
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
     
@@ -52,8 +20,6 @@
             <p>TOLOMEI E' UN PAGLIACCIO🤡</p> 
         </div>
         
-
-
         <div class="home-adv">
 
             <a class="home-frame f1"
@@ -132,6 +98,4 @@
     </div>
 {% endblock %}</div>
 
-
-{% endif %}
 
