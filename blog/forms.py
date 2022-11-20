@@ -25,7 +25,7 @@ class PostForm(FlaskForm):
 
     testimonial1 = TextAreaField("testimonianza")
     testimonial2 = TextAreaField("testimonianza")
-    testimonial3 = TextAreaField("ìtestimonianza")
+    testimonial3 = TextAreaField("testimonianza")
 
     cover = FileField("Copertina", validators=[FileAllowed(["jpg", "jpeg", "png"])])
     img1 = FileField("immagine", validators=[FileAllowed(["jpg", "jpeg", "png"])])

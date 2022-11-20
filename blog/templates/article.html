@@ -46,77 +46,203 @@
     <img class="article-back"
     src=" {{ url_for('static', filename='img/build/article_back.png') }} " alt="BACKGROUND">
 
-    <!--TITLE & DESC-->
-    <p class="article-title">{{post.title}}</p>
-    {% if post.description %}<p class="article-desc">{{post.description}}</p>{% endif %}
 
-    <!--DATE & OPTIONS-->
-    <div class="article-bar1">
-        <div class="article-date">{{post.created_at.strftime('%d/%m/%Y')}}</div>
+    <!--EDITOR--> 
+    {% if modify %}<div>
 
-        {% if current_user.is_authenticated%}
-        <div class="article-opz">
-            <a class="article-button1"
-                href=" {{ url_for('update_pres_article', post_id=post.id) }} ">Modifica</a>
-            <form method="POST" action=" {{url_for('delete_pres_article', post_id=post.id)}} ">
-                <input type="submit" value="Cancella" class="article-button2">
-            </form>
-        </div>{%endif%}
-
-    </div>
-
-    <!--PAGE-->
-    <div class="article-page">
-
-
-        <!--Body1-->
-        <div class="article-body">{{post.body1 |markdown}}</div>
-
-        <!--Voce 1-->
-        <div class="article-voice">{% if post.testimonial1%} {{post.testimonial1 |markdown}} {%endif%}</div>
-
-        <!--img1-->
-        {% if post.image1%}<img class="article-img"
-            src=" {{ url_for('static', filename='img/posts/' + post.image1) }} ">{%endif%}
-
-
-
-        <!--Body2-->
-        <div class="article-body">{% if post.body2%} {{post.body2 |markdown}} {%endif%}</div>
+        <form method="POST" enctype="multipart/form-data" novalidate>{{form.hidden_tag()}}
+            
         
-        <!--Voce 2-->
-        <div class="article-voice">{% if post.testimonial2%} {{post.testimonial2 |markdown}} {%endif%}</div>
+            
+            <div class="">{{form.title(class="article-title toedit")}}
+                <div class="account-err">
+                    {% if form.title.errors %}{% for e in form.title.errors %}
+                    {{e}}{% endfor %}{% endif %}
+                </div>
+            </div>
+            <div class="">{{form.description(class="article-desc toedit")}}
+                <div class="account-err">
+                    {% if form.description.errors %}{% for e in form.description.errors %}
+                    {{e}}{% endfor %}{% endif %}
+                </div>
 
-        <!--img2-->
-        {% if post.image2%}<img class="article-img"
-            src=" {{ url_for('static', filename='img/posts/' + post.image2) }} ">{%endif%}
-        
+            <!--Body1-->
+            <div class="">
+                {{form.body1(class="toedit-body toedit")}}
+                <div class="account-err">
+                    {% if form.body1.errors %}{% for e in form.body1.errors %}
+                    {{e}}{% endfor %}{% endif %}
+                </div>
+            </div>
 
-        
-        <!--Body3-->
-        <div class="article-body">{% if post.body3%} {{post.body3 |markdown}} {%endif%}</div>
-        
-        <!--Voce 3-->
-        <div class="article-voice">{% if post.testimonial3%} {{post.testimonial3 |markdown}} {%endif%}</div>
+            <!--Voce 1-->
+            <div class="">
+                {{form.testimonial1(class="toedit-voice toedit")}}
+            </div>
 
-        <!--img3-->
-        {% if post.image3%}<img class="article-img"
-            src=" {{ url_for('static', filename='img/posts/' + post.image3) }} ">{%endif%}
-        
-        <!--Body4/5-->
-        <div class="article-body">{% if post.body4%} {{post.body4 |markdown}} {%endif%}</div>
-        <div class="article-body">{% if post.body5%} {{post.body5 |markdown}} {%endif%}</div>
-    </div>
+            <!--Body2 + Img1-->
+            <div class="toedit-container">
+                <!--Body2-->
+                <div class="">
+                    {{form.body2(class="toedit-body2 toedit")}}
+                </div>
+                
+                <!--img1-->
+                <div class="">
+                {{form.img1(class="toedit-img toedit")}}
+                </div>
 
-    <!--CONSIGLIATI-->
-    <div class="article-adv">
-        <div class="article-adv-title">Se ti è piaciuto questo articolo, leggi anche:</div>
-        <div class="article-adv-desc">
-            <a href="{{ url_for('pres_article', post_slug=adv.slug) }}">{{adv.title}}</a>
+            </div>
+            <!--Body3-->
+            <div class="">
+                {{form.body3(class="toedit-body toedit")}}
+            </div>
+
+            <!--Voce 2-->
+            <div class="">
+                {{form.testimonial2(class="toedit-voice toedit")}}
+            </div>
+
+            <!--Body4 + Img2-->
+            <div class="toedit-container">
+
+                <!--Body4-->
+                <div class="">
+                    {{form.body4(class="toedit-body2 toedit")}}
+                </div>
+                
+                <!--img2-->
+                <div class="">
+                {{form.img2(class="toedit-img toedit")}}
+                </div>
+
+            </div>
+            <!--Body5-->
+            <div class="">
+                {{form.body5(class="toedit-body toedit")}}
+            </div>
+
+            
+            {{form.submit(class="article-button3")}}
+        </form>
+        
+        
+        <div class="account-detail">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}{% for message in messages %}{{message}}{% endfor %}{% endif %}
+            {% endwith %}
         </div>
     </div>
 
+
+    <!--PAGE-->
+    {% else %}<div>
+        <!--TITLE & DESC-->
+        <p class="article-title">{{post.title}}</p>
+        {% if post.description %}<p class="article-desc">{{post.description}}</p>{% endif %}
+
+        <!--DATE & OPTIONS-->
+        <div class="article-bar">
+            <div class="article-info"> 
+                {% if post.created_at %}📆{{post.created_at.strftime('%d/%m/%Y')}}{% endif %}
+            </div>
+            <div class="article-info"> 
+                {% if post.author %}📝{{post.author.username}}{% endif %}
+            </div>
+
+            
+            <div class="article-opz">
+                <a class="article-button"
+                    href=" {{ url_for('pres_news') }} ">Altre News</a>
+                {% if current_user.is_authenticated%}
+                <a class="article-button1"
+                    href=" {{ url_for('update_pres_article', post_id=post.id) }} ">Modifica</a>
+                <form method="POST" action=" {{url_for('delete_pres_article', post_id=post.id)}} ">
+                    <input type="submit" value="Cancella" class="article-button2">
+                </form>
+                {%endif%}
+            </div>
+
+        </div>
+
+        <!--PAGE-->
+        <div class="article-page">
+
+
+            <!--Body1-->
+            <div class="article-body">
+                {{post.body1 |markdown}}
+            </div>
+
+            <!--Voce 1-->
+            <div class="article-voice">
+                {% if post.testimonial1%} {{post.testimonial1 |markdown}} {%endif%}
+            </div>
+
+            <!--Body2 + Img1-->
+            <div class="article-container">
+
+                <!--Body2-->
+                <div class="article-body2">
+                    {% if post.body2%} {{post.body2 |markdown}} {%endif%}
+                </div>
+                
+                <!--img1-->
+                {% if post.image1%}<img class="article-img" alt="IMMAGINE1"
+                src=" {{ url_for('static', filename='img/posts/' + post.image1) }} ">
+                {%endif%}
+
+            </div>
+
+            <!--Body3-->
+            <div class="article-body">
+                {% if post.body3%} {{post.body3 |markdown}} {%endif%}
+            </div>
+
+            <!--Voce 2-->
+            <div class="article-voice">
+                {% if post.testimonial2%} {{post.testimonial2 |markdown}} {%endif%}
+            </div>
+                
+            <!--Body4 + Img2-->
+            <div class="article-container">
+
+                <!--Body4-->
+                <div class="article-body2">
+                    {% if post.body4%} {{post.body4 |markdown}} {%endif%}
+                </div>
+                
+                <!--img2-->
+                {% if post.image2%}<img class="article-img" alt="IMMAGINE2"
+                src=" {{ url_for('static', filename='img/posts/' + post.image2) }} ">
+                {%endif%}
+            
+            </div>
+
+            <!--Body5-->
+            <div class="article-body">
+                {% if post.body5%} {{post.body5 |markdown}} {%endif%}
+            </div>
+
+        </div>
+
+        <!--CONSIGLIATI-->
+        <div class="article-adv">
+            <div class="article-adv-title">Se ti è piaciuto questo articolo, leggi anche:</div>
+            <div class="article-adv-desc">
+                <a href="{{ url_for('pres_article', post_slug=adv.slug) }}">{{adv.title}}</a>
+            </div>
+        </div>
+    </div>{% endif %}
+
     <!--MARK-->
     <div class="article-mark">Webeee</div>
+{% endblock %}</div>
+
+
+
+
+
+<div class="MOBILE">{% block mobile_content %}
 
 {% endblock %}</div>

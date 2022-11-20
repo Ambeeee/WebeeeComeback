@@ -29,6 +29,15 @@ body{
     margin: 0;
 }
 .dNone{display: none;}
+a{
+    text-decoration: none;
+    color:var(--text_primary_color);
+}
+a:visited{
+    color:var(--text_primary_color);
+}
+
+
 
 /*SCROLLBAR*/
 ::-webkit-scrollbar{
@@ -42,13 +51,7 @@ body{
     background: var(--ambeee2);
 }
 
-a{
-    text-decoration: none;
-    color:var(--text_primary_color);
-}
-a:visited{
-    color:var(--text_primary_color);
-}
+
 
 
 /* COMPUTER */
@@ -473,7 +476,7 @@ a:visited{
         display: flex;
         flex-direction: row;
         width: 20%;
-        margin: -150px 20% 0;
+        margin: -250px 20% 0;
     }
     .editor-icon{
         width: 60px;
@@ -566,9 +569,12 @@ a:visited{
 
 /* PRESNEWS */
     .presnews-back{
-        width: 90%;
-        margin: -50px 5% 0;
+        width: 98%;
+        margin: -60px 1% 0;
         border-radius: 50px;
+        position: absolute;
+        z-index: -1;
+        background-color: var(--back_primary);
     }
     .presnews-title{
         top: 0;
@@ -583,34 +589,41 @@ a:visited{
         text-shadow: 2px 2px  0 var(--green2);
     }
     .presnews-page{
-        margin: 50px 10px 0;
+        bottom: 0;
+        width: 96%;
+        margin: 50px 2% 0;
         padding: 50px 1% 0;
+        position: absolute;
         display: flex;
         flex-direction: column;
     }
     .pn-imgs{
-        width: 12%;
-        position: absolute;/*
+        width: 10%;
+        bottom: 0;
+        position: fixed;
+        z-index: -2;/*
         filter: drop-shadow(2px 2px 2px var(--back_secondary));
         */
     }
     #pn-img1{
-        right: 0;
+        right: 20px;
+        margin: 0 0 30%;
     }
     #pn-img2{
-        margin: 40% 0 0;
+        margin: 0 0 15%;
     }
     #pn-img3{
         width: 17%;
-        margin: 74% 0 0;
+        margin: 0 0 0;
         right: 0;
     }
-    .presnews-sections{
+    .presnews-section{
         width: 60%;
         margin: 50px 19% 0;
+        padding: 50px 0 0;
         position: absolute;
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
         border-radius: 100px 100px 0 0;
         background-color: var(--ambeee);
     }
@@ -645,35 +658,36 @@ a:visited{
     .presnews-options{
         width: 80%;
         margin: 10px 10% 20px;
-        display: flex;
-        flex-direction: row;
+        display: grid;
+        column-gap: 10px;
+        grid-template-columns: auto auto auto;
     }
     .presnews-button1{
-        width: 30%;
-        margin: 5% auto;
-        padding: 2% 5%;
-        font-size: 25px;
+        width: 90%;
+        margin: 5% 0;
+        padding: 5%;
+        font-size: 20px;
         text-align: center;
         font-family: var(--font_bold);
         color: var(--text_secondary_color);
-        border-radius: 100px;
+        border-radius: 25px;
         background-color: var(--blueee);
     }
     .presnews-button1:visited{
         color: var(--text_secondary_color);
     }
     .presnews-button2{
-        width: 30%;
+        width: 90%;
         margin: 5% auto;
-        padding: 2% 5%;
-        font-size: 25px;
+        padding: 5%;
+        font-size: 20px;
         text-align: center;
         font-family: var(--font_bold);
-        border-radius: 100px;
+        border-radius: 25px;
         background-color: var(--link);
     }
 
-/* PRESNEWS */
+/* ARTICLE */
     .article-back{
         width: 96%;
         margin: -55px 2% 0;
@@ -702,9 +716,9 @@ a:visited{
         color: var(--text_primary_color);
         font-family: var(--font_article);
     }
-    .article-bar1{
+    .article-bar{
         width: 50%;
-        margin: 0px 20% 10px;
+        margin: 0px 20% 50px;
         padding: 15px 5%;
         align-items: center;
         font-size: 25px;
@@ -712,12 +726,25 @@ a:visited{
         display: flex;
         flex-direction: row;
     }
+    .article-info{
+        margin: 0 10px;
+    }
     .article-opz{
         right: 25%;
         font-size: 30px;
         position: absolute;
         display: flex;
         flex-direction: row;
+    }
+    .article-button{
+        margin: 0 10px;
+        padding: 2px;
+        color: var(--blueee);
+        border-radius: 10px;
+        border: 2px solid var(--blueee);
+    }
+    .article-button:visited{
+        color: var(--blueee);
     }
     .article-button1{
         margin: 0 10px;
@@ -732,6 +759,7 @@ a:visited{
     .article-button2{
         margin: 0 10px;
         padding: 2px;
+        cursor: pointer;
         font-size: 30px;
         color: var(--red);
         font-family: var(--font_menu);
@@ -742,28 +770,117 @@ a:visited{
     .article-button2:visited{
         color: var(--red);
     }
+    .article-button3{
+        width: 20%;
+        margin: 0 40% 50px;
+        padding: 2px 0;
+        font-size: 40px;
+        text-align: center;
+        color: var(--blueee);
+        font-family: var(--font_bold);
+        border-radius: 10px;
+        border: 2px solid var(--blueee);
+        background-color: var(--back_primary);
+    }
+    .article-button3:visited{
+        color: var(--blueee);
+    }
     .article-page{
         width: 60%;
         margin: 40px 15%;
         padding: 2px 5%;
     }
+    .article-container{
+        display: flex;
+        flex-direction: row;
+    }
     .article-body{
-        margin: 50px 0;
-        font-size: 35px;
+        margin: 10px 0 0;
+        padding: 2%;
+        font-size: 30px;
         font-family: var(--font_text);
         text-align: justify;
     }
+    .article-body2{
+        width: auto;
+        min-width: 40%;
+        padding: 0 2%;
+        margin: 50px 0;
+        font-size: 25px;
+        font-family: var(--font_text);
+        text-align: left;
+    }
     .article-voice{
-        margin: 20px 0;
-        font-size: 30px;
+        margin: 10px 0 0;
+        padding: 2%;
+        font-size: 25px;
+        font-style: italic;
         font-family: var(--font_text);
         text-align: center;
-        font-style: italic;
     }
     .article-img{
+        width: 350px;
+        height: 350px;
+        margin: 100px 10px;
+        border-radius: 25px;
+    }
+    .link {
+        color: var(--grey2);
+        font-weight: bold;
+        cursor: pointer;
+        transition: .5s;
+    }
+    .link:hover {
+        color: var(--ambeee);
+    }
+
+    .toedit-container{
         width: 60%;
         margin: 50px 20%;
+        display: flex;
+        flex-direction: row;
+    }
+    .toedit-body{
+        width: 50%;
+        padding: 2% 4%;
+        margin: 100px 20% 50px;
+        font-size: 25px;
+        font-family: var(--font_text);
+        text-align: justify;
+        resize: vertical;
+    }
+    .toedit-body2{
+        width: auto;
+        min-width: 400px;
+        min-height: 250px;
+        padding: 2%;
+        margin: 50px 0;
+        font-size: 25px;
+        font-family: var(--font_text);
+        text-align: left;
+        resize: vertical;
+    }
+    .toedit-voice{
+        width: 50%;
+        padding: 2% 4%;
+        margin: 100px 20% 50px;
+        font-size: 20px;
+        font-style: italic;
+        font-family: var(--font_text);
+        text-align: center;
+        resize: vertical;
+    }
+    .toedit-img{
+        width: 250px;
+        height: 250px;
+        margin: 50px 20%;
+        padding: 10px 8%;
+        resize: none;
         border-radius: 25px;
+    }
+    .toedit{
+        border-radius: 25px;
+        border: 3px dashed var(--grey);
     }
 
     .article-adv{
@@ -774,9 +891,10 @@ a:visited{
         border: 2px dashed var(--ambeee);
     }
     .article-adv-title{
-        margin: -30px 0 0;
+        width: 60%;
+        margin: -70px 20% 20px;
+        font-size: 25px;
         text-align: center;
-        font-size: 30px;
         font-family: var(--font_bold);
         border-radius: 20px;
         border: 1px solid var(--ambeee);
@@ -801,6 +919,7 @@ a:visited{
         font-family: var(--font_webeee);
     }
 }
+
 /* TABLET */
 @media screen and (min-width: 768px) and  (max-width: 1023px){
     
@@ -809,6 +928,7 @@ a:visited{
     }
     
 }
+
 /* MOBILE */
 @media screen and (max-width: 767px) {
     
@@ -821,8 +941,8 @@ a:visited{
         --font_itsback: "Covered By Your Grace";
         --font_title: "Caveat";
         --font_menu: "Caveat";
-        --font_account: "Freehand521 BT";
-        --font_article: "Brush Script MT";
+        --font_account: "Covered By Your Grace";
+        --font_article: "Covered By Your Grace";
         --font_text: "Indie Flower";
         --font_bold: "Caveat";
         --font_error: "Indie Flower";
@@ -1213,6 +1333,101 @@ a:visited{
         text-decoration: none;
     }
 
+/* EDITOR */
+    .editor-title{
+        margin: 00px 0 0;
+        font-weight: bold;
+        text-align: center;
+        font-family: var(--font_title);
+        text-shadow: 2px 2px var(--ambeee2);
+        color: var(--ambeee);font-size: 70px;
+    }
+    .editor-back{
+        top: 0;
+        width: 96%;
+        height: 75%;
+        margin: 50px 2%;
+        position: fixed;
+        z-index: -1;
+    }
+    .editor-page{
+        display: flex;
+        flex-direction: column;
+    }
+    .editor-desc{
+        margin-top: 50px;
+        padding: 2%;
+        resize: vertical;
+        font-size: 35px;
+        text-align: center;
+        font-family: var(--font_article);
+    }
+    .editor-field{
+        width: 80%;
+        height: auto;
+        margin: 0 5% 5%;
+        padding: 2% 4%;
+        resize: vertical;
+        overflow-wrap: break-word;
+        border-radius: 50px;
+        text-align: center;
+        box-shadow: 2px 2px 0px var(--back_secondary),
+                -2px -2px 0px var(--back_secondary);
+    }
+    .editor-image{
+        margin: -2% 30% 0;
+        width: 20%;
+        padding: 0 10%;
+        font-family: var(--font_text);
+    }
+    .editor-err{
+        font-size: 20px;
+        color: var(--red);
+        text-align: center;
+        text-shadow: .5px .5px 0px var(--red2);
+        font-family: var(--font_error);
+        margin: -1% 0 0;
+    }
+    .editor-opz{
+        bottom: 0;
+        width: 20%;
+        margin: 0px 20%;
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+    }
+    .editor-icon{
+        width: 50px;
+        margin: 10px;
+
+    }
+    .editor-submit{
+        width: 50%;
+        margin: 70px 25% 150px;
+        padding: 1% 10%;
+
+        background-color: var(--blueee);
+        color: var(--text_secondary_color);
+        font-family: var(--font_bold);
+        border-radius: 25px;
+        font-size: 25px;
+    }
+    .bar{
+        width: 80%;
+        max-width: 624px;
+        min-width: 624px;
+        margin: 2% auto;
+        padding: 2%;
+        font-size: 20px;
+        color: var(--first);
+        font-family: 'Itim';
+        background-color: var(--second);
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        
+    }
+
 /* PRES */
     .account-back{
         width: 96%;
@@ -1276,8 +1491,9 @@ a:visited{
 
 /* PRESNEWS */
     .presnews-back{
-        width: 90%;
-        margin: 50px 5% 0;
+        width: 98%;
+        z-index: -1;
+        margin: 50px 1% 0;
         border-radius: 50px;
     }
     .presnews-title{
@@ -1292,34 +1508,18 @@ a:visited{
         text-shadow: 2px 2px  0 var(--green2);
     }
     .presnews-page{
-        margin: 50px 0 0;
+        margin: 0px 0 0;
         padding: 50px 0 0;
         display: flex;
         flex-direction: column;
     }
-    .pn-imgs{
-        width: 12%;
-        position: absolute;/*
-        filter: drop-shadow(2px 2px 2px var(--back_secondary));
-        */
-    }
-    #pn-img1{
-        right: 0;
-    }
-    #pn-img2{
-        margin: 40% 0 0;
-    }
-    #pn-img3{
-        width: 17%;
-        margin: 75% 0 0;
-        right: 0;
-    }
-    .presnews-sections{
-        width: 90%;
-        margin: 50px 5% 0;
+    .presnews-section{
+        width: 96%;
+        margin: 50px 2% 0;
+        padding: 0 0 100px;
         position: absolute;
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
         border-radius: 50px 50px 0 0;
         background-color: var(--ambeee);
     }
@@ -1353,18 +1553,18 @@ a:visited{
     }
     .presnews-options{
         width: 80%;
-        margin: 10px 10% 120px;
-        display: flex;
-        flex-direction: row;
+        margin: 10px 10% 20px;
+        display: grid;
+        column-gap: 10px;
+        grid-template-columns: auto auto auto;
     }
     .presnews-button1{
-        width: 40%;
-        margin: 5% auto;
-        padding: 2% 5%;
-        font-size: 22px;
+        width: 90%;
+        margin: 5% 0;
+        padding: 5%;
+        font-size: 20px;
         text-align: center;
-        text-decoration: none;
-        font-family: "Covered By Your Grace";
+        font-family: var(--font_bold);
         color: var(--text_secondary_color);
         border-radius: 25px;
         background-color: var(--blueee);
@@ -1373,17 +1573,145 @@ a:visited{
         color: var(--text_secondary_color);
     }
     .presnews-button2{
-        width: 35%;
+        width: 90%;
         margin: 5% auto;
-        padding: 2% 5%;
-        font-size: 22px;
+        padding: 5%;
+        font-size: 20px;
         text-align: center;
-        text-decoration: none;
-        font-family: "Covered By Your Grace";
+        font-family: var(--font_bold);
         border-radius: 25px;
         background-color: var(--link);
     }
     .presnews-button2:visited{
         color: var(--text_primary_color);
     }
+
+/* ARTICLE */
+    .article-back{
+        width: 96%;
+        margin: -55px 2% 0;
+        z-index: 0;
+    }
+    .article-title{
+        top: 0;
+        width: 70%;
+        margin: 250px 15% 0;
+        z-index: 1;
+        position: absolute;
+        font-size: 50px;
+        text-align: center;
+        color: var(--text_primary_color);
+        font-family: var(--font_title);
+    }
+    .article-desc{
+        top: 0;
+        width: 50%;
+        margin: 500px 25% 0;
+        z-index: 1;
+        position: absolute;
+        font-size: 30px;
+        font-style: italic;
+        text-align: center;
+        color: var(--text_primary_color);
+        font-family: var(--font_article);
+    }
+    .article-bar1{
+        width: 50%;
+        margin: 0px 20% 10px;
+        padding: 15px 5%;
+        align-items: center;
+        font-size: 25px;
+        font-family: var(--font_menu);
+        display: flex;
+        flex-direction: row;
+    }
+    .article-opz{
+        right: 25%;
+        font-size: 30px;
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+    }
+    .article-button1{
+        margin: 0 10px;
+        padding: 2px;
+        color: var(--link);
+        border-radius: 10px;
+        border: 2px solid var(--link);
+    }
+    .article-button1:visited{
+        color: var(--link);
+    }
+    .article-button2{
+        margin: 0 10px;
+        padding: 2px;
+        font-size: 30px;
+        color: var(--red);
+        font-family: var(--font_menu);
+        border-radius: 10px;
+        border: 2px solid var(--red);
+        background-color: var(--back_primary);
+    }
+    .article-button2:visited{
+        color: var(--red);
+    }
+    .article-page{
+        width: 60%;
+        margin: 40px 15%;
+        padding: 2px 5%;
+    }
+    .article-body{
+        margin: 50px 0;
+        font-size: 35px;
+        font-family: var(--font_text);
+        text-align: justify;
+    }
+    .article-voice{
+        margin: 20px 0;
+        font-size: 30px;
+        font-family: var(--font_text);
+        text-align: center;
+        font-style: italic;
+    }
+    .article-img{
+        width: 60%;
+        margin: 50px 20%;
+        border-radius: 25px;
+    }
+
+    .article-adv{
+        width: 50%;
+        margin: 50px 25% 0;
+        padding: 50px 0%;
+        border-radius: 25px 25px 0 0;
+        border: 2px dashed var(--ambeee);
+    }
+    .article-adv-title{
+        margin: -30px 0 0;
+        text-align: center;
+        font-size: 30px;
+        font-family: var(--font_bold);
+        border-radius: 20px;
+        border: 1px solid var(--ambeee);
+        background-color: var(--back_primary);
+    }
+    .article-adv-desc{
+        width: 80%;
+        margin: 10px 10%;
+        font-size: 30px;
+        text-align: center;
+        font-family: var(--font_article);
+    }
+    .article-mark{
+        width: 20%;
+        margin: 0 40% 0px;
+        bottom: 0;
+        opacity: 60%;
+        position: fixed;
+        font-size: 40px;
+        text-align: center;
+        color: var(--grey);
+        font-family: var(--font_webeee);
+    }
+
 }

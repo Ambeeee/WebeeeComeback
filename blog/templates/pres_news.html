@@ -24,22 +24,7 @@
         src=" {{ url_for('static', filename='img/build/presnews_back3.jpg') }} ">
 
 
-        <div class="presnews-sections">
-            <br><br><br><br><br><br><br><br><br><br><br><br>
-            <div class="presnews-options">
-
-            {% if previous_page %}<a class="presnews-button1" href=" {{previous_page}} "> Articoli Precedenti </a>{% endif %}
-    
-                {% if current_user.is_authenticated %}
-                    {% if current_user.role in ["BOSS","pres_editor"] %}
-                    <a class="presnews-button2"
-                        href="{{ url_for('create_pres_article') }}"><b>NUOVO ARTICOLO</b></a>
-                    {% endif %}
-                {% endif %}
-    
-            {% if next_page %}<a class="presnews-button1" href=" {{next_page}} "> Articoli Successivi </a>{% endif %}
-    
-            </div>
+        <div class="presnews-section">
 
             {% for post in posts.items %}
             <a class="presnews-frame"
@@ -54,7 +39,21 @@
             </a>
             {% endfor %}
 
-            
+            <div class="presnews-options">
+
+                {% if previous_page %}<a class="presnews-button1" href=" {{previous_page}} "> Articoli Successivi </a>{% endif %}
+        
+                {% if current_user.is_authenticated %}
+                    {% if current_user.role in ["BOSS","pres_editor"] %}
+                    <a class="presnews-button2"
+                        href="{{ url_for('create_pres_article') }}"><b>NUOVO ARTICOLO</b></a>
+                    {% endif %}
+                {% endif %}
+        
+                {% if next_page %}<a class="presnews-button1" href=" {{next_page}} "> Articoli Precedenti </a>{% endif %}
+        
+            </div>
+
         </div>
 
 
@@ -73,22 +72,7 @@
 
     <!--PAGINA-->
     <div class="presnews-page">
-        <div class="presnews-sections">
-
-            <div class="presnews-options">
-
-            {% if previous_page %}<a class="presnews-button1" href=" {{previous_page}} "> Articoli Precedenti </a>{% endif %}
-    
-                {% if current_user.is_authenticated %}
-                    {% if current_user.role in ["BOSS","pres_editor"] %}
-                    <a class="presnews-button2"
-                        href="{{ url_for('create_pres_article') }}"><b>NUOVO ARTICOLO</b></a>
-                    {% endif %}
-                {% endif %}
-    
-            {% if next_page %}<a class="presnews-button1" href=" {{next_page}} "> Articoli Successivi </a>{% endif %}
-    
-            </div>
+        <div class="presnews-section">
 
             {% for post in posts.items %}
             <a class="presnews-frame"
@@ -104,6 +88,21 @@
             {% endfor %}
 
             
+            <div class="presnews-options">
+
+                {% if previous_page %}<a class="presnews-button1" href=" {{previous_page}} "> Articoli Successivi </a>{% endif %}
+        
+                    {% if current_user.is_authenticated %}
+                        {% if current_user.role in ["BOSS","pres_editor"] %}
+                        <a class="presnews-button2"
+                            href="{{ url_for('create_pres_article') }}"><b>NUOVO ARTICOLO</b></a>
+                        {% endif %}
+                    {% endif %}
+        
+                {% if next_page %}<a class="presnews-button1" href=" {{next_page}} "> Articoli Precedenti </a>{% endif %}
+        
+            </div>
+
         </div>
     </div>
 

@@ -84,6 +84,7 @@ def webeee_article(post_slug):
 @login_required
 def create_pres_article():
     form = PostForm()
+    new_post = PresPost()
     if form.validate_on_submit():
         slug = title_slugifier(form.title.data)
         new_post = PresPost(title=form.title.data, description = form.description.data,
@@ -140,13 +141,13 @@ def create_pres_article():
         db.session.add(new_post)
         db.session.commit()
         return redirect(url_for("pres_article", post_slug=slug))
-    return render_template("post_editor.html", form=form)
+    return render_template("article.html", form=form, post=new_post, modify=True)
 
 @app.route("/pres/<int:post_id>/update", methods=["GET", "POST"])
 @login_required
 def update_pres_article(post_id):
     post_instance = PresPost.query.get_or_404(post_id)
-    if post_instance.author != current_user:
+    if post_instance.author != current_user and current_user.role != "BOSS":
         abort(401)
     form = PostForm()
     if form.validate_on_submit():
@@ -211,7 +212,7 @@ def update_pres_article(post_id):
         form.testimonial1.data = post_instance.testimonial1
         form.testimonial2.data = post_instance.testimonial2
         form.testimonial3.data = post_instance.testimonial3
-    return render_template("post_editor.html", form=form, post=post_instance)
+    return render_template("article.html", form=form, post=post_instance, modify=True)
 
 @app.route("/pres/<int:post_id>/delete", methods=["POST"])
 @login_required
