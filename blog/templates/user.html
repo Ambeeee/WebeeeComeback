@@ -27,51 +27,54 @@
     </div>
 
     <!--EDITOR-->
-    {% if modify %}
-    <form method="POST" enctype="multipart/form-data" novalidate>{{form.hidden_tag()}}
-        <div class="account-infos">
-            <div class="account-detail">Username: {{form.username(class="account-field")}}
-                <div class="account-err">
-                    {% if form.username.errors %}{% for e in form.username.errors %}
-                    {{e}}{% endfor %}{% endif %}
+    {% if modify %}<div>
+        <form method="POST" enctype="multipart/form-data" novalidate>{{form.hidden_tag()}}
+            <div class="account-infos">
+                <div class="account-detail">Username: {{form.username(class="account-field")}}
+                    <div class="account-err">
+                        {% if form.username.errors %}{% for e in form.username.errors %}
+                        {{e}}{% endfor %}{% endif %}
+                    </div>
                 </div>
-            </div>
-            <div class="account-detail">Password: {{form.password(class="account-field")}}
-                <div class="account-err">
-                    {% if form.password.errors %}{% for e in form.password.errors %}
-                    {{e}}{% endfor %}{% endif %}
+                <div class="account-detail">Password: {{form.password(class="account-field")}}
+                    <div class="account-err">
+                        {% if form.password.errors %}{% for e in form.password.errors %}
+                        {{e}}{% endfor %}{% endif %}
+                    </div>
                 </div>
-            </div>
-            <div class="account-detail">Email: {{form.email(class="account-field")}}
-                <div class="account-err">
-                    {% if form.email.errors %}{% for e in form.email.errors %}
-                    {{e}}{% endfor %}{% endif %}
+                <div class="account-detail">Email: {{form.email(class="account-field")}}
+                    <div class="account-err">
+                        {% if form.email.errors %}{% for e in form.email.errors %}
+                        {{e}}{% endfor %}{% endif %}
+                    </div>
                 </div>
+                <div class="account-detail">Ruolo: {{form.role(class="account-field")}}</div>
             </div>
-            <div class="account-detail">Ruolo: {{form.role(class="account-field")}}</div>
+            <div class="account-others">
+                {% if request.path != "/users/create" %}<div class="account-detail">
+                    Immagine del profilo: {{form.icon(class="account-field")}}
+                    
+                    <div class="editor-err">
+                        {% if form.icon.errors %}{% for e in form.icon.errors %}
+                        {{e}}{% endfor %}{% endif %}
+                    
+                    </div>
+                    
+                </div>{% endif %}
+            </div>
+            {{form.submit(class="account-submit")}}
+        </form>
+        
+        <!--ERRORI-->
+        <div class="account-detail">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}{% for message in messages %}{{message}}{% endfor %}{% endif %}
+            {% endwith %}
         </div>
-        <div class="account-others">
-            {% if request.path != "/users/create" %}<div class="account-detail">
-                Immagine del profilo: {{form.icon(class="account-field")}}
-                
-                <div class="editor-err">
-                    {% if form.icon.errors %}{% for e in form.icon.errors %}
-                    {{e}}{% endfor %}{% endif %}
-                
-                </div>
-                
-            </div>{% endif %}
-        </div>
-        {{form.submit(class="account-submit")}}
-    </form>
-    
-    <!--ERRORI-->
-    <div class="account-detail">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}{% for message in messages %}{{message}}{% endfor %}{% endif %}
-        {% endwith %}
     </div>{% else %}
 
+    <!--PAGE-->
+    <div>
     <!--INFOS-->
     <div class="account-infos">
         <div class="account-detail">Username: {{user.username}}</div>
@@ -79,7 +82,7 @@
             <inline-block id="EYE" class="" onclick="reveal_pw()">👁</inline-block>
             Password: <inline-block id="PW" class="dNone">Non disponibile</inline-block>
         </div>
-        <div class="account-detail">Email: {{user.email}}</div>
+        <div class="account-detail">{{user.email}}</div>
         <div class="account-detail">Ruolo: {{user.role}}</div>
     </div>
     <div class="account-others">
@@ -94,9 +97,19 @@
         <p class="account-desc">
             Salve, signore! Ecco il vero PADRONE, il proprietario di tutta la baracca. Potere illimitato!
         </p>
+        {% elif user.role == "webeee_editor" %}
+        <p class="account-desc">
+            Salve soldato! Non sarai un BOSS ma hai comunque una certa padronanza. <br>
+            In quanto reporter delle nostre
+            <a class="link" href=" {{url_for('webeee_news')}} ">News,</a>
+            non vediamo l'ora di rimanere sorpresi dai tuoi articoli. Buon lavoro!
+        </p>
         {% elif user.role == "pres_editor" %}
         <p class="account-desc">
-            bbbb
+            Salve soldato! Ti affidiamo un incarico moolto speciale. <br>
+            Sarai in prima linea a raccontare le avventure
+            del grande <a class="link" href=" {{url_for('pres')}} ">Ridolfi,</a><br>
+            sappiamo che non ci deluderai!
         </p>
         {% elif user.role == "testimonial" %}
         <p class="account-desc">
@@ -113,6 +126,7 @@
         <a class="account-button">Gestisci Account</a>
         <a href="{{ url_for('create_user') }}" class="account-button">Nuovo Account</a>
     </div>{% endif %}
+    </div>
 
 {% endblock %}</div>
 
@@ -179,11 +193,22 @@ src=" {{ url_for('static', filename='img/posts/' + user.icon) }}">{% endif %}
 <!--DESC-->
 <div>{% if user.role == "BOSS" %}
     <p class="account-desc">
-        Salve, signore! Ecco il vero PADRONE, il proprietario di tutta la baracca. Potere illimitato!
+        Salve, signore! Ecco il vero PADRONE, il proprietario di tutta la baracca.
+        Potere illimitato!
+    </p>
+    {% elif user.role == "webeee_editor" %}
+    <p class="account-desc">
+        Salve soldato! Non sarai un BOSS ma hai comunque una certa padronanza. <br>
+        In quanto reporter delle nostre
+        <a class="link" href=" {{url_for('webeee_news')}} ">News,</a>
+        non vediamo l'ora di rimanere sorpresi dai tuoi articoli. Buon lavoro!
     </p>
     {% elif user.role == "pres_editor" %}
     <p class="account-desc">
-        bbbb
+        Salve soldato! Ti affidiamo un incarico moolto speciale. <br>
+        Sarai in prima linea a raccontare le avventure
+        del grande <a class="link" href=" {{url_for('pres')}} ">Ridolfi,</a> nr     
+        sappiamo che non ci deluderai!
     </p>
     {% elif user.role == "testimonial" %}
     <p class="account-desc">
@@ -199,7 +224,7 @@ src=" {{ url_for('static', filename='img/posts/' + user.icon) }}">{% endif %}
     <a class="account-button">Cit Pres</a>
     <a class="account-button">Gallery</a>
     {% if user.role == "BOSS" %} 
-    <a class="account-button">Articolo Webeee</a>
+    <a href="{{ url_for('create_article') }} " class="account-button">Articolo Webeee</a>
     <a class="account-button">Gestisci Account</a>
     <a href="{{ url_for('create_user') }}" class="account-button">Nuovo Account</a>
 </div>{% endif %}{% endif %}

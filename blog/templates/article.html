@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %} {% if request.path == "/pres/news/<string:post_slug>" %}
-Pres {% else %} Articolo {{post.id}} {% endif %}
+{% block title %} {% if pres %}
+Pres #{{post.id}} {% else %} Webeee #{{post.id}} {% endif %}
 {% endblock %}
 
 
@@ -115,18 +115,22 @@ Pres {% else %} Articolo {{post.id}} {% endif %}
             </div>
 
             
-            {% if request.path == "/pres/news/<string:post_slug>" %}
+            {% if pres %}
             <div class="article-opz">
                 <a class="article-button"
                     href=" {{ url_for('pres_news') }} ">Altre News
                 </a>
                 {% if current_user.is_authenticated%}
-                <a class="article-button1"
-                    href=" {{ url_for('update_pres_article', post_id=post.id) }} ">Modifica
-                </a>
-                <form method="POST" action=" {{url_for('delete_pres_article', post_id=post.id)}} ">
-                    <input type="submit" value="Cancella" class="article-button2">
-                </form>
+                    {% if current_user.role == "BOSS" or current_user.role == "pres_editor" %}
+                    <a class="article-button1"
+                        href=" {{ url_for('update_pres_article', post_id=post.id) }} ">Modifica
+                    </a>
+                    <form method="POST" action=" {{url_for('delete_pres_article', post_id=post.id)}} ">
+                        <input type="submit" value="Cancella" class="article-button2">
+                    </form>{%else%}
+                    <a class="article-button1"
+                        href=" {{ url_for('add_pres_testimonial', post_id=post.id) }} ">Testimonianza
+                    </a>{%endif%}
                 {%endif%}
             </div>{% else %}
 
@@ -134,7 +138,7 @@ Pres {% else %} Articolo {{post.id}} {% endif %}
                 <a class="article-button"
                     href=" {{ url_for('webeee_news') }} ">Altre News
                 </a>
-                {% if current_user.is_authenticated%}
+                {% if current_user.role == "BOSS" or current_user.role == "pres_editor" %}
                 <a class="article-button1"
                     href=" {{ url_for('update_article', post_id=post.id) }} ">Modifica
                 </a>
@@ -146,7 +150,7 @@ Pres {% else %} Articolo {{post.id}} {% endif %}
 
         </div>
 
-        <!--PAGE-->
+        <!--ARTICLE-->
         <div class="article-page">
 
             <!--Body1-->
@@ -155,9 +159,13 @@ Pres {% else %} Articolo {{post.id}} {% endif %}
             </div>
 
             <!--Voce 1-->
+            <div>{% if cit %}
+            <form method="POST" enctype="multipart/form-data" novalidate>{{form.hidden_tag()}}
+                {{form.testimonial1(class="toedit-voice toedit")}}
+            </form>{% else %}</div>
             <div class="article-voice">
                 {% if post.testimonial1%} {{post.testimonial1 |markdown}} {%endif%}
-            </div>
+            </div>{% endif %}
 
             <!--Body2 + Img1-->
             <div class="article-container">
@@ -180,9 +188,13 @@ Pres {% else %} Articolo {{post.id}} {% endif %}
             </div>
 
             <!--Voce 2-->
+            <div>{% if cit %}
+            <form method="POST" enctype="multipart/form-data" novalidate>{{form.hidden_tag()}}
+                {{form.testimonial2(class="toedit-voice toedit")}}
+            </form>{% else %}</div>
             <div class="article-voice">
                 {% if post.testimonial2%} {{post.testimonial2 |markdown}} {%endif%}
-            </div>
+            </div>{% endif %}
                 
             <!--Body4 + Img2-->
             <div class="article-container">
@@ -204,23 +216,25 @@ Pres {% else %} Articolo {{post.id}} {% endif %}
                 {% if post.body5%} {{post.body5 |markdown}} {%endif%}
             </div>
 
+            {% if cit %}
+            <form method="POST" enctype="multipart/form-data" novalidate>{{form.hidden_tag()}}
+                {{form.submit(class="article-button3")}}
+            </form>{% endif %}
+
         </div>
 
-        <!--CONSIGLIATI-->
+        <!--CONSIGLIATI-->{% if pres %}
         <div class="article-adv">
             <div class="article-adv-title">Se ti è piaciuto questo articolo, leggi anche:</div>
             <div class="article-adv-desc">
                 <a href="{{ url_for('pres_article', post_slug=adv.slug) }}">{{adv.title}}</a>
             </div>
-        </div>
+        </div>{% endif %}
     </div>{% endif %}
 
     <!--MARK-->
     <div class="article-mark">Webeee</div>
 {% endblock %}</div>
-
-
-
 
 
 <div class="MOBILE">{% block mobile_content %}
@@ -236,20 +250,22 @@ Pres {% else %} Articolo {{post.id}} {% endif %}
             
         
             
-            <div class="">{{form.title(class="article-title toedit")}}
+            <div class="">
+                {{form.title(class="article-title toedit")}}
                 <div class="account-err">
                     {% if form.title.errors %}{% for e in form.title.errors %}
                     {{e}}{% endfor %}{% endif %}
                 </div>
             </div>
-            <div class="">{{form.description(class="article-desc toedit")}}
+            <div class=""><div class="toedit-label">{{ form.description.label }}</div>
+                {{form.description(class="toedit-desc toedit")}}
                 <div class="account-err">
                     {% if form.description.errors %}{% for e in form.description.errors %}
                     {{e}}{% endfor %}{% endif %}
                 </div>
             </div>
             <!--Body1-->
-            <div class="">
+            <div class=""><div class="toedit-label">{{ form.body1.label }}</div>
                 {{form.body1(class="toedit-body toedit")}}
                 <div class="account-err">
                     {% if form.body1.errors %}{% for e in form.body1.errors %}
@@ -258,15 +274,14 @@ Pres {% else %} Articolo {{post.id}} {% endif %}
             </div>
 
             <!--Voce 1-->
-            <div class="">
+            <div class=""><div class="toedit-label">{{ form.testimonial1.label }}</div>
                 {{form.testimonial1(class="toedit-voice toedit")}}
             </div>
 
             <!--Body2 + Img1-->
-            <div class="toedit-container">
                 
                 <!--Body2-->
-                <div class="">
+                <div class=""><div class="toedit-label">{{ form.body2.label }}</div>
                     {{form.body2(class="toedit-body2 toedit")}}
                 </div>
                 
@@ -275,22 +290,20 @@ Pres {% else %} Articolo {{post.id}} {% endif %}
                 {{form.img1(class="toedit-img toedit")}}
                 </div>
 
-            </div>
             <!--Body3-->
-            <div class="">
+            <div class=""><div class="toedit-label">{{ form.body3.label }}</div>
                 {{form.body3(class="toedit-body toedit")}}
             </div>
 
             <!--Voce 2-->
-            <div class="">
+            <div class=""><div class="toedit-label">{{ form.testimonial2.label }}</div>
                 {{form.testimonial2(class="toedit-voice toedit")}}
             </div>
 
             <!--Body4 + Img2-->
-            <div class="toedit-container">
 
                 <!--Body4-->
-                <div class="">
+                <div class=""><div class="toedit-label">{{ form.body4.label }}</div>
                     {{form.body4(class="toedit-body2 toedit")}}
                 </div>
                 
@@ -299,10 +312,9 @@ Pres {% else %} Articolo {{post.id}} {% endif %}
                     {{form.img2(class="toedit-img toedit")}}
                 </div>
 
-            </div>
 
             <!--Body5-->
-            <div class="">
+            <div class=""><div class="toedit-label">{{ form.body5.label }}</div>
                 {{form.body5(class="toedit-body toedit")}}
             </div>
 
@@ -318,7 +330,6 @@ Pres {% else %} Articolo {{post.id}} {% endif %}
         </div>
     </div>
 
-
     <!--PAGE-->
     {% else %}<div>
         <!--TITLE & DESC-->
@@ -327,31 +338,32 @@ Pres {% else %} Articolo {{post.id}} {% endif %}
 
         <!--DATE & OPTIONS-->
         <div class="article-bar">
+
             <div class="article-info"> 
                 {% if post.created_at %}📆{{post.created_at.strftime('%d/%m/%Y')}}{% endif %}
                 {% if post.author %} - 📝{{post.author.username}}{% endif %}
             </div>
             
-            {% if request.path == "/pres/news/<string:post_slug>" %}
+            {% if pres %}
             <div class="article-opz">
-                <a class="article-button"
-                    href=" {{ url_for('pres_news') }} ">Altre News
-                </a>
+                <a class="article-button"href=" {{ url_for('pres_news') }} ">Altre News</a>
                 {% if current_user.is_authenticated%}
-                <a class="article-button1"
-                    href=" {{ url_for('update_pres_article', post_id=post.id) }} ">Modifica
-                </a>
-                <form method="POST" action=" {{url_for('delete_pres_article', post_id=post.id)}} ">
-                    <input type="submit" value="Cancella" class="article-button2">
-                </form>
+                {% if current_user.role == "BOSS" or current_user.role == "pres_editor" %}
+                    <a class="article-button1"
+                        href=" {{ url_for('update_pres_article', post_id=post.id) }} ">Modifica
+                    </a>
+                    <form method="POST" action=" {{url_for('delete_pres_article', post_id=post.id)}} ">
+                        <input type="submit" value="Cancella" class="article-button2">
+                    </form>{%else%}
+                    <a class="article-button1"
+                        href=" {{ url_for('add_pres_testimonial', post_id=post.id) }} ">Testimonianza
+                    </a>{%endif%}
                 {%endif%}
             </div>{% else %}
 
             <div class="article-opz">
-                <a class="article-button"
-                    href=" {{ url_for('webeee_news') }} ">Altre News
-                </a>
-                {% if current_user.is_authenticated%}
+                <a class="article-button" href=" {{ url_for('webeee_news') }} ">Altre News </a>
+                {% if current_user.role == "BOSS" or current_user.role == "pres_editor" %}
                 <a class="article-button1"
                     href=" {{ url_for('update_article', post_id=post.id) }} ">Modifica
                 </a>
@@ -363,7 +375,7 @@ Pres {% else %} Articolo {{post.id}} {% endif %}
 
         </div>
 
-        <!--PAGE-->
+        <!--BODY-->
         <div class="article-page">
 
 
@@ -373,9 +385,15 @@ Pres {% else %} Articolo {{post.id}} {% endif %}
             </div>
 
             <!--Voce 1-->
+            {% if cit %}<div>
+                <form method="POST" enctype="multipart/form-data" novalidate>{{form.hidden_tag()}}
+                    {{form.testimonial1(class="toedit-voice toedit")}}
+                    {{form.submit(class="article-button3")}}
+                </form>
+            </div>{% else %}
             <div class="article-voice">
                 {% if post.testimonial1%} {{post.testimonial1 |markdown}} {%endif%}
-            </div>
+            </div>{% endif %}
 
             <!--Body2 + Img1-->
             <div class="article-container">
@@ -398,9 +416,15 @@ Pres {% else %} Articolo {{post.id}} {% endif %}
             </div>
 
             <!--Voce 2-->
+            {% if cit %}<div>
+                <form method="POST" enctype="multipart/form-data" novalidate>{{form.hidden_tag()}}
+                    {{form.testimonial2(class="toedit-voice toedit")}}
+                    {{form.submit(class="article-button3")}}
+                </form>
+            </div>{% else %}
             <div class="article-voice">
                 {% if post.testimonial2%} {{post.testimonial2 |markdown}} {%endif%}
-            </div>
+            </div>{% endif %}
                 
             <!--Body4 + Img2-->
             <div class="article-container">
@@ -424,15 +448,13 @@ Pres {% else %} Articolo {{post.id}} {% endif %}
 
         </div>
 
-        <!--CONSIGLIATI-->
+        <!--CONSIGLIATI-->{% if pres %}
         <div class="article-adv">
-            <div class="article-adv-title">
-                Se ti è piaciuto questo articolo, leggi anche:
-            </div>
+            <div class="article-adv-title">Se ti è piaciuto questo articolo, leggi anche:</div>
             <div class="article-adv-desc">
                 <a href="{{ url_for('pres_article', post_slug=adv.slug) }}">{{adv.title}}</a>
             </div>
-        </div>
+        </div>{% endif %}
     </div>{% endif %}
 
     <!--MARK-->

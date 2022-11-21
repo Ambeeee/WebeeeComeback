@@ -15,7 +15,7 @@ class User(UserMixin, db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now)
     username = db.Column(db.String(12), unique=True, nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
-    password = db.Column(db.String(150), nullable=False)
+    password = db.Column(db.String(150), default="Cambiami!01")
     role = db.Column(db.String(50), default="testimonial")
     icon = db.Column(db.String(120))
     pres_post = db.relationship('PresPost', backref='author', lazy='dynamic')

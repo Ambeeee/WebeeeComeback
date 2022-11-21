@@ -36,12 +36,13 @@ class PostForm(FlaskForm):
 
 
 class UserForm(FlaskForm):
-    ch=[("BOSS", "BOSS"),  ("pres_editor", "pres_editor"), ("testimonial", "testimonial")]
+    ch=[("BOSS", "BOSS"),  ("pres_editor", "pres_editor"), ("webeee_editor", "webeee_editor"), ("testimonial", "testimonial")]
     
     username = StringField("Username", validators=[DataRequired("Campo obbligatorio!")])
-    password = PasswordField("Password", validators=[DataRequired("Campo obbligatorio")])
+    password = PasswordField("Password")
     email = StringField("Email", validators=[DataRequired("Campo obbligatorio!")])
     role = SelectField("Ruolo", choices=ch, validators=[DataRequired("Campo obbligatorio!")])
     icon = FileField("Copertina", validators=[FileAllowed(["jpg", "jpeg", "png"])])
 
     submit = SubmitField("Fatto")
+

@@ -125,7 +125,7 @@ def create_article():
 @login_required
 def update_article(post_id):
     post_instance = Wpost.query.get_or_404(post_id)
-    if post_instance.author != current_user and current_user.role != "BOSS":
+    if post_instance.author != current_user and current_user.role not in ["BOSS", "webeee_editor"]:
         abort(401)
     form = PostForm()
     if form.validate_on_submit():
@@ -237,7 +237,7 @@ def pres_article(post_slug):
             )
     except: rand_n = 1
     RANDOM = PresPost.query.filter_by(id=rand_n).first()
-    return render_template("article.html", post=post_instance, adv=RANDOM)
+    return render_template("article.html", post=post_instance, adv=RANDOM, pres=True)
 
 @app.route("/pres/news/create", methods=["GET", "POST"])
 @login_required
@@ -301,6 +301,24 @@ def create_pres_article():
         db.session.commit()
         return redirect(url_for("pres_article", post_slug=slug))
     return render_template("article.html", form=form, post=new_post, modify=True)
+
+@app.route("/pres/news/<int:post_id>/add-cit", methods=["GET", "POST"])
+@login_required
+def add_pres_testimonial(post_id):
+    post_instance = PresPost.query.get_or_404(post_id)
+    form = PostForm()
+    if form.validate_on_submit():
+        post_instance.testimonial1 = form.testimonial1.data
+        post_instance.testimonial2 = form.testimonial2.data
+        post_instance.testimonial3 = form.testimonial3.data 
+
+        db.session.commit()
+        return redirect(url_for("pres_article", post_slug=post_instance.slug))
+    elif request.method == "GET":
+        form.testimonial1.data = post_instance.testimonial1
+        form.testimonial2.data = post_instance.testimonial2
+        form.testimonial3.data = post_instance.testimonial3
+    return render_template("article.html", form=form, post=post_instance, cit=True)
 
 @app.route("/pres/news/<int:post_id>/update", methods=["GET", "POST"])
 @login_required
