@@ -11,12 +11,10 @@ Pres #{{post.id}} {% else %} Webeee #{{post.id}} {% endif %}
 
 
     <!--EDITOR--> 
-    {% if modify %}<div>
-
+    {% if editor %}<div>
         <form method="POST" enctype="multipart/form-data" novalidate>{{form.hidden_tag()}}
             
         
-            
             <div class="">{{form.title(class="article-title toedit")}}
                 <div class="account-err">
                     {% if form.title.errors %}{% for e in form.title.errors %}
@@ -61,7 +59,6 @@ Pres #{{post.id}} {% else %} Webeee #{{post.id}} {% endif %}
             <div class="">
                 {{form.body3(class="toedit-body toedit")}}
             </div>
-
             <!--Voce 2-->
             <div class="">
                 {{form.testimonial2(class="toedit-voice toedit")}}
@@ -89,13 +86,6 @@ Pres #{{post.id}} {% else %} Webeee #{{post.id}} {% endif %}
             
             {{form.submit(class="article-button3")}}
         </form>
-        
-        
-        <div class="account-detail">
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}{% for message in messages %}{{message}}{% endfor %}{% endif %}
-            {% endwith %}
-        </div>
     </div>
 
 
@@ -127,10 +117,10 @@ Pres #{{post.id}} {% else %} Webeee #{{post.id}} {% endif %}
                     </a>
                     <form method="POST" action=" {{url_for('delete_pres_article', post_id=post.id)}} ">
                         <input type="submit" value="Cancella" class="article-button2">
-                    </form>{%else%}
+                    </form><!--{%else%}DATE & OPTIONS
                     <a class="article-button1"
-                        href=" {{ url_for('add_pres_testimonial', post_id=post.id) }} ">Testimonianza
-                    </a>{%endif%}
+                        href=" {{ url_for('update_pres_article', post_id=post.id) }} ">Testimonianza
+                    </a>-->{%endif%}
                 {%endif%}
             </div>{% else %}
 
@@ -191,6 +181,7 @@ Pres #{{post.id}} {% else %} Webeee #{{post.id}} {% endif %}
             <div>{% if cit %}
             <form method="POST" enctype="multipart/form-data" novalidate>{{form.hidden_tag()}}
                 {{form.testimonial2(class="toedit-voice toedit")}}
+                
             </form>{% else %}</div>
             <div class="article-voice">
                 {% if post.testimonial2%} {{post.testimonial2 |markdown}} {%endif%}
@@ -232,6 +223,7 @@ Pres #{{post.id}} {% else %} Webeee #{{post.id}} {% endif %}
         </div>{% endif %}
     </div>{% endif %}
 
+
     <!--MARK-->
     <div class="article-mark">Webeee</div>
 {% endblock %}</div>
@@ -244,7 +236,7 @@ Pres #{{post.id}} {% else %} Webeee #{{post.id}} {% endif %}
 
 
     <!--EDITOR--> 
-    {% if modify %}<div>
+    {% if editor %}<div>
 
         <form method="POST" enctype="multipart/form-data" novalidate>{{form.hidden_tag()}}
             
@@ -322,12 +314,6 @@ Pres #{{post.id}} {% else %} Webeee #{{post.id}} {% endif %}
             {{form.submit(class="article-button3")}}
         </form>
         
-        
-        <div class="account-detail">
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}{% for message in messages %}{{message}}{% endfor %}{% endif %}
-            {% endwith %}
-        </div>
     </div>
 
     <!--PAGE-->
@@ -354,10 +340,10 @@ Pres #{{post.id}} {% else %} Webeee #{{post.id}} {% endif %}
                     </a>
                     <form method="POST" action=" {{url_for('delete_pres_article', post_id=post.id)}} ">
                         <input type="submit" value="Cancella" class="article-button2">
-                    </form>{%else%}
+                    </form><!--{%else%}
                     <a class="article-button1"
-                        href=" {{ url_for('add_pres_testimonial', post_id=post.id) }} ">Testimonianza
-                    </a>{%endif%}
+                        href=" {{ url_for('update_pres_article', post_id=post.id) }} ">Testimonianza
+                    </a>-->{%endif%}
                 {%endif%}
             </div>{% else %}
 

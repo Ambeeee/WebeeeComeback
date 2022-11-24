@@ -302,30 +302,10 @@ def create_pres_article():
         return redirect(url_for("pres_article", post_slug=slug))
     return render_template("article.html", form=form, post=new_post, modify=True)
 
-@app.route("/pres/news/<int:post_id>/add-cit", methods=["GET", "POST"])
-@login_required
-def add_pres_testimonial(post_id):
-    post_instance = PresPost.query.get_or_404(post_id)
-    form = PostForm()
-    if form.validate_on_submit():
-        post_instance.testimonial1 = form.testimonial1.data
-        post_instance.testimonial2 = form.testimonial2.data
-        post_instance.testimonial3 = form.testimonial3.data 
-
-        db.session.commit()
-        return redirect(url_for("pres_article", post_slug=post_instance.slug))
-    elif request.method == "GET":
-        form.testimonial1.data = post_instance.testimonial1
-        form.testimonial2.data = post_instance.testimonial2
-        form.testimonial3.data = post_instance.testimonial3
-    return render_template("article.html", form=form, post=post_instance, cit=True)
-
 @app.route("/pres/news/<int:post_id>/update", methods=["GET", "POST"])
 @login_required
 def update_pres_article(post_id):
     post_instance = PresPost.query.get_or_404(post_id)
-    if post_instance.author != current_user and current_user.role != "BOSS":
-        abort(401)
     form = PostForm()
     if form.validate_on_submit():
         post_instance.title = form.title.data
@@ -389,7 +369,14 @@ def update_pres_article(post_id):
         form.testimonial1.data = post_instance.testimonial1
         form.testimonial2.data = post_instance.testimonial2
         form.testimonial3.data = post_instance.testimonial3
-    return render_template("article.html", form=form, post=post_instance, modify=True)
+        
+    if post_instance.author == current_user or current_user.role == "BOSS":
+        return render_template("article.html", form=form, post=post_instance, editor=True)
+    
+    elif current_user.role == "testimonial" or current_user.role == "webeee_editor":
+        return render_template("article.html", form=form, post=post_instance, cit=True)
+    
+    else:   abort(401)
 
 @app.route("/pres/news/<int:post_id>/delete", methods=["POST"])
 @login_required
