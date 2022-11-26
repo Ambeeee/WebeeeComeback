@@ -380,6 +380,57 @@ a:visited{
         color: var(--text_secondary_color);
     }
 
+/* ACCOUNT */
+    .management-back{
+        width: 90%;
+        margin: -50px 5% 0;
+        z-index: -1;
+        position: fixed;
+    }
+    .management-title{
+        margin: 20px 0 50px;
+        font-size: 100px;
+        text-align: center;
+        color: var(--blueee);
+        font-family: var(--font_article);
+    }
+    .management-page{
+        width: 60%;
+        margin: 20px 20% 0;
+        padding: 10px 0 50px;
+        text-align: center;
+    }
+    .management-section{
+        width: 100%;
+        margin: 50px 0%;
+        display: grid;
+        text-align: center;
+        grid-template-columns: auto auto auto auto;
+        
+    }
+    .management-img{
+        width: 60px;
+        margin: 10px 0px 40px 20px;
+        border-radius: 25px;
+    }
+    .management-button{
+        width: 80%;
+        margin: 50px 5%;
+        padding: 10px 5%;
+        font-size: 35px;
+        text-align: center;
+        border-radius: 25px;
+        color: var(--link);
+        font-family: var(--font_bold);
+        background-color: var(--blueee);
+    }
+    .management-button:visited{
+        color: var(--link);
+    }
+
+
+
+
 /* ERROR PAGES */
     .error-back{
         width: 76%;

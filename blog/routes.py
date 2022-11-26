@@ -412,6 +412,13 @@ def logout():
     logout_user()
     return redirect(url_for("home"))
 
+@app.route("/users/manage-users")
+def manage_users():
+    page_number = request.args.get("page", 1, type=int)
+    users = User.query.order_by(User.role).paginate(page=page_number, per_page=10, error_out=True)
+
+    return render_template("manage_users.html", users=users)
+
 @app.route("/users/<string:username>")
 @login_required
 def user_info(username):

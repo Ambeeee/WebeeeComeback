@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Gestione Utenti{% endblock %}
+
+
+<div class="PC">{% block pc_content %}
+
+    <!--BACKGROUND-->
+    <img class="management-back"
+    src=" {{ url_for('static', filename='img/build/users_back.png') }} " alt="BACKGROUND">
+
+
+    <!--TITLE-->
+    <p class="management-title">Gestione Utenti</p>
+
+
+    <!--PAGE-->
+    <div class="management-page">
+        <div class="management-section">
+            <p class="news-frame-desc"></p>
+            <p class="news-frame-desc"> Username</p>
+            <p class="news-frame-desc"> Creato Il</p>
+            <p class="news-frame-desc"> Ruolo</p>
+        </div>
+
+        <div class="management-section">{% for user in users.items %}
+            
+            <img class="management-img" {% if not user.icon %}
+                src="{{ url_for('static', filename='img/build/user_not_loaded.png') }}"
+                {% else %} src=" {{ url_for('static', filename='img/posts/' + user.icon) }}"{% endif %}>
+                
+            <a href="{{ url_for('user_info', username=user.username) }}"
+                class="news-frame-desc"> <b>{{user.username}}</b> </a>
+            <p class="news-frame-desc"> {{user.created_at.strftime('%d/%m/%Y')}}</p>
+            <p class="news-frame-desc"> {{user.role}}</p>
+            
+        {% endfor %}</div>
+
+        
+        <a href="{{ url_for('create_user') }}" class="management-button">Nuovo Utente</a>
+    </div>
+
+{% endblock %}</div>
+
+<div class="PC">{% block mobile_content %}
+
+    <!--BACKGROUND-->
+    <img class="management-back"
+    src=" {{ url_for('static', filename='img/build/users_back.png') }} " alt="BACKGROUND">
+
+
+    <!--TITLE-->
+    <p class="management-title">Gestione Utenti</p>
+
+
+    <!--PAGE-->
+    <div class="management-page">
+        <div class="management-section">
+            <p class="news-frame-desc"></p>
+            <p class="news-frame-desc"> Username</p>
+            <p class="news-frame-desc"> Creato Il</p>
+            <p class="news-frame-desc"> Ruolo</p>
+        </div>
+
+        <div class="management-section">{% for user in users.items %}
+            
+            <img class="management-img" {% if not user.icon %}
+                src="{{ url_for('static', filename='img/build/user_not_loaded.png') }}"
+                {% else %} src=" {{ url_for('static', filename='img/posts/' + user.icon) }}"{% endif %}>
+                
+            <a href="{{ url_for('user_info', username=user.username) }}"
+                class="news-frame-desc"> <b>{{user.username}}</b> </a>
+            <p class="news-frame-desc"> {{user.created_at.strftime('%d/%m/%Y')}}</p>
+            <p class="news-frame-desc"> {{user.role}}</p>
+            
+        {% endfor %}</div>
+
+        
+        <a href="{{ url_for('create_user') }}" class="management-button">Nuovo Utente</a>
+    </div>
+
+{% endblock %}</div>

@@ -36,7 +36,7 @@ class PostForm(FlaskForm):
 
 
 class UserForm(FlaskForm):
-    ch=[("BOSS", "BOSS"),  ("pres_editor", "pres_editor"), ("webeee_editor", "webeee_editor"), ("testimonial", "testimonial")]
+    ch=[("BOSS", "BOSS"),  ("pres_editor", "editor_pres"), ("webeee_editor", "editor_webeee"), ("testimonial", "testimonial")]
     
     username = StringField("Username", validators=[DataRequired("Campo obbligatorio!")])
     password = PasswordField("Password")
