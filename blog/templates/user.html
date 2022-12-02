@@ -97,14 +97,14 @@
         <p class="account-desc">
             Salve, signore! Ecco il vero PADRONE, il proprietario di tutta la baracca. Potere illimitato!
         </p>
-        {% elif user.role == "webeee_editor" %}
+        {% elif user.role == "editor_webeee" %}
         <p class="account-desc">
             Salve soldato! Non sarai un BOSS ma hai comunque una certa padronanza. <br>
             In quanto reporter delle nostre
             <a class="link" href=" {{url_for('webeee_news')}} ">News,</a>
             non vediamo l'ora di rimanere sorpresi dai tuoi articoli. Buon lavoro!
         </p>
-        {% elif user.role == "pres_editor" %}
+        {% elif user.role == "editor_pres" %}
         <p class="account-desc">
             Salve soldato! Ti affidiamo un incarico moolto speciale. <br>
             Sarai in prima linea a raccontare le avventure
@@ -113,7 +113,9 @@
         </p>
         {% elif user.role == "testimonial" %}
         <p class="account-desc">
-            cccc
+            Se sei qui come testimone, significa che hai un compito molto importante... <br>
+            Sarai i nostri occhi e le nostre orecchie, assisterai da vicino alle imprese del grande
+            <br> Ridolfi per poi farne rapporto nei nostri articoli. Buon lavoro soldato!
         </p>
     {% endif %}</div>
     
@@ -196,14 +198,14 @@ src=" {{ url_for('static', filename='img/posts/' + user.icon) }}">{% endif %}
         Salve, signore! Ecco il vero PADRONE, il proprietario di tutta la baracca.
         Potere illimitato!
     </p>
-    {% elif user.role == "webeee_editor" %}
+    {% elif user.role == "editor_webeee" %}
     <p class="account-desc">
         Salve soldato! Non sarai un BOSS ma hai comunque una certa padronanza. <br>
         In quanto reporter delle nostre
         <a class="link" href=" {{url_for('webeee_news')}} ">News,</a>
         non vediamo l'ora di rimanere sorpresi dai tuoi articoli. Buon lavoro!
     </p>
-    {% elif user.role == "pres_editor" %}
+    {% elif user.role == "editor_pres" %}
     <p class="account-desc">
         Salve soldato! Ti affidiamo un incarico moolto speciale. <br>
         Sarai in prima linea a raccontare le avventure
@@ -212,7 +214,9 @@ src=" {{ url_for('static', filename='img/posts/' + user.icon) }}">{% endif %}
     </p>
     {% elif user.role == "testimonial" %}
     <p class="account-desc">
-        cccc
+        Se sei qui come testimone, significa che hai un compito molto importante... <br>
+        Sarai i nostri occhi e le nostre orecchie, assisterai da vicino alle imprese del grande
+        <br> Ridolfi per poi farne rapporto nei nostri articoli. Buon lavoro soldato!
     </p>
 {% endif %}</div>
 

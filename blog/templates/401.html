@@ -8,7 +8,7 @@
 src=" {{ url_for('static', filename='img/build/401_back.png') }} " alt="BACKGROUND">
 
 <!--TITLE-->
-<div class="title-container">
+<div class="error-title-sec">
     <div class="error-sub">Error 401</div>
     <div class="error-title">Cosa ci fai tu qui?!</div>
 </div>
@@ -20,9 +20,9 @@ src=" {{ url_for('static', filename='img/build/401_back.png') }} " alt="BACKGROU
     </p>
 
     <div class="error-options">
-    <a href=" {{ url_for('home') }} "><p class="error-sub">Torna alla Home</p></a>
-    <p class="text w40 ">  oppure  </p>
-    <a href=" {{ url_for('login') }} "><p class="error-sub">Effettua il login</p></a>
+        <a href=" {{ url_for('home') }} " class="error-sub">Torna alla Home</a>
+        <p class="error-text">  oppure  </p>
+        <a href=" {{ url_for('login') }} " class="error-sub">Effettua il login</a>
     </div>
 </div>
 

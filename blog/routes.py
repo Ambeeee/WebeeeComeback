@@ -56,7 +56,7 @@ def webeee_article(post_slug):
             )
     except: rand_n = 1
     RANDOM = PresPost.query.filter_by(id=rand_n).first()
-    return render_template("article.html", post=post_instance, adv=RANDOM)
+    return render_template("article.html", post=post_instance, adv=RANDOM, readonly=True)
 
 @app.route("/news/create", methods=["GET", "POST"])
 @login_required
@@ -119,7 +119,7 @@ def create_article():
         db.session.add(new_post)
         db.session.commit()
         return redirect(url_for("webeee_article", post_slug=slug))
-    return render_template("article.html", form=form, post=new_post, modify=True)
+    return render_template("article.html", form=form, post=new_post, editor=True)
 
 @app.route("/news/<int:post_id>/update", methods=["GET", "POST"])
 @login_required
@@ -237,7 +237,7 @@ def pres_article(post_slug):
             )
     except: rand_n = 1
     RANDOM = PresPost.query.filter_by(id=rand_n).first()
-    return render_template("article.html", post=post_instance, adv=RANDOM, pres=True)
+    return render_template("article.html", post=post_instance, adv=RANDOM, pres=True, readonly=True)
 
 @app.route("/pres/news/create", methods=["GET", "POST"])
 @login_required
@@ -300,7 +300,7 @@ def create_pres_article():
         db.session.add(new_post)
         db.session.commit()
         return redirect(url_for("pres_article", post_slug=slug))
-    return render_template("article.html", form=form, post=new_post, modify=True)
+    return render_template("article.html", form=form, post=new_post, editor=True)
 
 @app.route("/pres/news/<int:post_id>/update", methods=["GET", "POST"])
 @login_required

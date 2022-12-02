@@ -20,7 +20,8 @@ def new_version():
 
     return version_to_print
 
-print(new_version())
-try: cp(new_version())
-except: pass
-print("Copiato negli appunti!")
+if __name__ == "__main__":
+    print(new_version())
+    try: cp(new_version())
+    except: pass
+    print("Copiato negli appunti!")
